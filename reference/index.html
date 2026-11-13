@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reference · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="#fix">When something goes wrong</a></li>
+    <li><a href="#keys">Shortcut sheet</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="fix" class="part">
+<div class="col">
+  <div class="eyebrow">Reference</div>
+  <h2>When something goes wrong</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>You see</th><th>Likely cause</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Bright pink surface</td><td>Image file not found</td><td><b>File › External Data › Find Missing Files</b>, select the textures folder</td></tr>
+      <tr><td>Render is black</td><td>No active camera, lights hidden from render, or all lights off</td><td>Check the camera icons in the Outliner; <kbd>Ctrl</kbd>+Numpad <kbd>0</kbd> on a camera</td></tr>
+      <tr><td>An object shows in the viewport but not the render</td><td>Its render toggle (camera icon) is off</td><td>Turn the Outliner camera icon on (enable it in the Filter menu if hidden)</td></tr>
+      <tr><td>Glass looks black or grey</td><td>Too few light bounces</td><td>Render › Light Paths › Max Bounces Total 16, Transmission 16</td></tr>
+      <tr><td>Grainy render</td><td>Too few samples for a dark scene</td><td>Lower Noise Threshold, raise Max Samples, keep Denoise on</td></tr>
+      <tr><td>Bevel or Solidify uneven</td><td>Object scale isn't 1</td><td><kbd>Ctrl</kbd>+<kbd>A</kbd> › Scale</td></tr>
+      <tr><td>Cloth explodes or flies away</td><td>Unapplied scale, or it starts intersecting the bench</td><td>Apply scale; start the cloth 1–2 cm above the seat; raise Quality Steps</td></tr>
+      <tr><td>Cloth passes through the seat</td><td>Seat has no Collision, or the cloth is too coarse</td><td>Add Collision to the seat; more grid subdivisions; raise Quality</td></tr>
+      <tr><td>Flickering stripes where two surfaces meet</td><td>Z-fighting</td><td>Move one surface a few millimetres, like the arena floor at −0.005</td></tr>
+      <tr><td>Image looks stretched</td><td>Plane proportions don't match the image</td><td>Set Dimensions in the image's aspect ratio, or adjust a Mapping node</td></tr>
+      <tr><td>Bumps far too strong or masks soft</td><td>Data image set to sRGB</td><td>Set the Image Texture's Color Space to Non-Color</td></tr>
+      <tr><td>Dark patches or inside-out shading</td><td>Flipped normals</td><td>Viewport Overlays › Face Orientation (red is the back side); Edit Mode › <kbd>Shift</kbd>+<kbd>N</kbd> recalculates</td></tr>
+      <tr><td>Can't find a panel you just used</td><td>Adjust Last Operation closed</td><td><kbd>F9</kbd>, or <kbd>Ctrl</kbd>+<kbd>Z</kbd> and redo</td></tr>
+    </tbody>
+  </table></div>
+</div>
+</section>
+
+<section id="keys" class="part">
+<div class="col">
+  <div class="eyebrow">Reference</div>
+  <h2>Shortcut sheet</h2>
+  <div class="grid2">
+    <div class="tablewrap" style="margin:0"><table>
+      <thead><tr><th colspan="2">Everywhere</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>Save</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>Undo · redo</td></tr>
+        <tr><td><kbd>F3</kbd></td><td>Search any command by name</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>Adjust Last Operation</td></tr>
+        <tr><td><kbd>F12</kbd> · <kbd>Ctrl</kbd>+<kbd>F12</kbd></td><td>Render image · animation</td></tr>
+        <tr><td><kbd>Space</kbd></td><td>Play / pause</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tablewrap" style="margin:0"><table>
+      <thead><tr><th colspan="2">Object Mode</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Shift</kbd>+<kbd>A</kbd></td><td>Add</td></tr>
+        <tr><td><kbd>G</kbd> <kbd>R</kbd> <kbd>S</kbd></td><td>Move · rotate · scale</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>D</kbd> · <kbd>Alt</kbd>+<kbd>D</kbd></td><td>Duplicate · linked duplicate</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Apply transforms</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd> · <kbd>Ctrl</kbd>+<kbd>J</kbd></td><td>Parent · join</td></tr>
+        <tr><td><kbd>M</kbd> · <kbd>H</kbd> · <kbd>X</kbd></td><td>Move to collection · hide · delete</td></tr>
+        <tr><td><kbd>N</kbd> · <kbd>T</kbd> · <kbd>Z</kbd></td><td>Sidebar · toolbar · shading pie</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tablewrap" style="margin:0"><table>
+      <thead><tr><th colspan="2">Edit Mode</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Tab</kbd></td><td>Enter / leave</td></tr>
+        <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></td><td>Vertex · edge · face</td></tr>
+        <tr><td><kbd>E</kbd> · <kbd>I</kbd> · <kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Extrude · inset · loop cut</td></tr>
+        <tr><td><kbd>M</kbd> · <kbd>O</kbd></td><td>Merge · proportional editing</td></tr>
+        <tr><td><kbd>Alt</kbd>+click</td><td>Select loop</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tablewrap" style="margin:0"><table>
+      <thead><tr><th colspan="2">View and camera</th></tr></thead>
+      <tbody>
+        <tr><td>Numpad <kbd>1</kbd> <kbd>3</kbd> <kbd>7</kbd></td><td>Front · right · top</td></tr>
+        <tr><td>Numpad <kbd>0</kbd></td><td>Camera view</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+Numpad <kbd>0</kbd></td><td>Make selected camera active</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+Numpad <kbd>0</kbd></td><td>Move camera to current view</td></tr>
+        <tr><td><kbd>I</kbd> · <kbd>T</kbd> (Graph Editor)</td><td>Insert keyframe · interpolation</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<section id="glossary" class="part">
+<div class="col">
+  <div class="eyebrow">Reference</div>
+  <h2>Glossary</h2>
+  <dl class="gloss">
+    <dt>Active object</dt><dd>The last selected object; many commands act on it.</dd>
+    <dt>Apply</dt><dd>Make a transform or modifier permanent in the mesh.</dd>
+    <dt>Bevel</dt><dd>Rounding off a sharp edge.</dd>
+    <dt>BSDF</dt><dd>The maths describing how a surface scatters light. Principled BSDF is Blender's all-in-one version.</dd>
+    <dt>Collision</dt><dd>Physics setting that makes an object solid for cloth.</dd>
+    <dt>Cycles · EEVEE</dt><dd>Blender's accurate, slower renderer · its fast, real-time renderer.</dd>
+    <dt>Depth of field</dt><dd>Blur in front of and behind the focus point, controlled by the F-stop.</dd>
+    <dt>Displacement</dt><dd>Moving real geometry using a texture. Bump only fakes it with shading.</dd>
+    <dt>Emission</dt><dd>A surface that gives off light.</dd>
+    <dt>Empty</dt><dd>An invisible object used as a handle or target.</dd>
+    <dt>Interpolation</dt><dd>How Blender fills in values between keyframes.</dd>
+    <dt>IOR</dt><dd>Index of refraction: how much glass bends light (window glass is about 1.52).</dd>
+    <dt>Keyframe</dt><dd>A stored value at a specific frame.</dd>
+    <dt>Linear values</dt><dd>Blender's internal colour numbers, which differ from screen hex codes.</dd>
+    <dt>Manifold</dt><dd>A closed, watertight mesh: every edge is shared by exactly two faces, with no holes or internal faces.</dd>
+    <dt>Mesh island</dt><dd>A group of connected vertices. "One island" means every part is joined to every other part.</dd>
+    <dt>Modifier</dt><dd>A non-destructive operation stacked on an object.</dd>
+    <dt>Node</dt><dd>One building block in a material, world or other node tree.</dd>
+    <dt>Non-Color</dt><dd>Image setting for data (heights, masks) rather than visible colours.</dd>
+    <dt>Normal</dt><dd>The direction a face points; also the input for fake bumps.</dd>
+    <dt>Origin</dt><dd>An object's pivot point (the orange dot).</dd>
+    <dt>Parent</dt><dd>An object that others follow.</dd>
+    <dt>Pin group</dt><dd>The cloth vertices held in place during a simulation.</dd>
+    <dt>Primitive</dt><dd>A ready-made starting shape (cube, sphere…).</dd>
+    <dt>Procedural texture</dt><dd>A pattern generated by maths (Noise, Voronoi, Wave), with no image file.</dd>
+    <dt>Polycount</dt><dd>How many faces a model has. Game engines draw every face every frame, so game models stay inside a face budget.</dd>
+    <dt>Quad</dt><dd>A four-sided face; the best kind for subdivision.</dd>
+    <dt>Sample</dt><dd>One ray-traced measurement per pixel; more samples, less noise.</dd>
+    <dt>Subsurface scattering</dt><dd>Light travelling under a surface before exiting, as in skin and fruit.</dd>
+    <dt>Three-point lighting</dt><dd>Key, fill and rim lights around a subject.</dd>
+    <dt>UV map</dt><dd>The flattened layout that places an image on a 3D surface.</dd>
+    <dt>Z-fighting</dt><dd>Flicker when two surfaces occupy the same place.</dd>
+  </dl>
+  <hr class="soft">
+  <p style="color:var(--muted);font-size:14px">Values in this guide were read from <span class="path">basketball_court.blend</span>, <span class="path">clothes.blend</span>, <span class="path">fruits.blend</span>, <span class="path">warmobile.blend</span> and <span class="path">epidaurus.blend</span> as saved in your repository, opened in Blender 5.2.2. Menu names follow Blender 5.2; if a label differs slightly in your version, <kbd>F3</kbd> search finds the command by name.</p>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

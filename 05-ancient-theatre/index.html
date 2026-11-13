@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ancient Theatre · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="#theatre">Part 6 · Ancient Theatre</a></li>
+    <li class="sub"><a href="#theatre-in-the-scene">What's in the scene</a></li>
+    <li class="sub"><a href="#theatre-s1-file">Step 1 · New file, metric units, one collection</a></li>
+    <li class="sub"><a href="#theatre-s2-materials">Step 2 · Three limestone materials</a></li>
+    <li class="sub"><a href="#theatre-s3-profile">Step 3 · Draw the seating profile</a></li>
+    <li class="sub"><a href="#theatre-s4-lathe">Step 4 · Lathe it with the Screw modifier</a></li>
+    <li class="sub"><a href="#theatre-s5-caps">Step 5 · Close the ends, colour the walkway</a></li>
+    <li class="sub"><a href="#theatre-s6-orchestra">Step 6 · Orchestra floor and altar</a></li>
+    <li class="sub"><a href="#theatre-s7-stairs">Step 7 · Thirteen radial stairways</a></li>
+    <li class="sub"><a href="#theatre-s8-walls">Step 8 · Retaining walls</a></li>
+    <li class="sub"><a href="#theatre-s9-gates">Step 9 · The parodos gates</a></li>
+    <li class="sub"><a href="#theatre-s10-skene">Step 10 · The ruins of the stage building</a></li>
+    <li class="sub"><a href="#theatre-s11-check">Step 11 · Check every object</a></li>
+    <li class="sub"><a href="#theatre-s12-light">Step 12 · Sun, sky and ground</a></li>
+    <li class="sub"><a href="#theatre-s13-render">Step 13 · Cameras and render</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="theatre" class="part theatre">
+<div class="col">
+  <div class="eyebrow">Part 6 · Project 05</div>
+  <h2>Ancient Theatre: Epidaurus in low poly</h2>
+  <div class="meta"><span><b>File</b> <span class="path">projects/05-ancient-theatre/epidaurus.blend</span></span><span><b>Output</b> 6 stills from 6 cameras</span><span><b>Engine</b> Cycles</span><span><b>Mesh</b> 7 objects, 3434 faces</span></div>
+  <p class="lede">The 4th-century BC theatre at Epidaurus, simplified to a 20 m model: a 200° horseshoe of stone seats lathed from one drawn profile, an orchestra with its altar, thirteen stairways, two diagonal wing walls with their gates, and the ruins of the stage building. Everything is flat-shaded limestone, lit by a low afternoon sun.</p>
+</div>
+<figure class="wide"><img src="img/th_cam01.jpg" width="1400" height="788" alt="Elevated three-quarter view of the horseshoe-shaped stone theatre from the stage side, with the stage ruins and two gates in front, long sun shadows across the seats" loading="lazy"><figcaption><span class="path">renders/Cam_01_Front_34.png</span>. The seating bowl, the walkway (diazoma) halfway up, the stairways, the diagonal wing walls, the two gates and the stage ruins.</figcaption></figure>
+<div class="grid2 wide">
+  <figure><img src="img/th_cam02.jpg" width="900" height="506" alt="View from the top seats down to the round orchestra, the altar, the two gates and the stage ruins" loading="lazy"><figcaption>Cam_02_From_Upper_Seats: what a spectator in the back rows sees.</figcaption></figure>
+  <figure><img src="img/th_cam03.jpg" width="900" height="506" alt="Low view of the octagonal altar in the orchestra with the seat rows rising behind" loading="lazy"><figcaption>Cam_03_Orchestra_Altar: the thymele, focused at f/2.8.</figcaption></figure>
+  <figure><img src="img/th_cam04.jpg" width="900" height="506" alt="View along the curved middle walkway between the lower and upper seat tiers" loading="lazy"><figcaption>Cam_04_Diazoma_Walkway: the walkway between the two tiers.</figcaption></figure>
+  <figure><img src="img/th_cam05.jpg" width="900" height="506" alt="The east gate, two doorways under a lintel, standing across the side entrance next to the diagonal wing wall" loading="lazy"><figcaption>Cam_05_Parodos_Entrance: the east gate across the side entrance, as visitors see it today.</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 id="theatre-in-the-scene">What's in the scene</h3>
+  <p>A real Greek theatre is a hillside cut into rows. Here it's seven separate meshes in one <code>Epidaurus</code> collection, all in metres, centred on the world origin, with the open front (the stage) facing <b>−Y</b>.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Object</th><th>What it is</th><th>Built with</th><th>Material</th></tr></thead>
+    <tbody>
+      <tr><td><code>Seating_Bowl</code></td><td>The <i>theatron</i>: 8 lower rows, the <i>diazoma</i> walkway, 5 upper rows and the rim, every riser the same height within its tier</td><td>one profile + Screw modifier</td><td>Seats; Walkway on the diazoma; Structural on the stair strips</td></tr>
+      <tr><td><code>Orchestra_Floor</code></td><td>The round dancing floor, 6.4 m across</td><td>Cylinder</td><td>Walkway</td></tr>
+      <tr><td><code>Thymele_Altar</code></td><td>The low altar at the centre</td><td>Cylinder + inset + extrude</td><td>Structural</td></tr>
+      <tr><td><code>Radial_Stairs</code></td><td>The raised half-steps of the 13 stairways (<i>klimakes</i>)</td><td>small blocks, copied around</td><td>Structural</td></tr>
+      <tr><td><code>Retaining_Walls</code></td><td>The two wing walls (<i>analemmata</i>) at the ends, their top following the seats</td><td>7-point profile, mirrored</td><td>Structural</td></tr>
+      <tr><td><code>Parodos_Gates</code></td><td>The two gates across the side entrances (<i>parodoi</i>)</td><td>boxes</td><td>Structural</td></tr>
+      <tr><td><code>Skene_Ruins</code></td><td>What remains of the stage building: wall stubs, raised blocks and pits</td><td>boxes</td><td>Structural</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why a horseshoe of 200°</span><p>Greek theatres wrap a little more than half a circle around the orchestra, so spectators at the ends still face the stage. 200° split into 24 lathe segments gives 8.33° per segment, and every second seam (every 16.67°) is where a stairway goes. That's 13 stairways and 12 seat wedges, as at the real Epidaurus.</p></aside>
+
+  <h3 id="theatre-s1-file">Step 1 · New file, metric units, one collection</h3>
+  <ol class="steps">
+    <li><b>File › New › General</b>, delete the default cube, camera and light (<kbd>A</kbd>, <kbd>X</kbd>). Save as <span class="path">projects/05-ancient-theatre/epidaurus.blend</span>.</li>
+    <li><b>Scene</b> tab › <b>Units</b>: Unit System <b>Metric</b>, Unit Scale <span class="v">1.0</span>, Length <b>Meters</b>.</li>
+    <li>In the Outliner, right-click the Scene Collection › <b>New Collection</b>, rename it <code>Epidaurus</code> and click it so new objects land inside.</li>
+  </ol>
+
+  <h3 id="theatre-s2-materials">Step 2 · Three limestone materials</h3>
+  <p>Create the three materials once (Material tab › <b>New</b>, then rename). Later objects reuse them from the material browser next to the name field. For each one, also set <b>Viewport Display</b> › Color to the same Base Color so the stone reads in Solid view too.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Material</th><th>Base Color</th><th>Roughness</th><th>Specular IOR Level</th><th>Used on</th></tr></thead>
+    <tbody>
+      <tr><td>Mat_Limestone_Seats</td><td class="n">(0.85, 0.82, 0.75)</td><td class="n">0.85</td><td class="n">0.20</td><td>seat rows, rim, back wall</td></tr>
+      <tr><td>Mat_Limestone_Walkway_Orchestra</td><td class="n">(0.76, 0.68, 0.54)</td><td class="n">0.90</td><td class="n">0.15</td><td>diazoma, orchestra floor</td></tr>
+      <tr><td>Mat_Limestone_Structural</td><td class="n">(0.58, 0.55, 0.50)</td><td class="n">0.88</td><td class="n">0.20</td><td>stairs, walls, altar, skene</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="theatre-s3-profile">Step 3 · Draw the seating profile</h3>
+  <p>The whole bowl comes from one flat outline: a slice through the seats, drawn in the front view on the X–Z plane, then spun around the Z axis. You draw it by extruding a single vertex step by step, typing exact distances.</p>
+  <ol class="steps">
+    <li><b>Add › Mesh › Plane</b>, <kbd>Tab</kbd> into Edit Mode, select all and <kbd>M</kbd> › <b>At Center</b>: one vertex. In the Sidebar (<kbd>N</kbd>) set its position to <span class="v">(3.2, 0, 0)</span>, the inner foot of the seats. Name the object <code>Seating_Bowl</code>.</li>
+    <li>Front view (Numpad <kbd>1</kbd>). Each <b>row</b> is two extrusions: <kbd>E</kbd> <kbd>Z</kbd> <code>0.25</code> <kbd>Enter</kbd> (the riser), then <kbd>E</kbd> <kbd>X</kbd> <code>0.45</code> <kbd>Enter</kbd> (the seat). Do it 8 times: you end at X 6.80, Z 2.00.</li>
+    <li><b>Diazoma</b>: <kbd>E</kbd> <kbd>X</kbd> <code>0.8</code> (the walkway), ending at (7.60, 2.00).</li>
+    <li><b>Upper tier</b>: 5 rows of <kbd>E</kbd> <kbd>Z</kbd> <code>0.28</code>, <kbd>E</kbd> <kbd>X</kbd> <code>0.4</code>, starting straight from the walkway and ending at (9.60, 3.40). The first row rises 0.28 from the walkway like every other row; a taller first riser looks like a wall in front of the upper seats.</li>
+    <li><b>Rim and back</b>: <kbd>E</kbd> <kbd>X</kbd> <code>0.4</code> (the top curb, to X 10.0), then <kbd>E</kbd> <kbd>Z</kbd> <code>-3.4</code> (the outer back wall, down to the ground).</li>
+    <li>Close the outline: select the last vertex and the first one and press <kbd>F</kbd>. That edge is the ground line of the slice. Do <i>not</i> fill the whole outline with a face; the Screw modifier only needs the edges.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>The outline has 33 points: (3.20, 0) → 8 rows of 0.25 × 0.45 → (6.80, 2.00) → (7.60, 2.00) → 5 rows of 0.28 × 0.40 → (9.60, 3.40) → (10.00, 3.40) → (10.00, 0) → back to the start. The 20 m outer diameter comes from that last X of 10.0.</p></aside>
+
+  <h3 id="theatre-s4-lathe">Step 4 · Lathe it with the Screw modifier</h3>
+  <ol class="steps">
+    <li>Back in Object Mode, <b>Modifiers</b> tab › <b>Add Modifier › Generate › Screw</b>. Set Axis <b>Z</b>, Angle <span class="v">200°</span>, Screw <span class="v">0</span>, Steps Viewport and Render <span class="v">24</span>, tick <b>Merge</b>, untick <b>Smooth Shading</b>.</li>
+    <li>The bowl now runs from 0° (the +X side) to 200°. To centre it on +Y, rotate the object <kbd>R</kbd> <kbd>Z</kbd> <code>-10</code> and apply it: <kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>Rotation</b>. It now spans −10° to +190°, with the open side facing −Y.</li>
+    <li>Apply the modifier (the modifier's drop-down arrow › <b>Apply</b>, or <kbd>Ctrl</kbd>+<kbd>A</kbd> with the pointer over it). The bowl becomes a real mesh you can edit.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why lathe instead of modelling each row</span><p>Every row of a theatre is the same shape at a different radius, so one profile holds all the information. The Screw modifier repeats it around the axis 25 times (24 steps plus the start) and joins the copies with faces. Change one number in the profile and every row follows. That's the same idea as the glass plates in Part 4.</p></aside>
+
+  <h3 id="theatre-s5-caps">Step 5 · Close the ends, colour the walkway</h3>
+  <ol class="steps">
+    <li>Edit Mode, deselect all, <b>Select › Select All by Trait › Non Manifold</b>: two outlines light up, the open slices at −10° and +190°.</li>
+    <li>Deselect, then <kbd>Alt</kbd>+click one edge of the −10° outline to select just that loop and press <kbd>F</kbd>. Repeat for the +190° end. The bowl is now a closed solid. Select all and <kbd>Shift</kbd>+<kbd>N</kbd> (Recalculate Outside).</li>
+    <li>Material tab: add <b>Mat_Limestone_Seats</b> as slot 0 and <b>Mat_Limestone_Walkway_Orchestra</b> as slot 1.</li>
+    <li>Face select (<kbd>3</kbd>), <kbd>Alt</kbd>+click the flat walkway at Z 2.0 to select its ring of 24 faces, click slot 1 and press <b>Assign</b>.</li>
+    <li>Object Mode, right-click › <b>Shade Flat</b>.</li>
+  </ol>
+
+  <h3 id="theatre-s6-orchestra">Step 6 · Orchestra floor and altar</h3>
+  <ol class="steps">
+    <li><b>Orchestra_Floor</b>: <kbd>Shift</kbd>+<kbd>A</kbd> › <b>Mesh › Cylinder</b>, and in the Adjust Last Operation panel: Vertices <span class="v">24</span>, Radius <span class="v">3.2</span>, Depth <span class="v">0.1</span>, Location <span class="v">(0, 0, 0)</span>. It spans Z −0.05 to +0.05, filling the opening inside the seats. Material: Walkway.</li>
+    <li><b>Thymele_Altar</b>: another Cylinder with Vertices <span class="v">8</span>, Radius <span class="v">0.5</span>, Depth <span class="v">0.08</span>, Location Z <span class="v">0.09</span> (the base plinth, Z 0.05 to 0.13).</li>
+    <li>Edit Mode, select only its top face, <kbd>I</kbd> Inset with Thickness <span class="v">0.166</span> (that leaves an inner octagon of radius 0.32), then <kbd>E</kbd> <code>0.15</code> to raise the drum to Z 0.28. Keep it low: the real thymele is barely a step above the orchestra floor. One solid, no overlapping parts. Material: Structural, Shade Flat.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why inset 0.166 and not 0.18</span><p>Inset measures straight in from each edge, but radius is measured to the corners. In an octagon the edges sit at cos 22.5° ≈ 0.924 of the corner radius, so going from radius 0.50 to 0.32 is (0.50 − 0.32) × 0.924 = 0.166 of inset.</p></aside>
+
+  <h3 id="theatre-s7-stairs">Step 7 · Thirteen radial stairways</h3>
+  <p>Each stairway has two steps per seat row, each half a seat's height, like the real ones. Half of those steps are simply the seats themselves: a stair climbs over the front half of each row at exactly the seat's level. So a stairway is built in two parts: a 0.32 m strip of the seating painted in stair stone, and small blocks for the raised half-steps in between.</p>
+  <ol class="steps">
+    <li><b>Mark the strips on the seats.</b> Select <code>Seating_Bowl</code>, add <b>Mat_Limestone_Structural</b> as its third material slot, and go into Edit Mode. In the Top view, for each stair line (every second seam, from −10° to +190°), use the <b>Knife</b> tool (<kbd>K</kbd>, then <kbd>C</kbd> to cut through) or <b>Bisect</b> to cut two lines parallel to the seam, 0.16 m either side of it. For the two end stairways cut one line, 0.32 m inside the end.</li>
+    <li>Select the treads and risers between each pair of cuts, on both tiers but not on the walkway, and <b>Assign</b> the stair material. These faces <i>are</i> the stair's seat-level treads and the risers between its steps: the full 0.32 m wide and level with the seats, because they are the seats.</li>
+    <li><b>The half-steps</b>: new object <code>Radial_Stairs</code>. On every row except the top one, the stair has a block on the back half of the row: 0.32 wide, half a row deep (0.225 on the lower tier, 0.20 on the upper) and half a row tall (0.125 / 0.14), standing on the seat and touching the next row's riser. Add one more in front of each tier's first row: on the orchestra floor and on the walkway.</li>
+    <li>Make one block, then copy it up the stair: each copy moves one row out (0.45 or 0.40) and one row up (0.25 or 0.28). That's 8 blocks for the lower flight and 5 for the upper one. Then copy the whole stairway around the origin: pivot <b>3D Cursor</b>, <kbd>Shift</kbd>+<kbd>D</kbd>, <kbd>R</kbd> <kbd>Z</kbd> <code>16.667</code>, and repeat with <kbd>Shift</kbd>+<kbd>R</kbd> up to 190°. The end stairways sit inside the bowl against the walls, 0 to 0.32 m from the end.</li>
+    <li>Material: Structural, Shade Flat.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why not a separate staircase on top of the seats</span><p>A stair laid on top of the seats is either above them (a lip at every row) or at exactly their level, and then its faces lie in the same place as the seats' and flicker in renders. There's a second catch: the seat rows aren't round. They are straight segments that meet at a slight angle on every seam, so 0.16 m to the side of a seam the seat front sits 1.2 cm nearer the centre. A flat staircase riser gets partly hidden behind them and shows as a narrow strip. Painting the stair onto the seats avoids both problems, and the blocks bend at the seam the same way (in your file each block's back is folded to match).</p></aside>
+  <aside class="file"><span class="tag">In your file</span><p>The seating has 624 stair-coloured faces (52 per stairway, 26 on each end one), and <code>Radial_Stairs</code> has 169 blocks (13 per stairway). The highest block top is Z 3.26; the top row of every flight has no block, so each stairway ends exactly at the walkway or the rim.</p></aside>
+
+  <h3 id="theatre-s8-walls">Step 8 · Retaining walls</h3>
+  <p>The wing walls hold up the ends of the bowl and frame the side entrances (<i>parodoi</i>). Their top follows the seats at the same angle, just a little above them, so spectators sitting beside a wall still see the orchestra.</p>
+  <ol class="steps">
+    <li>New object <code>Retaining_Walls</code>. In the front view, draw this outline on the X–Z plane, close it and fill it (<kbd>F</kbd>): (3.2, 0) → (3.2, 0.33) → (6.35, 2.08) → (7.2, 2.08) → (9.2, 3.48) → (10.0, 3.48) → (10.0, 0). That's the lower tier's slope, level over the walkway, the steeper upper tier's slope, then level along the rim.</li>
+    <li><kbd>E</kbd> <kbd>Y</kbd> <code>-0.35</code>: a 0.35 m-thick wall on the −Y side of the X axis, so it ends up just outside the bowl. Then <kbd>R</kbd> <kbd>Z</kbd> <code>-10</code> around the origin. It now stands against the bowl's −10° end, face to face with the end cap.</li>
+    <li>The +190° wall is its mirror image: select it, <kbd>Shift</kbd>+<kbd>D</kbd>, right-click, <kbd>S</kbd> <kbd>X</kbd> <code>-1</code> (pivot at the 3D cursor), then <kbd>Shift</kbd>+<kbd>N</kbd>, because mirroring turns faces inside out.</li>
+    <li>Material: Structural, Shade Flat.</li>
+  </ol>
+  <aside class="why"><span class="tag">Where those numbers come from</span><p>The front corners of the rows line up: on the lower tier they fall on one line rising 0.25 every 0.45 (from X 3.2, Z 0.25 to X 6.35, Z 2.0), on the upper tier on a steeper line rising 0.28 every 0.40 (which reaches Z 2.0 at X 7.2 and the top row at X 9.2, Z 3.4). The wall's top is those two lines, joined by a level run over the walkway, raised by 8 cm. A single straight line can't stay that close to both tiers, because they have different slopes.</p></aside>
+
+  <h3 id="theatre-s9-gates">Step 9 · The parodos gates</h3>
+  <p>Each side entrance is closed by a stone gate with two doorways: three square pillars, a lintel beam across them and a slightly wider cornice slab on top. It stands across the corridor 6.2 m out along the wall, reaching from the wall's outer face about 2.1 m across, which leaves it roughly 1 m clear of the corner of the stage ruins.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part</th><th>Along the wall (depth)</th><th>Across the corridor</th><th>Height Z</th></tr></thead>
+    <tbody class="n">
+      <tr><td>3 pillars, 0.30 square</td><td>0.40</td><td>centres 0.50, 1.40 and 2.30 m from the wall line</td><td>0 → 2.30</td></tr>
+      <tr><td>Lintel</td><td>0.45</td><td>0.35 → 2.45</td><td>2.30 → 2.55</td></tr>
+      <tr><td>Cornice</td><td>0.55</td><td>0.30 → 2.50</td><td>2.55 → 2.68</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li>Build the gate on the +X axis first, like the stairs: centre it at X <span class="v">6.2</span>, with "across the corridor" running along −Y (the wall is at Y 0 to −0.35). Each part is a cube with the Dimensions above: the pillars are 0.40 × 0.30 × 2.30.</li>
+    <li>Join the five boxes (<kbd>Ctrl</kbd>+<kbd>J</kbd>), name it <code>Parodos_Gates</code>, rotate <kbd>R</kbd> <kbd>Z</kbd> <code>-10</code> around the origin so it stands against the −10° wall, then mirror a copy across X for the +190° side, exactly as for the walls.</li>
+    <li>Material: Structural, Shade Flat.</li>
+  </ol>
+
+  <h3 id="theatre-s10-skene">Step 10 · The ruins of the stage building</h3>
+  <p>The stage building at Epidaurus survives only as foundations: a flat plot beside the orchestra with broken wall stubs of different heights, gaps where stones are missing, and raised and sunken patches inside. The low-poly version is a 9.0 × 2.2 m plot (X −4.5 to 4.5, Y −5.45 to −3.25) made entirely of boxes.</p>
+  <ol class="steps">
+    <li><b>Paving</b>: a grid of 9 × 4 tiles, each 1.0 × 0.55 m. Most are <span class="v">0.10</span> tall; a few are raised foundation blocks of <span class="v">0.22</span> or <span class="v">0.35</span>; and five are simply left out, so they read as sunken pits down to the ground.</li>
+    <li><b>Wall stubs</b>: 0.25 m-thick boxes along the edges, broken into pieces with gaps: the back (south) wall up to 0.85 m tall, the front (north) one only 0.20 to 0.40, the side walls 0.30 to 0.75. Add three thinner (0.20 m) interior partitions of 0.25 to 0.50.</li>
+    <li>Vary the heights on purpose; equal stubs look built rather than ruined. Join everything into <code>Skene_Ruins</code>, Material: Structural, Shade Flat.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Paving row (north to south)</th><th>Tile heights, west to east (0 = pit)</th></tr></thead>
+    <tbody class="n">
+      <tr><td>1 (Y −3.25 to −3.80)</td><td>0.10 · 0.10 · 0.22 · 0.10 · 0.10 · 0.10 · 0.22 · 0.10 · 0.10</td></tr>
+      <tr><td>2</td><td>0.10 · 0 · 0.10 · 0.35 · 0.10 · 0.10 · 0 · 0 · 0.10</td></tr>
+      <tr><td>3</td><td>0.10 · 0 · 0.10 · 0.10 · 0.22 · 0.10 · 0.10 · 0 · 0.10</td></tr>
+      <tr><td>4 (Y −4.90 to −5.45)</td><td>0.22 · 0.10 · 0.10 · 0.10 · 0.10 · 0.35 · 0.10 · 0.10 · 0.10</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="file"><span class="tag">In your file</span><p>The exact wall-stub list (15 boxes with their X, Y ranges and heights) is in <span class="path">scripts/build_theatre.py</span> under <code>WALLS</code>. The plot's north edge is at Y −3.25, 5 cm clear of the orchestra floor; each gate stands about 1 m beyond its corner.</p></aside>
+
+  <h3 id="theatre-s11-check">Step 11 · Check every object</h3>
+  <ol class="steps">
+    <li>For each object: <kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>All Transforms</b>, so Location reads 0, Rotation 0 and Scale 1, and all the geometry lives in the mesh.</li>
+    <li>Edit Mode, <b>Select › Select All by Trait › Non Manifold</b> selects nothing on any object: every piece is a closed solid.</li>
+    <li>Overlays › <b>Statistics</b> and the Sidebar's Dimensions should match:</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Object</th><th>Vertices</th><th>Faces</th><th>Size X × Y × Z (m)</th></tr></thead>
+    <tbody class="n">
+      <tr><td>Seating_Bowl</td><td>1470</td><td>1442</td><td>19.99 × 11.74 × 3.40</td></tr>
+      <tr><td>Orchestra_Floor</td><td>48</td><td>26</td><td>6.40 × 6.40 × 0.10</td></tr>
+      <tr><td>Thymele_Altar</td><td>32</td><td>26</td><td>1.00 × 1.00 × 0.23</td></tr>
+      <tr><td>Radial_Stairs</td><td>1924</td><td>1586</td><td>18.29 × 10.80 × 3.26</td></tr>
+      <tr><td>Retaining_Walls</td><td>28</td><td>18</td><td>19.70 × 1.53 × 3.48</td></tr>
+      <tr><td>Parodos_Gates</td><td>80</td><td>60</td><td>12.65 × 2.26 × 2.68</td></tr>
+      <tr><td>Skene_Ruins</td><td>368</td><td>276</td><td>9.00 × 2.20 × 0.85</td></tr>
+    </tbody>
+  </table></div>
+  <figure><img src="img/th_vp.jpg" width="1100" height="476" alt="Blender viewport in Material Preview: the theatre from the east, with a gate, the stage ruins and the diagonal wing walls in front" loading="lazy"><figcaption>Material Preview after Step 11: the diagonal wing walls, both gates and the stage ruins.</figcaption></figure>
+  <aside class="file"><span class="tag">In your file</span><p>All seven objects were built exactly this way by a script and checked the same way: 0 non-manifold edges, flat shading, clean transforms. The scripts are in <span class="path">05-ancient-theatre/scripts/</span>: <span class="path">build_theatre.py</span> for the model, <span class="path">studio.py</span> for the set.</p></aside>
+
+  <h3 id="theatre-s12-light">Step 12 · Sun, sky and ground</h3>
+  <p>Theatres are outdoor buildings, so instead of the dark studios of the earlier projects this one gets daylight. Put the ground in a <code>Ground</code> collection and the lights in <code>Sun and Sky</code>.</p>
+  <ul>
+    <li><b>World</b>: Texture Coordinate (Generated) › Separate XYZ (Z) › Color Ramp from <span class="v">(0.78, 0.82, 0.86)</span> at 0 (the hazy horizon) to <span class="v">(0.22, 0.38, 0.66)</span> at 0.55 (blue overhead) › Background, Strength <span class="v">0.45</span>.</li>
+    <li><b>Ground</b>: a 300 × 300 m plane at Z 0. Material: Noise Texture (Object coordinates, Scale 0.08, Detail 8) mixing <span class="v">(0.30, 0.25, 0.18)</span> and <span class="v">(0.42, 0.36, 0.26)</span> into Base Color, Roughness 0.95: dry earth.</li>
+  </ul>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light</th><th>Type</th><th>Strength</th><th>Color</th><th>Position / aim</th></tr></thead>
+    <tbody>
+      <tr><td>Sun</td><td>Sun, angle 1.5°</td><td class="n">3.2</td><td class="n">(1.0, 0.92, 0.80)</td><td>from (−24, −30, 15) toward the origin: low, from the stage side</td></tr>
+      <tr><td>Sky_Fill</td><td>Area, Disk 20 m</td><td class="n">700 W</td><td class="n">(0.80, 0.88, 1.0)</td><td>(18, 6, 22), aimed at (0, 2, 0)</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why a low sun</span><p>Pale limestone under a high sun turns into one flat white shape. A sun about 22° above the horizon throws a long shadow under every seat edge, and those stripes are what make the rows readable. The first test render used a higher sun and a brighter sky and came out washed out, so the sky was dimmed to 0.45 and the fill to 700 W.</p></aside>
+
+  <h3 id="theatre-s13-render">Step 13 · Cameras and render</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Camera</th><th>Location</th><th>Focus empty at</th><th>Lens</th><th>F-stop</th></tr></thead>
+    <tbody>
+      <tr><td>Cam_01_Front_34</td><td class="n">(−12.5, −18.0, 9.5)</td><td class="n">(0, 1.8, 1.2)</td><td class="n">35</td><td class="n">11</td></tr>
+      <tr><td>Cam_02_From_Upper_Seats</td><td class="n">(2.0, 9.6, 5.3)</td><td class="n">(0, −3.0, 0.6)</td><td class="n">24</td><td class="n">8</td></tr>
+      <tr><td>Cam_03_Orchestra_Altar</td><td class="n">(0.9, −2.7, 0.95)</td><td class="n">(0, 0, 0.35)</td><td class="n">28</td><td class="n">2.8</td></tr>
+      <tr><td>Cam_04_Diazoma_Walkway</td><td class="n">(6.77, 2.46, 3.55)</td><td class="n">(1.25, 7.09, 2.6)</td><td class="n">24</td><td class="n">5.6</td></tr>
+      <tr><td>Cam_05_Parodos_Entrance</td><td class="n">(12.2, −3.4, 1.6)</td><td class="n">(3.0, −1.8, 1.3)</td><td class="n">28</td><td class="n">8</td></tr>
+      <tr><td>Cam_06_Top_Plan</td><td class="n">(0, −0.5, 36)</td><td class="n">(0, 0.5, 0)</td><td class="n">35</td><td class="n">16</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li>Each camera tracks its focus empty (a <b>Track To</b> constraint, or place it and use <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+Numpad <kbd>0</kbd>). Depth of Field on, focus object = its empty. Keep them in <code>Render Cameras</code> › <code>Camera Focus Targets</code>.</li>
+    <li>Render tab: <b>Cycles</b>, GPU, Noise Threshold <span class="v">0.015</span>, Max Samples <span class="v">192</span>, Denoise on, Max Bounces <span class="v">12</span>. Color Management: AgX, <b>Punchy</b>, Exposure <span class="v">−0.3</span>.</li>
+    <li>Output 1920 × 1080 PNG. Render each camera and save it into <span class="path">05-ancient-theatre/renders/</span> with the camera's name. Earlier versions are kept beside them: <span class="path">renders/v1_stepped_walls_foundation/</span> (stepped walls, a full stage foundation) and <span class="path">renders/v2_tall_walls_raised_stairs/</span> (gates close to the stage ruins, a taller straight wall, stairs standing 3 cm above the seats).</li>
+  </ol>
+</div>
+<figure class="wide" style="max-width:900px"><img src="img/th_cam06.jpg" width="900" height="506" alt="Top-down view of the theatre: the horseshoe of seats with 13 stairways, the round orchestra and the rectangular stage foundation" loading="lazy"><figcaption>Cam_06_Top_Plan: the plan view. The 13 stairways, the diazoma ring and the 200° horseshoe are easy to count from here.</figcaption></figure>
+<div class="col">
+  <h4>Check your result</h4>
+  <ul class="checklist">
+    <li>Seven objects in the <code>Epidaurus</code> collection, all at the origin with no rotation or scale.</li>
+    <li>The bowl spans −10° to +190° and is open toward the stage (−Y).</li>
+    <li>The walkway halfway up is a warmer sand colour than the seats.</li>
+    <li>13 stairways climb both tiers in equal steps, from the orchestra to the walkway and from the walkway to the rim, exactly level with the seat rows they meet, the same width all the way up, and with nothing sticking up at their ends.</li>
+    <li>The wing walls follow the seats at the same angle, 8 cm above their edges; a gate with two doorways stands across each side entrance, well clear of the stage ruins.</li>
+    <li>The stage building is a low ruin: uneven wall stubs, raised blocks and missing paving.</li>
+    <li>Select Non Manifold selects nothing on any object; everything is flat-shaded.</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

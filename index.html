@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/guide.css">
+<script src="assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="#start">How to use this guide</a></li>
+    <li><a href="foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<header id="start" class="col">
+  <div class="eyebrow">Blender 5.2 · Art in Computer Games</div>
+  <h1 style="margin-top:12px">Five Scenes in Blender</h1>
+  <p class="lede">A from-zero guide to rebuilding your five course projects by hand in Blender's interface: the basketball court, the team benches with draped cloth, the table of fruit plates, a low-poly armoured vehicle modelled from a single box, and the ancient theatre of Epidaurus.</p>
+</header>
+
+<div class="hero wide">
+  <figure><img src="01-basketball/img/bb_frame70.jpg" width="1400" height="788" alt="Basketball court render with a hoop and the ball near the baseline"><figcaption><span class="chip" style="background:var(--court)"></span>01 · Basketball court</figcaption></figure>
+  <figure><img src="02-clothes/img/cl_cam01.jpg" width="1400" height="788" alt="Arena render with a Lakers bench in the foreground and a Celtics bench further away"><figcaption><span class="chip" style="background:var(--lakers)"></span>02 · Team benches</figcaption></figure>
+  <figure><img src="03-fruits/img/fr_cam01.jpg" width="1400" height="788" alt="Nine glass plates of fruit on a round wooden kitchen table"><figcaption><span class="chip" style="background:var(--fruit)"></span>03 · Fruit table</figcaption></figure>
+  <figure><img src="04-warmobile/img/wm_cam01.jpg" width="1400" height="788" alt="Low-poly dark armoured vehicle with six octagonal tires on a studio floor"><figcaption><span class="chip" style="background:var(--warm)"></span>04 · Warmobile</figcaption></figure>
+  <figure><img src="05-ancient-theatre/img/th_cam01.jpg" width="1400" height="788" alt="Low-poly stone theatre of Epidaurus in afternoon sun, seen from the stage side"><figcaption><span class="chip" style="background:var(--theatre)"></span>05 · Ancient Theatre</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 style="margin-top:28px">What this guide is</h3>
+  <p>The first three scenes were built by writing commands into Blender, the fourth was modelled over a set of orthographic drawings, and the fifth was lathed from a single drawn profile. This guide turns every one of those steps into clicks, menus and shortcuts you can do yourself. Every size, position, colour and setting below was read straight out of your own <code>.blend</code> files, so if you follow the steps your result will match the renders in your <code>renders</code> folders.</p>
+  <p>You don't need any modelling experience. <a href="foundations/index.html#foundations">Part 1</a> teaches the ideas the projects rely on, one at a time and in the order you'll need them. Parts 2 to 6 are the projects, each building on the one before:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Project</th><th>What you learn</th><th>Time</th></tr></thead>
+    <tbody>
+      <tr><td><a href="01-basketball/index.html#court">01 Basketball court</a></td><td>Primitives, exact transforms, parenting, image materials, area lights, keyframe animation, rendering a video</td><td>3–4 h</td></tr>
+      <tr><td><a href="02-clothes/index.html#bench">02 Team benches</a></td><td>Reusing a scene, cloth simulation, modifier stacks, layered fabric materials, three-point lighting, depth of field, many cameras</td><td>4–6 h</td></tr>
+      <tr><td><a href="03-fruits/index.html#fruits">03 Fruit table</a></td><td>Spinning a profile into a plate, reshaping spheres into fruit, curves for stems, glass, procedural textures, subsurface skin</td><td>6–8 h</td></tr>
+      <tr><td><a href="04-warmobile/index.html#warmobile">04 Warmobile</a></td><td>Modelling from orthographic drawings, box modelling from one cube, exact cuts with Bisect, extruding parts instead of cutting holes, octagonal wheels, X-symmetry editing, game-ready checks (manifold, one island, face budget), flat shading</td><td>5–7 h</td></tr>
+      <tr><td><a href="05-ancient-theatre/index.html#theatre">05 Ancient Theatre</a></td><td>Drawing a profile vertex by vertex, lathing it with the Screw modifier, capping open ends, copying parts around an axis, mirroring, low-poly gates and ruins from boxes, outdoor sun-and-sky lighting</td><td>3–4 h</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>How to read the instructions</h4>
+  <ul>
+    <li><kbd>Shift</kbd>+<kbd>A</kbd> means hold Shift and press A. Keyboard shortcuts act on the editor under your mouse pointer, so keep the pointer over the 3D view when you press them.</li>
+    <li><b>Add › Mesh › UV Sphere</b> means open the <b>Add</b> menu, then <b>Mesh</b>, then click <b>UV Sphere</b>.</li>
+    <li>Numbers like <span class="v">(0, 6.935, 0.12)</span> are X, Y, Z positions in metres. Angles are in degrees.</li>
+    <li>Colours like <span class="v">(0.95, 0.95, 0.95)</span> are typed into the <b>RGB</b> fields of Blender's colour picker. They are Blender's internal (linear) values, so they won't match a hex code.</li>
+    <li>Boxes marked <b>In your file</b> show exact values or details from your projects. Boxes marked <b>Why</b> explain the reason behind a step. Read the Why boxes: they are what lets you build your own scenes later.</li>
+  </ul>
+  <aside class="warn"><span class="tag">Be aware</span><p>A few things can't be recovered from the files: the exact cloth simulation settings (the simulation was frozen into the shape and removed) and how most texture images in <span class="path">assets/textures</span> were drawn. For those, this guide gives working starting values and tells you to reuse the existing images. The exception is the team artwork on the towels and pennants, which is documented step by step in <a href="02-clothes/index.html#team-artwork">Part 3</a>.</p></aside>
+</div>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fruit table · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="#fruits">Part 4 · Fruit table</a></li>
+    <li class="sub"><a href="#fruits-s1-new-file-table-and-kitchen">Step 1 · New file, table and kitchen</a></li>
+    <li class="sub"><a href="#fruits-s2-spin-a-glass-plate-from-a-profile">Step 2 · Spin a glass plate from a profile</a></li>
+    <li class="sub"><a href="#fruits-s3-etched-glass">Step 3 · Etched glass</a></li>
+    <li class="sub"><a href="#fruits-s4-turn-a-sphere-into-fruit">Step 4 · Turn a sphere into fruit</a></li>
+    <li class="sub"><a href="#fruits-s5-stems-from-curves">Step 5 · Stems from curves</a></li>
+    <li class="sub"><a href="#fruits-s6-fruit-skins">Step 6 · Fruit skins</a></li>
+    <li class="sub"><a href="#fruits-s7-studio-lights-for-the-table">Step 7 · Studio lights for the table</a></li>
+    <li class="sub"><a href="#fruits-s8-twelve-cameras">Step 8 · Twelve cameras</a></li>
+    <li class="sub"><a href="#fruits-s9-render">Step 9 · Render</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="fruits" class="part fruit">
+<div class="col">
+  <div class="eyebrow">Part 4 · Project 03</div>
+  <h2>A table of fruit on glass plates</h2>
+  <div class="meta"><span><b>File</b> <span class="path">projects/03-fruits/fruits.blend</span></span><span><b>Output</b> 12 stills from 12 cameras</span><span><b>Engine</b> Cycles</span></div>
+  <p class="lede">Nine etched glass plates on a round walnut table in a kitchen, each holding several varieties of one fruit: watermelons, Persian melons, zebra melons, apples, pears, oranges, cucumbers, kiwis and cherries.</p>
+</div>
+<figure class="wide"><img src="img/fr_cam01.jpg" width="1400" height="788" alt="Front overview of nine glass fruit plates on a round walnut table, kitchen behind" loading="lazy"><figcaption><span class="path">renders/Cam_01_Overview_Front.png</span>. Three large melon plates at the back, four in the middle, two at the front.</figcaption></figure>
+<div class="grid2 wide">
+  <figure><img src="img/fr_cam04.jpg" width="900" height="506" alt="Close-up of three watermelons on a glass plate with a sunburst pattern" loading="lazy"><figcaption>Cam_04_Watermelons · 55 mm, f/4</figcaption></figure>
+  <figure><img src="img/fr_cam07.jpg" width="900" height="506" alt="Close-up of four apples on a honeycomb-etched glass plate" loading="lazy"><figcaption>Cam_07_Apples · 55 mm, f/3.2</figcaption></figure>
+</div>
+
+<div class="col">
+  <p>This is the biggest project, but it repeats a few techniques many times: one plate method used nine times, and one fruit method used about thirty times. Learn each one well on the first object, and the rest is duplicating and adjusting.</p>
+
+  <h3 id="fruits-s1-new-file-table-and-kitchen">Step 1 · New file, table and kitchen</h3>
+  <ol class="steps">
+    <li>New General file; delete the cube, the camera and the light. Save as <span class="path">projects/03-fruits/fruits.blend</span>. Copy the fruit texture folders into <span class="path">03-fruits/assets/textures/</span>.</li>
+    <li><b>Table</b>: Add a Cylinder, Vertices <span class="v">192</span>, Radius <span class="v">3.586</span>, Depth <span class="v">0.05</span>, Location Z <span class="v">−0.025</span>, so the tabletop is at Z = 0. Name it <code>Kitchen_Table</code>. Add a <b>Bevel</b>: Amount <span class="v">0.006</span>, Segments 3, Limit Method Angle.</li>
+    <li><b>Kitchen wall</b>: Add a Cylinder, Vertices <span class="v">256</span>, Radius <span class="v">3.606</span>, Depth <span class="v">2.46</span>, Cap Fill <b>Nothing</b>. Location Z <span class="v">1.17</span> (so it spans −0.06 to 2.4 m), Rotation Z <span class="v">−154.8°</span>. Name it <code>Kitchen_Backdrop</code>.</li>
+    <li>Wall material: delete the Principled, add <b>Emission</b> (Strength <span class="v">1</span>). <b>UV Map</b> node → <b>Mapping</b> (Location Y <span class="v">−0.025</span>, Scale Y <span class="v">1.025</span>) → Image Texture <span class="path">kitchen_background.png</span> → Emission Color.</li>
+    <li>Put both in a <code>Kitchen</code> collection.</li>
+    <li>World: Background Color <span class="v">(0.692, 0.604, 0.507)</span>, Strength <span class="v">0.25</span>. A faint warm ambient light, like a sunny kitchen.</li>
+  </ol>
+  <figure><img src="img/tex_kitchen.jpg" width="900" height="95" alt="Very wide panorama of a kitchen with tiled walls, green cabinets and a fridge" loading="lazy"><figcaption>The kitchen panorama wraps once around the wall. The −154.8° rotation turns the fridge and shelves to face the main camera.</figcaption></figure>
+  <aside class="why"><span class="tag">Why a photo wall</span><p>Modelling a whole kitchen would take longer than the fruit. A panorama on a cylinder around the table looks like a real room because the cameras' depth of field blurs it. If anything looks mirrored from inside the cylinder, set the Mapping's Scale X to −1.</p></aside>
+
+  <h4>The walnut table material</h4>
+  <p>This one is fully procedural: no image, just maths. It's a good exercise in building up a look in layers.</p>
+  <div class="recipe">
+    <h5>Nodes: Table_Walnut</h5>
+    <ul>
+      <li><b>Texture Coordinate</b> › Object → <b>Mapping</b> (Scale <span class="v">0.35, 6, 1</span>). Stretching coordinates makes every texture after this long and thin, like grain.</li>
+      <li>→ <b>Wave Texture</b>: Bands, Direction Y, Scale <span class="v">3</span>, Distortion <span class="v">9</span>, Detail <span class="v">4</span>, Detail Scale <span class="v">1.5</span> → <b>Map Range</b> (From 0.2–1, To 0–1) → Factor of <b>Mix</b> (Color): A <span class="v">(0.033, 0.012, 0.005)</span>, B <span class="v">(0.133, 0.047, 0.015)</span>. Light and dark grain.</li>
+      <li>Mapping → <b>Noise Texture</b> (Scale <span class="v">18</span>, Detail <span class="v">6</span>) → Factor of a second Mix: A = first mix, B <span class="v">(0.073, 0.025, 0.009)</span>. Random patches of a middle brown.</li>
+      <li>Plank seams: Texture Coordinate Object → <b>Separate XYZ</b> › Y → <b>Math › Ping-Pong</b> (Scale <span class="v">0.11</span>) → <b>Map Range</b> (From 0–0.0018, To 1–0) → Factor of a third Mix: A = second mix, B <span class="v">(0.007, 0.004, 0.002)</span> → Base Color. A thin dark line every 22 cm.</li>
+      <li>Noise → Map Range (From 0.3–0.7, To <span class="v">0.32–0.5</span>) → Roughness. The finish is a little uneven.</li>
+      <li>Grain Map Range − seam Map Range (Math › Subtract) → <b>Bump</b> (Strength <span class="v">0.12</span>, Distance <span class="v">0.002</span>) → Normal. Coat Weight <span class="v">0.15</span>, Coat Roughness <span class="v">0.25</span>.</li>
+    </ul>
+  </div>
+
+  <h3 id="fruits-s2-spin-a-glass-plate-from-a-profile">Step 2 · Spin a glass plate from a profile</h3>
+  <p>A plate is round, so you only need to draw half of its cross-section, a line from the centre out to the rim, and let the <b>Screw</b> modifier spin it 360°. It's the same idea as turning a pot on a wheel.</p>
+</div>
+
+<div class="diagram minw wide" role="img" aria-label="Cross-section of the watermelon plate profile from the centre axis out to the rim: flat eating surface, rising rim with a rolled lip, underside curving back to a small foot ring and a flat base">
+<svg viewBox="0 0 680 284" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="0" x2="40" y2="250" class="dash"/>
+  <text x="62" y="14" font-size="12" class="mut">Z axis: the Screw spins around this</text>
+  <polyline class="lnacc" points="40,183.9 201.7,183.9 363.6,183.9 401.3,178.7 437.7,160.5 474.1,130.9 509.2,91.2 541.5,48.3 565.7,18.4 577.9,8.7 586,15.2 587.3,31.8 579.2,48.3 552.3,77.9 514.5,120.8 474.1,160.5 433.6,190.4 393.2,205.3 352.8,210.2 328.5,216.7 320.4,230 296.1,230 288,216.7 242.3,210.2 134.4,210.2 40,210.2"/>
+  <g class="dot"><circle cx="40" cy="183.9" r="3.5"/><circle cx="201.7" cy="183.9" r="3.5"/><circle cx="363.6" cy="183.9" r="3.5"/><circle cx="401.3" cy="178.7" r="3.5"/><circle cx="437.7" cy="160.5" r="3.5"/><circle cx="474.1" cy="130.9" r="3.5"/><circle cx="509.2" cy="91.2" r="3.5"/><circle cx="541.5" cy="48.3" r="3.5"/><circle cx="565.7" cy="18.4" r="3.5"/><circle cx="577.9" cy="8.7" r="3.5"/><circle cx="586" cy="15.2" r="3.5"/><circle cx="587.3" cy="31.8" r="3.5"/><circle cx="579.2" cy="48.3" r="3.5"/><circle cx="552.3" cy="77.9" r="3.5"/><circle cx="514.5" cy="120.8" r="3.5"/><circle cx="474.1" cy="160.5" r="3.5"/><circle cx="433.6" cy="190.4" r="3.5"/><circle cx="393.2" cy="205.3" r="3.5"/><circle cx="352.8" cy="210.2" r="3.5"/><circle cx="328.5" cy="216.7" r="3.5"/><circle cx="320.4" cy="230" r="3.5"/><circle cx="296.1" cy="230" r="3.5"/><circle cx="288" cy="216.7" r="3.5"/><circle cx="242.3" cy="210.2" r="3.5"/><circle cx="134.4" cy="210.2" r="3.5"/><circle cx="40" cy="210.2" r="3.5"/></g>
+  <text x="130" y="174" font-size="12">top surface, 14 mm up</text>
+  <text x="600" y="14" font-size="12">rolled lip</text>
+  <text x="600" y="30" font-size="11" class="mut mono">r 421 mm</text>
+  <text x="600" y="46" font-size="11" class="mut mono">h 68 mm</text>
+  <text x="440" y="114" font-size="12" text-anchor="end">rim</text>
+  <text x="308" y="250" font-size="12" text-anchor="middle">foot ring on the table</text>
+  <text x="70" y="232" font-size="12" class="mut">flat base, 6 mm</text>
+  <line x1="40" y1="262" x2="587" y2="262" class="ln"/>
+  <text x="314" y="278" font-size="11" class="mut" text-anchor="middle">radius 0.421 m · heights drawn 2.5× taller to be readable</text>
+</svg>
+</div>
+
+<div class="col">
+  <p>The 26 points of the watermelon plate's profile, in order (radius X, height Z, in millimetres):</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>X</th><th>Z</th><th>#</th><th>X</th><th>Z</th><th>#</th><th>X</th><th>Z</th></tr></thead>
+    <tbody class="n">
+      <tr><td>1</td><td>0</td><td>14.2</td><td>10</td><td>413.8</td><td>68.1</td><td>19</td><td>240.6</td><td>6.1</td></tr>
+      <tr><td>2</td><td>124.4</td><td>14.2</td><td>11</td><td>420.0</td><td>66.1</td><td>20</td><td>221.9</td><td>4.1</td></tr>
+      <tr><td>3</td><td>248.9</td><td>14.2</td><td>12</td><td>421.0</td><td>61.0</td><td>21</td><td>215.7</td><td>0</td></tr>
+      <tr><td>4</td><td>277.9</td><td>15.8</td><td>13</td><td>414.8</td><td>55.9</td><td>22</td><td>197.0</td><td>0</td></tr>
+      <tr><td>5</td><td>305.9</td><td>21.4</td><td>14</td><td>394.1</td><td>46.8</td><td>23</td><td>190.8</td><td>4.1</td></tr>
+      <tr><td>6</td><td>333.9</td><td>30.5</td><td>15</td><td>365.0</td><td>33.6</td><td>24</td><td>155.6</td><td>6.1</td></tr>
+      <tr><td>7</td><td>360.9</td><td>42.7</td><td>16</td><td>333.9</td><td>21.4</td><td>25</td><td>72.6</td><td>6.1</td></tr>
+      <tr><td>8</td><td>385.8</td><td>55.9</td><td>17</td><td>302.8</td><td>12.2</td><td>26</td><td>0</td><td>6.1</td></tr>
+      <tr><td>9</td><td>404.4</td><td>65.1</td><td>18</td><td>271.7</td><td>7.6</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li><b>Make a single point.</b> Add a Plane, <kbd>Tab</kbd>, <kbd>A</kbd>, <kbd>M</kbd> › <b>At Center</b>. You have one vertex. In the Sidebar › Item › Vertex, set X <span class="v">0</span>, Y <span class="v">0</span>, Z <span class="v">0.0142</span>.</li>
+    <li>Press Numpad <kbd>1</kbd> for front view, so you're drawing on the X–Z plane.</li>
+    <li><b>Add the rest.</b> For each next point: <kbd>E</kbd>, then right-click (this creates a connected copy right on top), then type its X and Z in the Sidebar in metres (point 2 is X <span class="v">0.1244</span>, Z <span class="v">0.0142</span>). Repeat to point 26. Quicker but less exact: <kbd>Ctrl</kbd>+right-click to place each point where you click, following the diagram.</li>
+    <li><kbd>Tab</kbd> out and name it <code>Plate_01_Watermelons</code>. It's just a line; that's correct.</li>
+    <li>Modifiers › <b>Screw</b>: Axis <b>Z</b>, Angle <span class="v">360°</span>, Screw <span class="v">0</span>, Iterations 1, Steps Viewport <span class="v">96</span>, Render <span class="v">128</span>, <b>Merge</b> on (distance <span class="v">0.0004</span>). A full plate appears.</li>
+    <li>Add <b>Subdivision Surface</b> (Viewport 1, Render 2), then <b>Weighted Normal</b>. Right-click › Shade Smooth.</li>
+    <li>Location <span class="v">(−0.95, 0.62, 0)</span>.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why Merge</span><p>Points 1 and 26 sit exactly on the axis. When the Screw spins them, 128 copies land on the same spot. Merge welds them into one point, so the centre of the plate is closed and smooth instead of a pinched knot.</p></aside>
+
+  <h4>The other eight plates</h4>
+  <p>Duplicate the plate (<kbd>Shift</kbd>+<kbd>D</kbd>), then type the new size into <b>Dimensions</b>, apply scale, and move it. Smaller plates are relatively deeper, so set X, Y and Z separately:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Plate</th><th>Diameter × height (m)</th><th>Centre (X, Y)</th><th>Decal image</th><th>Mapping scale</th></tr></thead>
+    <tbody>
+      <tr><td>01 Watermelons</td><td class="n">0.84 × 0.067</td><td class="n">(−0.95, 0.62)</td><td>plate_watermelon_sunburst</td><td class="n">1.167</td></tr>
+      <tr><td>02 Persian Melons</td><td class="n">0.80 × 0.066</td><td class="n">(0, 0.72)</td><td>plate_persian_melon_diamonds</td><td class="n">1.225</td></tr>
+      <tr><td>03 Zebra Melons</td><td class="n">0.72 × 0.063</td><td class="n">(0.95, 0.62)</td><td>plate_zebra_melon_rings</td><td class="n">1.362</td></tr>
+      <tr><td>04 Apples</td><td class="n">0.48 × 0.054</td><td class="n">(−1.08, −0.16)</td><td>plate_apple_honeycomb</td><td class="n">2.042</td></tr>
+      <tr><td>05 Pears</td><td class="n">0.48 × 0.054</td><td class="n">(−0.5, −0.24)</td><td>plate_pear_flower</td><td class="n">2.042</td></tr>
+      <tr><td>06 Oranges</td><td class="n">0.48 × 0.054</td><td class="n">(0.08, −0.2)</td><td>plate_orange_stars</td><td class="n">2.042</td></tr>
+      <tr><td>07 Cucumbers</td><td class="n">0.56 × 0.057</td><td class="n">(0.72, −0.18)</td><td>plate_cucumber_waves</td><td class="n">1.751</td></tr>
+      <tr><td>08 Kiwis</td><td class="n">0.38 × 0.050</td><td class="n">(−0.25, −0.8)</td><td>plate_kiwi_dots</td><td class="n">2.58</td></tr>
+      <tr><td>09 Cherries</td><td class="n">0.36 × 0.050</td><td class="n">(0.38, −0.78)</td><td>plate_cherry_hearts</td><td class="n">2.723</td></tr>
+    </tbody>
+  </table></div>
+  <p>Put each plate in its own collection (<code>Plate 01 Watermelons</code> … <code>Plate 09 Cherries</code>) inside <code>Fruit Plates</code>. Its fruit will go in the same collection.</p>
+
+  <h3 id="fruits-s3-etched-glass">Step 3 · Etched glass</h3>
+  <p>Each plate is clear glass with a frosted, slightly engraved pattern on top. The pattern comes from a mask image: pink lines on black, seen from above.</p>
+  <figure style="max-width:300px"><img src="img/tex_plate_mask.jpg" width="420" height="420" alt="Circular sunburst pattern in pink on black" loading="lazy"><figcaption><span class="path">plate_watermelon_sunburst.png</span>. The green channel says where the glass is frosted, the red channel how deep the engraving is.</figcaption></figure>
+  <div class="recipe">
+    <h5>Nodes: Crystal_01_Watermelons</h5>
+    <ul>
+      <li>Two Principled BSDFs. <b>Clear</b>: Base Color <span class="v">(0.933, 0.977, 1.0)</span>, Roughness <span class="v">0</span>, IOR <span class="v">1.52</span>, Transmission Weight <span class="v">1</span>. <b>Frosted</b>: Base Color <span class="v">(0.848, 0.89, 0.933)</span>, Roughness <span class="v">0.32</span>, IOR <span class="v">1.52</span>, Transmission <span class="v">0.9</span>.</li>
+      <li>Both → <b>Mix Shader</b> (clear in the top slot, frosted below) → Material Output.</li>
+      <li><b>Texture Coordinate</b> › Object → <b>Mapping</b> (Location <span class="v">0.5, 0.5, 0</span>, Scale = the plate's value from the table, same for X and Y) → Image Texture (mask, <b>Non-Color</b>) → <b>Separate Color</b>.</li>
+      <li><b>Geometry</b> › Normal → <b>Separate XYZ</b> › Z → <b>Map Range</b> (From <span class="v">0.25–0.6</span>, To 0–1). This is 1 on surfaces facing up and 0 on the sides and underneath.</li>
+      <li>Green × facing-up (Math Multiply) × <span class="v">0.75</span> (Math Multiply) → Mix Shader Factor. Frosted where the pattern is, on top surfaces only.</li>
+      <li>Red × facing-up → Math <b>Subtract</b> (value − 1, so engraved areas sink) → <b>Bump</b> Height (Strength <span class="v">0.45</span>, Distance <span class="v">0.0008</span>) → the Normal of <i>both</i> Principled nodes.</li>
+    </ul>
+  </div>
+  <aside class="why"><span class="tag">Why Object coordinates and these scales</span><p>The plate's origin is at its centre, and Object coordinates measure from there in metres. Image coordinates run 0–1, so a Location of 0.5 moves the image's centre onto the plate's centre. The Scale is about 0.98 ÷ the plate's diameter (1.167 × 0.84 ≈ 0.98), so the square image covers the plate exactly. Because the image is projected from above, it lands on the plate's top no matter how the profile curves.</p></aside>
+  <p>Make the material once, duplicate it for each plate, and swap the image and Mapping scale. Glass needs at least <b>16 light bounces</b> (set in Step 9). It is many surfaces deep, and with too few bounces it renders black.</p>
+
+  <h3 id="fruits-s4-turn-a-sphere-into-fruit">Step 4 · Turn a sphere into fruit</h3>
+  <p>Every fruit is a UV Sphere with few segments, reshaped by hand, then smoothed and roughened with modifiers. Here's the method on one Gala apple:</p>
+  <ol class="steps">
+    <li>Add a UV Sphere: Segments <span class="v">16</span>, Rings <span class="v">10</span>, Radius <span class="v">0.04</span>. Right-click › Shade Smooth.</li>
+    <li><kbd>Tab</kbd>, vertex select. Click the very top point. Turn on proportional editing (<kbd>O</kbd>), press <kbd>G</kbd> <kbd>Z</kbd> and move down about <span class="v">−0.011</span>, scrolling to make the influence circle small. The top caves in: the stem dimple. Do the same to the bottom point, upward, about <span class="v">0.009</span>.</li>
+    <li>Turn proportional editing off (<kbd>O</kbd>). Scale the whole apple down a little in Z (<kbd>A</kbd>, <kbd>S</kbd> <kbd>Z</kbd> <code>0.92</code>) so it's slightly wider than tall. <kbd>Tab</kbd> out.</li>
+    <li>Modifiers: <b>Subdivision Surface</b> (Viewport 1, Render 2), then <b>Displace</b> with a new Clouds texture: Size <span class="v">0.03</span>, Depth 2; Strength <span class="v">0.0012</span>, Coordinates Local. That's a barely visible lumpiness, which is what makes it look like fruit and not plastic.</li>
+    <li>Rotate it a little around Z (each apple in the file is turned differently: 20°, 140°, 250°, 300°) so the four don't look stamped out.</li>
+    <li>Lower it until it rests on the plate's surface. For the small plates the fruit origins sit at about Z <span class="v">0.008</span>.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why Local coordinates and tiny strengths</span><p>Local coordinates fix the Clouds pattern to the fruit, so lumps don't slide over it when it moves. Fruit is small: an apple is 8 cm, so 1.2 mm of displacement is already visible. In general, keep displacement under about 3% of the fruit's size.</p></aside>
+
+  <h4>Every fruit at a glance</h4>
+  <p>The same method with different settings. Sizes are the final dimensions (length × width × height) in centimetres; "lying" fruit are rotated 90° so their long axis is horizontal.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Fruit</th><th>Segments × Rings</th><th>Size (cm)</th><th>Shape edit</th><th>Displace (strength · cloud size)</th></tr></thead>
+    <tbody>
+      <tr><td>Watermelon Crimson Sweet</td><td class="n">24 × 12</td><td class="n">23 × 19.5 × 19.6</td><td>stretch one axis, lying</td><td class="n">0.003 · 0.06</td></tr>
+      <tr><td>Watermelon Sugar Baby</td><td class="n">24 × 12</td><td class="n">18.3 × 18 × 18</td><td>plain sphere</td><td class="n">0.003 · 0.06</td></tr>
+      <tr><td>Watermelon Charleston Gray</td><td class="n">24 × 12</td><td class="n">31.8 × 15.2 × 15.2</td><td>long oval, lying</td><td class="n">0.003 · 0.06</td></tr>
+      <tr><td>Persian melons (3)</td><td class="n">40 × 16</td><td class="n">30.6 × 13.4 × 13.3</td><td>long, pointed ends, lying</td><td class="n">0.002 · 0.06</td></tr>
+      <tr><td>Zebra melons (3)</td><td class="n">40 × 16</td><td class="n">≈ 15 × 15 × 14.5</td><td>upright, dimpled poles</td><td class="n">0.002 · 0.05</td></tr>
+      <tr><td>Apples (4)</td><td class="n">16 × 10</td><td class="n">≈ 8 × 8 × 7–8</td><td>dimple top and bottom</td><td class="n">0.0012 · 0.03</td></tr>
+      <tr><td>Pears Anjou (2)</td><td class="n">16 × 10</td><td class="n">7.4 × 7.4 × 9.3</td><td>narrow the top rings: neck</td><td class="n">0.0012 · 0.03</td></tr>
+      <tr><td>Pears Bartlett, Bosc</td><td class="n">16 × 11</td><td class="n">7 × 7 × 10.7 · 6.4 × 6.4 × 12.3</td><td>longer neck</td><td class="n">0.0012 · 0.03</td></tr>
+      <tr><td>Oranges (4)</td><td class="n">20 × 12</td><td class="n">6.6–8.2 wide</td><td>slightly flattened; mandarin flattest</td><td class="n">0.001 · 0.02</td></tr>
+      <tr><td>Cucumbers (3)</td><td class="n">20 × 11</td><td class="n">14.9–25.9 × 3.6–4.9</td><td>long and thin, lying</td><td class="n">0.0012 · 0.03</td></tr>
+      <tr><td>Lemon cucumber</td><td class="n">20 × 12</td><td class="n">6.7 × 6.6 × 7.5</td><td>round</td><td class="n">0.001 · 0.02</td></tr>
+      <tr><td>Kiwis green, gold</td><td class="n">16 × 10</td><td class="n">7 × 5 × 4.5</td><td>egg shape, lying</td><td class="n">0.0015 · 0.02</td></tr>
+      <tr><td>Kiwi berries (2)</td><td class="n">16 × 10</td><td class="n">3 × 2.2 × 2.2</td><td>small egg</td><td class="n">0.0007 · 0.02</td></tr>
+      <tr><td>Cherries (6)</td><td class="n">12 × 6</td><td class="n">≈ 3 × 3 × 2.9</td><td>dimple on top, object scale 1.25</td><td class="n">none</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="file"><span class="tag">In your file: shape details</span><p>The <b>Bosc pear</b> is 3.4 cm in radius near the bottom, narrowing to 1.7 cm at 10 cm height and 1.5 cm at 11.6 cm: select the upper rings with <kbd>Alt</kbd>+click and scale them in (<kbd>S</kbd> <kbd>Shift</kbd>+<kbd>Z</kbd>), more for each ring higher up. The <b>Gala apple</b> is widest (4.1 cm radius) at 3.6 cm height, and its top dimple goes 1.1 cm deep. The melons have more segments (40) because their stripes and ribs need more points around.</p></aside>
+  <p>Place each fruit on its plate (the watermelons around (−0.95, 0.62) and so on), each fruit's Z set so it touches the plate. Arrange them as if someone set them down by hand: different turns, not a perfect grid.</p>
+
+  <h3 id="fruits-s5-stems-from-curves">Step 5 · Stems from curves</h3>
+  <ol class="steps">
+    <li>Add › Curve › <b>Bezier</b>. <kbd>Tab</kbd>. Select one end and press <kbd>E</kbd> to add a third point. Shape it into a short upward hook: for the Gala apple the points are about 6.3, 7.6 and 8.7 cm above the apple's base, leaning slightly sideways.</li>
+    <li>Curve Data tab › Geometry › Bevel › <b>Depth</b> <span class="v">0.0016</span> (a 3.2 mm thick stem), Resolution 3. Tick <b>Fill Caps</b>.</li>
+    <li>Move it onto the apple's dimple. Select the stem, then <kbd>Shift</kbd>+click the apple, <kbd>Ctrl</kbd>+<kbd>P</kbd> › <b>Object (Keep Transform)</b>. Now the stem moves with its fruit.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Stem</th><th>Bevel depth</th><th>Material</th></tr></thead>
+    <tbody>
+      <tr><td>Apple, pear</td><td class="n">0.0016–0.0018</td><td>Stem_Woody</td></tr>
+      <tr><td>Watermelon, Persian, zebra melon</td><td class="n">0.0028–0.004</td><td>Stem_Dry_Melon</td></tr>
+      <tr><td>Orange "button" (2 points)</td><td class="n">0.0029–0.0036</td><td>Stem_Green</td></tr>
+      <tr><td>Cucumber</td><td class="n">0.0028–0.0039</td><td>Stem_Green</td></tr>
+      <tr><td>Cherry pair (one curve, 3 splines)</td><td class="n">0.0012</td><td>Stem_Green</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Cherry pairs.</b> Two cherries share one stem object. Draw the first stem from one cherry up to a joint (about 10.8 cm above the table). While still in Edit Mode, <b>Add › Bezier</b> again: it becomes a second spline inside the same object. Draw it from the second cherry to the same joint. Add a third short spline above the joint as the tip.</p>
+  <div class="recipe">
+    <h5>Nodes: stem materials (all three share this setup)</h5>
+    <ul>
+      <li>Texture Coordinate › Object → <b>Noise</b> (Scale <span class="v">400</span>, Detail <span class="v">6</span>) → Factor of <b>Mix</b> (Color) → Base Color; same Noise → <b>Bump</b> (Strength <span class="v">0.3</span>, Distance <span class="v">0.0004</span>) → Normal. Roughness <span class="v">0.7</span>.</li>
+      <li>Stem_Woody: A <span class="v">(0.073, 0.033, 0.01)</span>, B <span class="v">(0.171, 0.089, 0.027)</span>. Stem_Dry_Melon: A <span class="v">(0.263, 0.214, 0.073)</span>, B <span class="v">(0.1, 0.089, 0.027)</span>. Stem_Green: A <span class="v">(0.107, 0.147, 0.022)</span>, B <span class="v">(0.233, 0.214, 0.047)</span>.</li>
+    </ul>
+  </div>
+
+  <h3 id="fruits-s6-fruit-skins">Step 6 · Fruit skins</h3>
+  <p>The skins come in three kinds. Learn one of each and copy-adjust the rest.</p>
+
+  <h4>Kind A: image skin (apples, pears, cucumbers, watermelons)</h4>
+  <div class="recipe">
+    <h5>Nodes: Apple_Gala_Skin</h5>
+    <ul>
+      <li><b>UV Map</b> → Image Texture <span class="path">apple_gala_color.png</span> → Base Color</li>
+      <li>Texture Coordinate › Object → <b>Noise</b> (Scale <span class="v">500</span>, Detail <span class="v">8</span>, Roughness <span class="v">0.6</span>) → <b>Bump</b> (Strength <span class="v">0.04</span>, Distance <span class="v">0.0006</span>) → Normal</li>
+      <li>Same Noise → <b>Map Range</b> (From 0.3–0.7, To <span class="v">0.24–0.375</span>) → Roughness: the shine varies across the skin</li>
+      <li>Subsurface Weight <span class="v">0.06</span>, Radius <span class="v">(1, 0.2, 0.1)</span>, Scale <span class="v">0.004</span>; Coat Weight <span class="v">0.35</span>, Coat Roughness <span class="v">0.15</span> (the waxy shine of an apple)</li>
+    </ul>
+  </div>
+  <p>Others use the same nodes with their own image and numbers. Pear Bosc: noise scale 600, bump 0.1, roughness 0.576–0.9 (a matte, russet skin), coat 0.1. Watermelons: noise scale 60, bump 0.12, roughness 0.30–0.475, subsurface 0.02, coat 0.25. Cucumbers add a second bump from a <b>Voronoi</b> (Scale <span class="v">70</span>) through Map Range (From 0–0.22, To 1–0) at Strength 0.1, for little bumps on the skin.</p>
+  <aside class="why"><span class="tag">Why subsurface</span><p>Light goes slightly into fruit skin and spreads before coming back out, which makes fruit glow softly at the edges. Subsurface Weight turns this on. The Radius <span class="v">(1, 0.2, 0.1)</span> lets red light travel furthest, as in real flesh. The Scale is in metres: 4 mm is about how far light spreads in an apple.</p></aside>
+
+  <h4>Kind B: fully procedural (oranges, kiwis, cherries)</h4>
+  <div class="recipe">
+    <h5>Orange_Navel_Peel: pores</h5>
+    <ul>
+      <li>Object coords → <b>Noise</b> (Scale <span class="v">25</span>, Detail 4) → Mix factor: A <span class="v">(0.848, 0.119, 0.002)</span>, B <span class="v">(0.933, 0.214, 0.004)</span> → Base Color</li>
+      <li>Object coords → <b>Voronoi</b> (Smooth F1, Scale <span class="v">420</span>) › Distance → Map Range (From 0–0.5, To 0–1) → <b>Bump</b> (Strength <span class="v">0.35</span>, Distance <span class="v">0.0006</span>): the dimpled pores</li>
+      <li>Fine noise (Scale <span class="v">900</span>) → second Bump (Strength 0.08) chained in; pores → Map Range (To 0.44–0.27) → Roughness, so pore centres are duller</li>
+      <li>Subsurface 0.05 (radius 1, 0.2, 0.1, scale 0.004), Coat 0.2</li>
+    </ul>
+    <h5>Kiwi_Green_Skin: fuzz</h5>
+    <ul>
+      <li>Two Noise textures on Object coords (Scale <span class="v">60</span> and <span class="v">1500</span>). The coarse one mixes two browns <span class="v">(0.089, 0.04, 0.012)</span> / <span class="v">(0.179, 0.089, 0.027)</span>; the fine one, through Map Range (0.55–0.75), adds dark speckles <span class="v">(0.04, 0.02, 0.006)</span> and drives a Bump (Strength <span class="v">0.45</span>).</li>
+      <li>Roughness <span class="v">0.85</span>, Specular 0.3, <b>Sheen Weight <span class="v">0.6</span></b> tinted <span class="v">(0.448, 0.296, 0.147)</span>. Sheen is what makes it fuzzy.</li>
+    </ul>
+    <h5>Cherry_Bing_Skin: gloss</h5>
+    <ul>
+      <li>Noise (Scale 180) mixes <span class="v">(0.051, 0.001, 0.002)</span> and <span class="v">(0.017, 0, 0.002)</span>; tiny bump 0.05</li>
+      <li>Roughness <span class="v">0.14</span>, Coat <span class="v">0.6</span> at roughness <span class="v">0.05</span>, Subsurface 0.15: a deep, wet-looking red</li>
+    </ul>
+  </div>
+
+  <h4>Kind C: image plus procedural detail (Persian and zebra melons)</h4>
+  <div class="recipe">
+    <h5>Persian_Melon_Golden_Rind: netting on top of the image</h5>
+    <ul>
+      <li>UV → rind image → Mix A</li>
+      <li>Object coords → Noise (Scale <span class="v">30</span>) › Color → Vector Math <b>Scale</b> <span class="v">0.002</span> → Vector Math <b>Add</b> with Object coords → <b>Voronoi</b> (<b>Distance to Edge</b>, Scale <span class="v">230</span>). The noise wobbles the cells so the net isn't too regular.</li>
+      <li>Voronoi Distance → Map Range (From 0–0.07, To 1–0) gives thin net lines → Mix Factor, B = tan net colour <span class="v">(0.911, 0.787, 0.342)</span> → Base Color; also → Bump (Strength <span class="v">0.5</span>) and → Map Range (To 0.5–0.85) → Roughness</li>
+    </ul>
+    <h5>Zebra melon stripes</h5>
+    <p>UV › X × <span class="v">10</span> → Math <b>Fraction</b> → min(f, 1 − f) → Map Range (From 0.0605–0.11) makes ten soft stripes around the melon, mixed in dark green <span class="v">(0.196, 0.296, 0.196)</span>, plus the same netting trick (Voronoi Distance to Edge, Scale 150) in <span class="v">(0.711, 0.604, 0.367)</span>, with a strong bump (0.8).</p>
+  </div>
+</div>
+<div class="grid2 wide">
+  <figure><img src="img/fr_cam09.jpg" width="900" height="506" alt="Close-up of four oranges on a star-etched glass plate" loading="lazy"><figcaption>Cam_09_Oranges: procedural pores, no image at all.</figcaption></figure>
+  <figure><img src="img/fr_cam12.jpg" width="900" height="506" alt="Close-up of three pairs of cherries with curved stems" loading="lazy"><figcaption>Cam_12_Cherries: a glossy coat and stems made from curves.</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 id="fruits-s7-studio-lights-for-the-table">Step 7 · Studio lights for the table</h3>
+  <p>The same four-light idea as the benches, scaled to the table. Put them in a <code>Plate Lights</code> collection.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light</th><th>Shape · size</th><th>Power</th><th>Color</th><th>Location</th><th>Rotation (°)</th></tr></thead>
+    <tbody>
+      <tr><td>Key_Softbox</td><td>Rectangle 2.4 × 1.4</td><td class="n">700 W</td><td class="n">(1.0, 0.93, 0.84)</td><td class="n">(−2.0, −2.3, 2.3)</td><td class="n">(53.6, 0, −41.0)</td></tr>
+      <tr><td>Fill_Panel</td><td>Square 2.4</td><td class="n">220 W</td><td class="n">(0.9, 0.95, 1.0)</td><td class="n">(2.6, −1.7, 1.4)</td><td class="n">(66.5, 0, 56.8)</td></tr>
+      <tr><td>Rim_Strip_Left</td><td>Rectangle 2.4 × 0.6</td><td class="n">450 W</td><td class="n">(1.0, 0.97, 0.92)</td><td class="n">(−2.2, 2.4, 1.6)</td><td class="n">(64.5, 0, −137.5)</td></tr>
+      <tr><td>Rim_Strip_Right</td><td>Rectangle 2.4 × 0.6</td><td class="n">400 W</td><td class="n">(1.0, 0.97, 0.92)</td><td class="n">(2.3, 2.3, 1.7)</td><td class="n">(63.1, 0, 135.0)</td></tr>
+      <tr><td>Top_Disk</td><td>Disk 2.4</td><td class="n">350 W</td><td class="n">(1.0, 0.98, 0.95)</td><td class="n">(0, 0.1, 2.7)</td><td class="n">(2.2, 0, −180)</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why two rim lights here</span><p>Glass is almost invisible unless something bright reflects in its edges. Two strips behind the table, left and right, draw bright lines along every plate rim and give the fruit a glowing outline against the darker kitchen.</p></aside>
+
+  <h3 id="fruits-s8-twelve-cameras">Step 8 · Twelve cameras</h3>
+  <p>Make an empty (<b>Plain Axes</b>) for each camera's focus point in a <code>Camera Focus Targets</code> collection, then the cameras in <code>Render Cameras</code>. All cameras: Depth of Field on, Clip Start <span class="v">0.02</span>, Clip End <span class="v">30</span>.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Camera</th><th>Location</th><th>Rotation (°)</th><th>Lens</th><th>F-stop</th><th>Focus empty at</th></tr></thead>
+    <tbody>
+      <tr><td>Cam_01_Overview_Front</td><td class="n">(0, −2.55, 1.05)</td><td class="n">(68.4, 0, 0)</td><td class="n">35</td><td class="n">8</td><td class="n">(0, −0.2, 0.05)</td></tr>
+      <tr><td>Cam_02_Overview_High</td><td class="n">(−1.25, −1.75, 2.05)</td><td class="n">(46.2, 0, −35.8)</td><td class="n">30</td><td class="n">8</td><td class="n">(0, 0, 0.05)</td></tr>
+      <tr><td>Cam_03_Overview_Low_Side</td><td class="n">(2.45, −1.25, 0.4)</td><td class="n">(84.2, 0, 61.7)</td><td class="n">38</td><td class="n">5.6</td><td class="n">(0.72, −0.18, 0.05)</td></tr>
+      <tr><td>Cam_04_Watermelons</td><td class="n">(−1.962, 1.749, 0.41)</td><td class="n">(80.3, 0, −138.1)</td><td class="n">55</td><td class="n">4</td><td class="n">(−0.95, 0.62, 0.09)</td></tr>
+      <tr><td>Cam_05_Persian_Melons</td><td class="n">(0, 2.19, 0.399)</td><td class="n">(80.3, 0, 180)</td><td class="n">55</td><td class="n">4</td><td class="n">(0, 0.72, 0.088)</td></tr>
+      <tr><td>Cam_06_Zebra_Melons</td><td class="n">(1.87, 1.646, 0.378)</td><td class="n">(80.2, 0, 138.1)</td><td class="n">55</td><td class="n">4</td><td class="n">(0.95, 0.62, 0.083)</td></tr>
+      <tr><td>Cam_07_Apples</td><td class="n">(−1.812, −0.404, 0.241)</td><td class="n">(79.9, 0, −71.6)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(−1.08, −0.16, 0.069)</td></tr>
+      <tr><td>Cam_08_Pears</td><td class="n">(−1.271, −0.249, 0.241)</td><td class="n">(79.9, 0, −89.4)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(−0.5, −0.24, 0.069)</td></tr>
+      <tr><td>Cam_09_Oranges</td><td class="n">(0.366, −0.916, 0.241)</td><td class="n">(79.9, 0, 21.8)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(0.08, −0.2, 0.069)</td></tr>
+      <tr><td>Cam_10_Cucumbers</td><td class="n">(1.413, −0.648, 0.257)</td><td class="n">(80.0, 0, 56.0)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(0.72, −0.18, 0.074)</td></tr>
+      <tr><td>Cam_11_Kiwis</td><td class="n">(−0.278, −1.49, 0.22)</td><td class="n">(79.7, 0, −2.4)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(−0.25, −0.8, 0.063)</td></tr>
+      <tr><td>Cam_12_Cherries</td><td class="n">(0.566, −1.429, 0.216)</td><td class="n">(79.7, 0, 16.0)</td><td class="n">55</td><td class="n">3.2</td><td class="n">(0.38, −0.78, 0.062)</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why 55 mm and low cameras</span><p>The close-up cameras sit only 22–41 cm above the table, roughly at fruit height, looking slightly down. A 55 mm lens from about a metre away keeps the fruit in natural proportion; a wide lens that close would bulge them. With f/3.2 to f/4, the plate behind falls softly out of focus.</p></aside>
+
+  <h3 id="fruits-s9-render">Step 9 · Render</h3>
+  <ol class="steps">
+    <li>Render tab: Cycles, GPU, Noise Threshold <span class="v">0.015</span>, Max Samples <span class="v">192</span>, Denoise on, <b>Max Bounces Total <span class="v">16</span></b>.</li>
+    <li>Color Management: AgX, Punchy, Exposure <span class="v">−0.4</span>. The glass and coats are bright, so this scene needs the darkest exposure of the three.</li>
+    <li>Render each of the 12 cameras (<kbd>Ctrl</kbd>+Numpad <kbd>0</kbd>, <kbd>F12</kbd>) and <b>Save As</b> into <span class="path">03-fruits/renders/</span> with the camera's name.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>The fruit file's Output path is set to <code>/tmp\</code>, a leftover. It only matters for animation renders, but set it to <code>//renders\</code> to keep things tidy.</p></aside>
+  <p>Like the benches, this scene started simpler. The first version had every fruit on a single snowflake-etched plate. Splitting it into nine plates, each with its own pattern and several varieties per fruit, came in the "added new textures and fruits" commit.</p>
+  <div class="grid2">
+    <figure><img src="img/fr_v1.jpg" width="640" height="360" alt="Version 1: all fruit on one snowflake-patterned glass plate" loading="lazy"><figcaption>v1 · one snowflake plate</figcaption></figure>
+    <figure><img src="img/fr_cam02.jpg" width="900" height="506" alt="Final: high view of nine plates on the table" loading="lazy"><figcaption>Final · nine plates (Cam_02_Overview_High)</figcaption></figure>
+  </div>
+  <h4>Check your result</h4>
+  <ul class="checklist">
+    <li>The plates are clear, with frosted patterns only on top, and their rims catch bright edge lines.</li>
+    <li>No fruit floats above or sinks into its plate.</li>
+    <li>Apples have dimples and stems, pears have necks, cherries hang in pairs.</li>
+    <li>Oranges show pores, kiwis look fuzzy, cherries look glossy.</li>
+    <li>The kitchen is recognisable but soft, and the table grain runs in one direction with plank seams.</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Foundations · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="#f-interface">The interface</a></li>
+    <li class="sub"><a href="#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="#f-space">3D space and units</a></li>
+    <li class="sub"><a href="#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="#f-curves">Curves</a></li>
+    <li class="sub"><a href="#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="#f-uv">UV maps</a></li>
+    <li class="sub"><a href="#f-light">Lighting</a></li>
+    <li class="sub"><a href="#f-camera">Cameras</a></li>
+    <li class="sub"><a href="#f-render">Rendering</a></li>
+    <li class="sub"><a href="#f-anim">Animation</a></li>
+    <li class="sub"><a href="#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="foundations" class="part">
+<div class="col">
+  <div class="eyebrow">Part 1</div>
+  <h2>Foundations</h2>
+  <p class="lede">Everything the projects use, explained once. Read this part with Blender open and try each shortcut as you go.</p>
+
+  <h3 id="f-interface">1.1 The interface</h3>
+  <p>Open Blender and choose <b>General</b> on the splash screen. You land in the <b>Layout</b> workspace. A workspace is a saved arrangement of editors. The tabs along the top (Layout, Modeling, Shading, Animation and so on) switch between arrangements, and the scene stays the same.</p>
+</div>
+
+<div class="diagram minw wide" role="img" aria-label="Diagram of the Layout workspace: top bar, 3D Viewport on the left, Outliner top right, Properties bottom right, Timeline at the bottom">
+<svg viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
+  <rect class="box" x="10" y="10" width="740" height="28" rx="4"/>
+  <text x="20" y="29" font-size="13">Top bar: File, Edit, Render menus  ·  workspace tabs: Layout, Modeling, UV Editing, Shading, Animation…</text>
+  <rect class="boxhi" x="10" y="46" width="520" height="290" rx="4"/>
+  <rect class="hdr" x="10" y="46" width="520" height="24" rx="4"/>
+  <text x="20" y="63" font-size="12">Header: mode menu (Object / Edit) · View · Select · Add · Object · shading buttons</text>
+  <rect class="box" x="18" y="84" width="26" height="160" rx="3"/>
+  <text x="52" y="100" font-size="12" class="mut">Toolbar (T)</text>
+  <rect class="box" x="440" y="84" width="82" height="170" rx="3"/>
+  <text x="448" y="102" font-size="12">Sidebar (N)</text>
+  <text x="448" y="120" font-size="11" class="mut">Item tab:</text>
+  <text x="448" y="136" font-size="11" class="mut">Location</text>
+  <text x="448" y="150" font-size="11" class="mut">Rotation</text>
+  <text x="448" y="164" font-size="11" class="mut">Scale</text>
+  <text x="448" y="178" font-size="11" class="mut">Dimensions</text>
+  <circle cx="404" cy="98" r="16" class="box"/>
+  <text x="362" y="128" font-size="11" class="mut">axis gizmo</text>
+  <text x="170" y="196" font-size="22" font-weight="600">3D Viewport</text>
+  <text x="138" y="220" font-size="12" class="mut">where you see and edit the scene</text>
+  <rect class="box" x="18" y="290" width="200" height="38" rx="3"/>
+  <text x="26" y="306" font-size="11">Adjust Last Operation panel</text>
+  <text x="26" y="321" font-size="11" class="mut">appears after you add something</text>
+  <rect class="box" x="538" y="46" width="212" height="120" rx="4"/>
+  <text x="548" y="66" font-size="14" font-weight="600">Outliner</text>
+  <text x="548" y="86" font-size="11" class="mut">tree of collections and objects</text>
+  <text x="548" y="104" font-size="11" class="mut">▾ Collection</text>
+  <text x="562" y="120" font-size="11" class="mut">Camera · Light · Cube</text>
+  <text x="548" y="144" font-size="11" class="mut">eye icon = viewport</text>
+  <text x="548" y="158" font-size="11" class="mut">camera icon = render</text>
+  <rect class="box" x="538" y="174" width="212" height="246" rx="4"/>
+  <text x="548" y="194" font-size="14" font-weight="600">Properties</text>
+  <text x="548" y="212" font-size="11" class="mut">tabs down the left edge:</text>
+  <text x="548" y="232" font-size="11">Render · Output · View Layer</text>
+  <text x="548" y="250" font-size="11">Scene · World · Collection</text>
+  <text x="548" y="268" font-size="11">Object (orange square)</text>
+  <text x="548" y="286" font-size="11">Modifiers (blue wrench)</text>
+  <text x="548" y="304" font-size="11">Particles · Physics</text>
+  <text x="548" y="322" font-size="11">Constraints</text>
+  <text x="548" y="340" font-size="11">Data (green triangle, bulb, camera…)</text>
+  <text x="548" y="358" font-size="11">Material (red sphere)</text>
+  <text x="548" y="376" font-size="11">Texture (checkerboard)</text>
+  <text x="548" y="404" font-size="11" class="mut">tabs change with the selected object</text>
+  <rect class="box" x="10" y="344" width="520" height="76" rx="4"/>
+  <text x="20" y="364" font-size="14" font-weight="600">Timeline</text>
+  <text x="20" y="384" font-size="12" class="mut">play · current frame · Start / End frames · keyframe diamonds</text>
+  <line x1="20" y1="404" x2="520" y2="404" class="ln"/>
+  <circle cx="140" cy="404" r="5" class="dot"/>
+</svg>
+</div>
+
+<div class="col">
+  <ul>
+    <li><b>3D Viewport</b>: your window into the scene. The four round buttons at its top right switch the shading: Wireframe, Solid, <b>Material Preview</b> (shows materials) and <b>Rendered</b> (a live preview of the final image). <kbd>Z</kbd> opens the same choices as a pie menu.</li>
+    <li><b>Outliner</b>: a list of everything in the scene. Click a name to select it, double-click to rename. The eye icon hides an object in the viewport; the camera icon hides it from renders. If you don't see the camera icon, open the Outliner's <b>Filter</b> menu (funnel icon) and turn it on.</li>
+    <li><b>Properties editor</b>: the settings for the scene and the selected object, organised into tabs. You will live in the Render, Output, World, Object, Modifiers, Physics, Data and Material tabs.</li>
+    <li><b>Timeline</b>: frames over time, for animation and simulation.</li>
+    <li><b>Sidebar</b> (<kbd>N</kbd> over the viewport): the <b>Item</b> tab shows exact Location, Rotation, Scale and Dimensions. You'll type most of this guide's numbers here.</li>
+    <li><b>Adjust Last Operation</b>: the small panel at the bottom-left of the viewport right after you add or change something. It lets you change the settings of that action (number of segments, radius…). It disappears as soon as you do something else, so set it straight away. <kbd>F9</kbd> brings it back as a popup.</li>
+  </ul>
+
+  <h3 id="f-navigate">1.2 Moving around the viewport</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Do this</th><th>Mouse / key</th></tr></thead>
+    <tbody>
+      <tr><td>Orbit around the scene</td><td>Drag with the middle mouse button (wheel click)</td></tr>
+      <tr><td>Pan (slide the view)</td><td><kbd>Shift</kbd> + middle-drag</td></tr>
+      <tr><td>Zoom</td><td>Scroll wheel, or <kbd>Ctrl</kbd> + middle-drag</td></tr>
+      <tr><td>Front / Right / Top view</td><td>Numpad <kbd>1</kbd> / <kbd>3</kbd> / <kbd>7</kbd> (add <kbd>Ctrl</kbd> for the opposite side)</td></tr>
+      <tr><td>Look through the active camera</td><td>Numpad <kbd>0</kbd></td></tr>
+      <tr><td>Toggle perspective / orthographic</td><td>Numpad <kbd>5</kbd></td></tr>
+      <tr><td>Zoom to the selected object</td><td>Numpad <kbd>.</kbd> (period)</td></tr>
+      <tr><td>Show everything</td><td><kbd>Home</kbd></td></tr>
+      <tr><td>View pie menu (all of the above)</td><td><kbd>`</kbd> (the key left of 1)</td></tr>
+      <tr><td>Focus on one object only (local view)</td><td>Numpad <kbd>/</kbd>, press again to return</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Laptop?</span><p>Without a middle button or numpad, open <b>Edit › Preferences › Input</b> and turn on <b>Emulate 3 Button Mouse</b> (then <kbd>Alt</kbd>+left-drag orbits) and <b>Emulate Numpad</b> (then the number row acts as the numpad). You can also drag the axis gizmo at the top right of the viewport, or click its coloured balls to snap to a side view.</p></aside>
+
+  <h3 id="f-space">1.3 3D space, units and the 3D cursor</h3>
+  <ul>
+    <li><b>Axes.</b> X is red (left–right), Y is green (front–back), <b>Z is blue and points up</b>. The grid floor is the X–Y plane at Z = 0. In your scenes, the court floor and the top of the kitchen table both sit at Z = 0.</li>
+    <li><b>Units.</b> One Blender unit is one metre (<b>Scene</b> tab › <b>Units</b>: Metric, Unit Scale 1.0). All the projects use real sizes: the rim is 3.05 m off the floor, the ball is 24 cm across, an apple is about 8 cm. (The warmobile in Part 5 switches the scene to feet to match its blueprint.) Real sizes matter because lights, depth of field and cloth simulation all behave physically.</li>
+    <li><b>Origin.</b> The small orange dot on a selected object is its origin, the point it rotates and scales around.</li>
+    <li><b>3D cursor.</b> The red-and-white circle. New objects appear where it is. <kbd>Shift</kbd>+right-click places it; <kbd>Shift</kbd>+<kbd>C</kbd> puts it back at the world centre (0, 0, 0). <kbd>Shift</kbd>+<kbd>S</kbd> opens a snap menu (for example "Cursor to Selected").</li>
+  </ul>
+
+  <h3 id="f-objects">1.4 Objects, data and collections</h3>
+  <p>Every thing in a scene is an <b>object</b>. An object has a position, rotation and scale, and it holds some <b>data</b>: a mesh (a 3D shape), a light, a camera or a curve. The difference matters: two objects can share the same mesh data, and editing that mesh changes both.</p>
+  <ul>
+    <li><b>Select</b>: left-click. <kbd>Shift</kbd>+click adds to the selection. The last one clicked is the <b>active</b> object (bright orange outline); many commands use it. <kbd>A</kbd> selects everything, <kbd>Alt</kbd>+<kbd>A</kbd> deselects.</li>
+    <li><b>Rename</b>: <kbd>F2</kbd>, or double-click in the Outliner. Name things as you go (<code>Hoop_North_Pole</code>, not <code>Cylinder.004</code>). Your files use names like this throughout, and they keep the Outliner readable.</li>
+    <li><b>Duplicate</b>: <kbd>Shift</kbd>+<kbd>D</kbd> makes an independent copy and starts moving it (right-click to drop it in place). <kbd>Alt</kbd>+<kbd>D</kbd> makes a <i>linked</i> copy that shares the mesh.</li>
+    <li><b>Delete</b>: <kbd>X</kbd> › Delete. <b>Hide</b>: <kbd>H</kbd>, unhide all: <kbd>Alt</kbd>+<kbd>H</kbd>.</li>
+    <li><b>Collections</b> are folders in the Outliner. Select objects, press <kbd>M</kbd> and pick or create a collection. Your court file groups things like this: <i>Basketball Court › Court, Ball, Hoop_North, Hoop_South</i>, plus <i>Arena Lights</i>.</li>
+    <li><b>Parenting</b> makes one object follow another. Select the children first, the parent last (so it's active), then <kbd>Ctrl</kbd>+<kbd>P</kbd> › <b>Object (Keep Transform)</b>. Move the parent and the children come along. <kbd>Alt</kbd>+<kbd>P</kbd> clears it.</li>
+    <li><b>Empties</b> are objects with no shape, drawn as little axes or spheres. They never render. Your scenes use them as a handle for a whole hoop and as focus targets for cameras. <b>Add › Empty › Plain Axes</b>.</li>
+  </ul>
+
+  <h3 id="f-transform">1.5 Move, rotate, scale</h3>
+  <p>The three basic transforms each have one key. Press the key, move the mouse, click to confirm (right-click or <kbd>Esc</kbd> cancels).</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Key</th><th>Does</th><th>Example you'll type</th></tr></thead>
+    <tbody>
+      <tr><td><kbd>G</kbd></td><td>Grab (move)</td><td><kbd>G</kbd> <kbd>Z</kbd> <code>0.12</code> <kbd>Enter</kbd> moves up 12 cm</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Rotate</td><td><kbd>R</kbd> <kbd>X</kbd> <code>90</code> <kbd>Enter</kbd> lays a cylinder on its side</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Scale</td><td><kbd>S</kbd> <code>0.5</code> <kbd>Enter</kbd> halves the size</td></tr>
+      <tr><td><kbd>X</kbd> / <kbd>Y</kbd> / <kbd>Z</kbd> after G, R or S</td><td>Lock to one axis</td><td><kbd>S</kbd> <kbd>Shift</kbd>+<kbd>Z</kbd> scales in X and Y but not Z</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>G</kbd> / <kbd>R</kbd> / <kbd>S</kbd></td><td>Reset location / rotation / scale</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <p>For exact values, open the Sidebar (<kbd>N</kbd>) and type into <b>Location</b>, <b>Rotation</b>, <b>Scale</b> or <b>Dimensions</b>. You can type maths too: <code>0.45/2</code> works in any number field. Dimensions sets the actual size in metres and changes Scale to get there.</p>
+  <aside class="why"><span class="tag">Why: apply the scale</span><p>After you stretch an object with Scale or Dimensions, press <kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>Scale</b>. This bakes the stretch into the mesh and resets Scale to 1. Bevels, thickness (Solidify), cloth and many other tools measure distances in the object's own units, so a stretched object gets uneven bevels and strange simulations. In this guide, whenever you set Dimensions on a mesh, apply the scale afterwards unless told otherwise.</p></aside>
+  <p>The <b>pivot point</b> (period key <kbd>.</kbd> pie menu in the viewport) decides what you rotate and scale around. "3D Cursor" is useful for swinging a copy of something around the centre of the court.</p>
+
+  <h3 id="f-mesh">1.6 Meshes and Edit Mode</h3>
+  <p>A <b>mesh</b> is a surface made of three things: <b>vertices</b> (points), <b>edges</b> (lines between two points) and <b>faces</b> (filled polygons, usually four-sided "quads"). Each face has a front side; the direction it faces is its <b>normal</b>. Light, thickness and displacement all use normals.</p>
+  <p>Press <kbd>Tab</kbd> to switch between <b>Object Mode</b> (move whole objects) and <b>Edit Mode</b> (move the points of one mesh). In Edit Mode:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Key</th><th>Does</th><th>Used in</th></tr></thead>
+    <tbody>
+      <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></td><td>Select vertices / edges / faces</td><td>everywhere</td></tr>
+      <tr><td><kbd>Alt</kbd>+click</td><td>Select a whole edge loop (a ring around a cylinder or sphere)</td><td>net, fruit shapes</td></tr>
+      <tr><td><kbd>B</kbd> / <kbd>C</kbd></td><td>Box select / paint select</td><td>pin groups</td></tr>
+      <tr><td><kbd>E</kbd></td><td>Extrude: pull new geometry out of the selection</td><td>plate profile</td></tr>
+      <tr><td><kbd>I</kbd></td><td>Inset a face (a smaller face inside it)</td><td>backboard target square</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Loop cut: add rings across a shape (scroll for more cuts)</td><td>hoop net</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Merge selected points (At Center, At Last…)</td><td>plate profile</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+right-click</td><td>Extrude the selected vertex to the mouse</td><td>plate profile</td></tr>
+      <tr><td><kbd>O</kbd></td><td>Proportional editing: moving one point drags its neighbours smoothly (scroll to change the radius)</td><td>apple dimples, pear necks</td></tr>
+      <tr><td><kbd>X</kbd></td><td>Delete vertices, edges or faces</td><td>target square</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>J</kbd> (Object Mode)</td><td>Join several objects into one</td><td>bench frame</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why: low-poly first, smooth later</span><p>Your apple has only 146 vertices, yet it renders perfectly round. The trick is to model a simple cage and let the <b>Subdivision Surface</b> modifier smooth it at render time. Simple cages are easy to reshape by hand, and quads subdivide predictably. That's why every primitive you'll use starts with only as many points as the shape needs.</p></aside>
+  <p><b>Smooth shading.</b> In Object Mode, right-click › <b>Shade Smooth</b> makes faceted surfaces look smooth by blending the normals. It doesn't change the shape. Use it on round things (ball, rim, fruit, cloth), not on boxes.</p>
+
+  <h3 id="f-primitives">1.7 Primitives and their settings</h3>
+  <p>Every object in the first three projects starts as one of Blender's ready-made shapes (the warmobile starts as one cube), added with <kbd>Shift</kbd>+<kbd>A</kbd>. Their settings live in the Adjust Last Operation panel, so change them right after adding.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Primitive</th><th>Key settings</th><th>Becomes</th></tr></thead>
+    <tbody>
+      <tr><td>Plane</td><td>Size</td><td>court floor, arena floor, the target square</td></tr>
+      <tr><td>Cube</td><td>Size</td><td>backboard, pole base, bracket, bench seat and frame</td></tr>
+      <tr><td>Cylinder</td><td>Vertices, Radius, Depth, Cap Fill Type</td><td>pole, arm, net, round table, arena wall, kitchen wall</td></tr>
+      <tr><td>UV Sphere</td><td>Segments (around), Rings (top to bottom), Radius</td><td>the ball and every fruit</td></tr>
+      <tr><td>Torus</td><td>Major / Minor Segments, Major / Minor Radius</td><td>the rim</td></tr>
+      <tr><td>Grid</td><td>X / Y Subdivisions, Size</td><td>towels and pennants (cloth needs many points)</td></tr>
+      <tr><td>Bezier curve</td><td>(edited by its points)</td><td>fruit stems</td></tr>
+      <tr><td>Empty</td><td>Display type</td><td>hoop handles, camera focus targets</td></tr>
+    </tbody>
+  </table></div>
+  <p>Leave <b>Generate UVs</b> ticked in that panel. It gives the shape a ready-made UV map, which every textured object in these projects relies on (see <a href="#f-uv">1.11</a>).</p>
+
+  <h3 id="f-modifiers">1.8 Modifiers</h3>
+  <p>A <b>modifier</b> changes how an object looks without touching its mesh. You can tweak or remove it at any time. Add them in the <b>Modifiers</b> tab (blue wrench) › <b>Add Modifier</b>. They run as a stack from top to bottom, and <b>order matters</b>: each one works on the result of the one above.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Modifier</th><th>Menu</th><th>What it does</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td>Subdivision Surface</td><td>Generate</td><td>Splits every face and rounds the shape. <b>Levels Viewport</b> (while working) and <b>Render</b> (final image) are separate.</td><td>fruit, cloth, plates</td></tr>
+      <tr><td>Displace</td><td>Deform</td><td>Pushes vertices along their normals using a texture: small lumps and wrinkles.</td><td>fruit lumps, cloth wrinkles</td></tr>
+      <tr><td>Solidify</td><td>Generate</td><td>Gives a paper-thin surface real thickness.</td><td>towels, pennants</td></tr>
+      <tr><td>Bevel</td><td>Generate</td><td>Rounds sharp edges so they catch light.</td><td>bench seat, table edge</td></tr>
+      <tr><td>Wireframe</td><td>Generate</td><td>Turns every edge into a thin solid strand.</td><td>basketball net</td></tr>
+      <tr><td>Screw</td><td>Generate</td><td>Spins a profile line around an axis, like a potter's wheel or lathe.</td><td>glass plates</td></tr>
+      <tr><td>Weighted Normal</td><td>Normals</td><td>Cleans up shading on shapes with big flat areas.</td><td>glass plates</td></tr>
+      <tr><td>Cloth</td><td>(Physics tab)</td><td>Simulates fabric. Added from the Physics tab, shows up in the stack.</td><td>towels, pennants</td></tr>
+    </tbody>
+  </table></div>
+  <p>Each modifier's header has a small dropdown arrow with <b>Apply</b>, which makes the result permanent (<kbd>Ctrl</kbd>+<kbd>A</kbd> with the mouse over it does the same). You'll do this once, to freeze cloth into its draped shape.</p>
+
+  <h3 id="f-curves">1.9 Curves</h3>
+  <p>A <b>curve</b> is a smooth line defined by a few control points with handles. <b>Add › Curve › Bezier</b> gives you one with two points. In Edit Mode, drag the points and their handles; <kbd>E</kbd> extrudes a new point from an end. In the curve's <b>Data</b> tab (green curve icon) › <b>Geometry › Bevel › Depth</b>, a curve gets a round thickness and becomes a tube. Tick <b>Fill Caps</b> to close its ends. All the fruit stems are bevelled Bezier curves with three points.</p>
+
+  <h3 id="f-materials">1.10 Materials and shader nodes</h3>
+  <p>A <b>material</b> decides how a surface reacts to light: its colour, shininess, transparency and fine bumps. In the <b>Material</b> tab press <b>New</b>. You get a <b>Principled BSDF</b>, a single all-purpose surface that copies how real materials behave. Its most important inputs:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Input</th><th>Meaning</th><th>Values from your scenes</th></tr></thead>
+    <tbody>
+      <tr><td>Base Color</td><td>The surface colour, or an image</td><td>court photo, towel artwork, fruit skins</td></tr>
+      <tr><td>Metallic</td><td>0 for everything except bare metal</td><td>pole 0.8, rim 0.7, bench frame 0.9</td></tr>
+      <tr><td>Roughness</td><td>0 is a mirror, 1 is chalk</td><td>glass 0, varnished floor 0.35, towel 0.95, felt 1.0</td></tr>
+      <tr><td>IOR · Transmission</td><td>Light passing through; Transmission 1 makes glass</td><td>plates: IOR 1.52, Transmission 1</td></tr>
+      <tr><td>Coat</td><td>A clear varnish layer on top</td><td>court floor 0.4, cherries 0.6, apples 0.35</td></tr>
+      <tr><td>Sheen</td><td>Soft glow at grazing angles, like fuzz or fabric</td><td>towels 0.3, felt 0.2, kiwi fuzz 0.6</td></tr>
+      <tr><td>Subsurface</td><td>Light entering the surface and scattering inside</td><td>fruit skins 0.02–0.15</td></tr>
+      <tr><td>Emission</td><td>The surface gives off its own light</td><td>arena crowd and kitchen photo walls</td></tr>
+      <tr><td>Normal</td><td>Fake bumps that catch light without changing the shape</td><td>felt fibres, orange pores, wood grain</td></tr>
+    </tbody>
+  </table></div>
+  <p>Materials are really small programs drawn as <b>nodes</b>. Switch to the <b>Shading</b> workspace (tab at the top): the viewport shows Material Preview and the <b>Shader Editor</b> sits underneath. Data flows left to right through wires:</p>
+</div>
+
+<div class="diagram minw wide" role="img" aria-label="Node diagram: Texture Coordinate UV into Image Texture; Image colour into Principled BSDF Base Color and into a Bump node; Bump normal into the Principled Normal; Principled BSDF into Material Output">
+<svg viewBox="0 0 820 240" xmlns="http://www.w3.org/2000/svg">
+  <path class="lk" style="stroke:var(--sock-vec)" d="M140,110 C165,110 155,120 180,120"/>
+  <path class="lk" style="stroke:var(--sock-color)" d="M330,80 C440,80 440,80 550,80"/>
+  <path class="lk" style="stroke:var(--sock-color)" d="M330,80 C360,80 340,195 370,195"/>
+  <path class="lk" style="stroke:var(--sock-vec)" d="M510,165 C530,165 530,180 550,180"/>
+  <path class="lk" style="stroke:var(--sock-shader)" d="M700,50 C715,50 715,62 730,62"/>
+  <rect class="box" x="10" y="64" width="130" height="66" rx="6"/><rect class="hdr" x="10" y="64" width="130" height="22" rx="6"/>
+  <text x="18" y="80" font-size="12" font-weight="600">Texture Coordinate</text>
+  <text x="128" y="114" font-size="12" text-anchor="end">UV</text><circle cx="140" cy="110" r="5" style="fill:var(--sock-vec)"/>
+  <rect class="box" x="180" y="40" width="150" height="100" rx="6"/><rect class="hdr" x="180" y="40" width="150" height="22" rx="6"/>
+  <text x="188" y="56" font-size="12" font-weight="600">Image Texture</text>
+  <text x="318" y="84" font-size="12" text-anchor="end">Color</text><circle cx="330" cy="80" r="5" style="fill:var(--sock-color)"/>
+  <text x="192" y="124" font-size="12">Vector</text><circle cx="180" cy="120" r="5" style="fill:var(--sock-vec)"/>
+  <text x="192" y="104" font-size="11" class="mut mono">ball.jpg · sRGB</text>
+  <rect class="box" x="370" y="140" width="140" height="80" rx="6"/><rect class="hdr" x="370" y="140" width="140" height="22" rx="6"/>
+  <text x="378" y="156" font-size="12" font-weight="600">Bump</text>
+  <text x="498" y="169" font-size="12" text-anchor="end">Normal</text><circle cx="510" cy="165" r="5" style="fill:var(--sock-vec)"/>
+  <text x="382" y="186" font-size="11" class="mut mono">Strength 0.15</text>
+  <text x="382" y="208" font-size="12">Height</text><circle cx="370" cy="195" r="5" style="fill:var(--sock-float)"/>
+  <rect class="boxhi" x="550" y="20" width="150" height="190" rx="6"/><rect class="hdr" x="550" y="20" width="150" height="22" rx="6"/>
+  <text x="558" y="36" font-size="12" font-weight="600">Principled BSDF</text>
+  <text x="688" y="54" font-size="12" text-anchor="end">BSDF</text><circle cx="700" cy="50" r="5" style="fill:var(--sock-shader)"/>
+  <text x="562" y="84" font-size="12">Base Color</text><circle cx="550" cy="80" r="5" style="fill:var(--sock-color)"/>
+  <text x="562" y="112" font-size="12">Roughness <tspan class="mut mono" font-size="11">0.55</tspan></text><circle cx="550" cy="108" r="5" style="fill:var(--sock-float)"/>
+  <text x="562" y="140" font-size="12">Metallic <tspan class="mut mono" font-size="11">0</tspan></text><circle cx="550" cy="136" r="5" style="fill:var(--sock-float)"/>
+  <text x="562" y="184" font-size="12">Normal</text><circle cx="550" cy="180" r="5" style="fill:var(--sock-vec)"/>
+  <rect class="box" x="730" y="20" width="84" height="70" rx="6"/><rect class="hdr" x="730" y="20" width="84" height="22" rx="6"/>
+  <text x="736" y="36" font-size="11" font-weight="600">Material Output</text>
+  <text x="742" y="66" font-size="12">Surface</text><circle cx="730" cy="62" r="5" style="fill:var(--sock-shader)"/>
+</svg>
+</div>
+
+<div class="col">
+  <p>Socket colours tell you what kind of data flows: <b style="color:var(--sock-color)">yellow</b> is colour, <b style="color:var(--sock-float)">grey</b> is a single number, <b style="color:var(--sock-vec)">purple</b> is a vector (a direction or position), <b style="color:var(--sock-shader)">green</b> is a finished surface. How to work with nodes:</p>
+  <ul>
+    <li><kbd>Shift</kbd>+<kbd>A</kbd> over the Shader Editor adds a node. Start typing the node's name to search for it; every node in this guide can be found this way.</li>
+    <li>Drag from an output socket (right side) to an input socket (left side) to connect. <kbd>Ctrl</kbd>+right-drag across a wire cuts it.</li>
+    <li>Quick image: click the small dot to the left of <b>Base Color</b> in the Material tab and choose <b>Image Texture</b>, then <b>Open</b>.</li>
+    <li><b>Color Space</b> on an Image Texture node: <b>sRGB</b> for pictures you look at, <b>Non-Color</b> for "data" images like height maps and masks. Getting this wrong makes bumps too strong or masks too soft.</li>
+  </ul>
+  <p>The nodes used across the projects:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Node</th><th>What it gives you</th></tr></thead>
+    <tbody>
+      <tr><td>Texture Coordinate</td><td>Where each point is. <b>UV</b> follows the UV map; <b>Object</b> is the 3D position on the object (great for noise that never stretches); <b>Generated</b> is 0–1 across the object's bounding box.</td></tr>
+      <tr><td>Mapping</td><td>Moves, rotates or scales those coordinates (repeat a texture, shift an image).</td></tr>
+      <tr><td>Image Texture</td><td>Reads a picture file.</td></tr>
+      <tr><td>Noise Texture</td><td>Cloudy random values; Scale sets how fine.</td></tr>
+      <tr><td>Voronoi Texture</td><td>Cells. Gives dots (towel loops), pores (orange peel) or a net (Distance to Edge, melon netting).</td></tr>
+      <tr><td>Wave Texture</td><td>Bands or rings; distorted bands look like wood grain.</td></tr>
+      <tr><td>Map Range</td><td>Squeezes one range of values into another (noise 0.3–0.7 becomes roughness 0.24–0.375).</td></tr>
+      <tr><td>Math · Mix (Color)</td><td>Add, multiply, blend values or colours.</td></tr>
+      <tr><td>Separate Color · Separate XYZ</td><td>Split an image into its red, green, blue channels, or a position into X, Y, Z.</td></tr>
+      <tr><td>Color Ramp</td><td>Turns a 0–1 value into a gradient of colours.</td></tr>
+      <tr><td>Bump</td><td>Turns a grey height into surface detail for the Normal input. Chain Bumps by feeding one's Normal output into the next one's Normal input.</td></tr>
+      <tr><td>Mix Shader</td><td>Blends two complete surfaces (clear and frosted glass) by a factor.</td></tr>
+      <tr><td>Emission · Background</td><td>Surfaces and skies that give off light.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="f-uv">1.11 UV maps</h3>
+  <p>To put a flat picture on a 3D shape, Blender needs to know which part of the picture lands on which part of the surface. A <b>UV map</b> is that answer: the surface unfolded flat, like a map of the Earth. U and V are just the names of the picture's horizontal and vertical axes.</p>
+  <p>You won't need to unwrap anything by hand. The primitives come with good UV maps:</p>
+  <ul>
+    <li><b>Plane and Grid</b>: the whole picture covers the whole surface. That's why the court floor shows the court picture exactly, and each towel shows its whole design.</li>
+    <li><b>UV Sphere</b>: the picture wraps around like a world map. The left and right edges meet at a seam, and the top and bottom rows squeeze into the poles. That's why your fruit textures are twice as wide as they are tall, with stem-coloured bands along the top and bottom edges.</li>
+    <li><b>Cylinder</b>: the picture wraps once around the side. Your arena and kitchen walls use this to show a panorama photo.</li>
+  </ul>
+  <figure style="max-width:520px"><img src="img/tex_apple.jpg" width="520" height="260" alt="Flat Gala apple skin texture, twice as wide as tall, with olive bands top and bottom" loading="lazy"><figcaption><span class="path">03-fruits/assets/textures/apple/apple_gala_color.png</span>: a 2 : 1 skin made for the UV Sphere's world-map layout. The bands at top and bottom become the stem and calyx ends.</figcaption></figure>
+  <p>To look at a UV map, open the <b>UV Editing</b> workspace and select the object in Edit Mode. For your own models later: <kbd>U</kbd> › <b>Smart UV Project</b> or <b>Unwrap</b> creates a new map.</p>
+
+  <h3 id="f-light">1.12 Lighting</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light</th><th>Behaves like</th><th>Where you use it</th></tr></thead>
+    <tbody>
+      <tr><td>Area</td><td>A glowing panel. Bigger panel means softer shadows. Power in watts.</td><td>almost every light in all four scenes</td></tr>
+      <tr><td>Sun</td><td>Parallel light from far away; only its angle matters.</td><td>a helper in the court file, hidden from render</td></tr>
+      <tr><td>Point · Spot</td><td>A bulb · a bulb with a cone</td><td>not used here</td></tr>
+      <tr><td>World</td><td>The sky surrounding everything; adds soft ambient light</td><td>dark gradient (court), warm fill (fruit)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Add one with <b>Add › Light › Area</b>. Its settings are in the light's <b>Data</b> tab (green bulb icon): Power, Color, Shape (Rectangle, Square, Disk) and Size. An area light shines out of its front face; with rotation (0, 0, 0) it points straight down.</p>
+  <p>The benches and fruit table both use <b>three-point lighting</b>, the classic studio setup:</p>
+  <ul>
+    <li><b>Key</b>: the main, strongest light, to one side of the camera and above. Slightly warm.</li>
+    <li><b>Fill</b>: a weaker light on the other side that lifts the shadows. Slightly cool.</li>
+    <li><b>Rim</b> (back light): behind the subject, so a bright edge separates it from the background.</li>
+    <li>Your scenes add a fourth, a <b>top</b> disk light for a soft overhead glow.</li>
+  </ul>
+  <aside class="why"><span class="tag">Why warm key and cool fill</span><p>Real scenes rarely have one colour of light. A warm key <span class="v">(1.0, 0.93, 0.84)</span> against a cool fill <span class="v">(0.9, 0.95, 1.0)</span> gives shapes colour contrast as well as brightness contrast, which reads as more three-dimensional. Every bench and the fruit table use exactly these two colours.</p></aside>
+  <p>To aim a light, rotate it (<kbd>R</kbd>), type the rotation from this guide, or drag the yellow dot of its direction gizmo in the viewport.</p>
+
+  <h3 id="f-camera">1.13 Cameras</h3>
+  <ul>
+    <li><b>Add › Camera</b>. Numpad <kbd>0</kbd> looks through the active camera.</li>
+    <li>Two ways to frame a shot: type its Location and Rotation (this guide gives you all of them), or navigate the viewport to a view you like and press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+Numpad <kbd>0</kbd> to move the camera there. You can also open the Sidebar's <b>View</b> tab and tick <b>Camera to View</b>, so that moving the view moves the camera.</li>
+    <li>With several cameras, select one and press <kbd>Ctrl</kbd>+Numpad <kbd>0</kbd> to make it the active one. Renders always come from the active camera.</li>
+    <li><b>Focal Length</b> (camera Data tab): 22–28 mm is wide (lots of room, strong perspective), 35 mm is natural, 55 mm is tight and flattering for close-ups. Your fruit close-ups all use 55 mm.</li>
+    <li><b>Depth of Field</b> (same tab): tick it, set <b>Focus on Object</b> to an empty placed where you want sharpness, and set the <b>F-Stop</b>. A smaller F-stop number means more background blur: f/2.8 for close-ups, f/8 for overviews where everything should be sharp.</li>
+    <li><b>Clip Start</b>: the nearest distance the camera can see. For tiny subjects like fruit, lower it (0.02 m) so close objects aren't cut off.</li>
+  </ul>
+
+  <h3 id="f-render">1.14 Rendering</h3>
+  <p>Rendering turns the scene into a final image. In the <b>Render</b> tab choose a <b>Render Engine</b>:</p>
+  <ul>
+    <li><b>EEVEE</b>: fast, close to real time, good for previews. Your first basketball video and the v4 bench renders used it.</li>
+    <li><b>Cycles</b>: traces the paths of light rays. Slower, but accurate glass, soft shadows and light bouncing. <b>All final renders in these projects use Cycles.</b></li>
+  </ul>
+  <p>Cycles settings you'll set in every project (Render tab):</p>
+  <ul>
+    <li><b>Device: GPU Compute</b>. Turn on your graphics card first in <b>Edit › Preferences › System › Cycles Render Devices</b> (OptiX or CUDA for NVIDIA, HIP for AMD, oneAPI for Intel).</li>
+    <li><b>Sampling › Render</b>: <b>Noise Threshold</b> and <b>Max Samples</b>. More samples means less grain and more time. <b>Denoise</b> on, with OpenImageDenoise, cleans what's left.</li>
+    <li><b>Light Paths › Max Bounces › Total</b>: how many times light may bounce. Glass needs more (your fruit scene uses 16).</li>
+    <li><b>Color Management</b> (bottom of the Render tab): <b>View Transform AgX</b> handles bright lights gracefully, <b>Look: Punchy</b> adds contrast and saturation, and <b>Exposure</b> brightens or darkens the whole image in camera stops. All four projects use AgX with Punchy and an exposure between −0.4 and 0.</li>
+  </ul>
+  <p>Image size is in the <b>Output</b> tab: <span class="v">1920 × 1080</span>, 100%. Press <kbd>F12</kbd> to render a still, then in the render window use <b>Image › Save As</b> (<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd>). <kbd>Ctrl</kbd>+<kbd>F12</kbd> renders the whole animation.</p>
+
+  <h3 id="f-anim">1.15 Animation</h3>
+  <ul>
+    <li>Animation is a series of frames. The <b>Output</b> tab sets the <b>Frame Rate</b> (your court uses 24 fps); the Timeline sets <b>Start</b> and <b>End</b>.</li>
+    <li>A <b>keyframe</b> records a value at a frame. You set a few keyframes and Blender fills in the frames between them.</li>
+    <li>To key the location: go to a frame, set the Location in the Sidebar, hover the mouse over the Location fields and press <kbd>I</kbd>. The fields turn yellow (keyed on this frame) or green (animated, but not keyed here). Diamonds appear in the Timeline.</li>
+    <li>How Blender fills the gap is the <b>interpolation</b>. Change the bottom editor to the <b>Graph Editor</b> to see the motion as curves. Select keys and press <kbd>T</kbd> to pick Linear, Bezier, Quadratic and others; <kbd>Ctrl</kbd>+<kbd>E</kbd> sets the easing (Ease In, Ease Out).</li>
+    <li><kbd>Space</kbd> plays and pauses. <kbd>Shift</kbd>+<kbd>←</kbd> jumps to the first frame.</li>
+  </ul>
+
+  <h3 id="f-files">1.16 Files and good habits</h3>
+  <ul>
+    <li><b>Save often</b> with <kbd>Ctrl</kbd>+<kbd>S</kbd>. Every save keeps the previous version as a <code>.blend1</code> file. That's why each project folder has both <code>basketball_court.blend</code> and <code>basketball_court.blend1</code>. If a save goes wrong, rename the .blend1 to .blend to get it back.</li>
+    <li><b>Keep textures next to the file</b>, in the project's <span class="path">assets/textures</span> folder, exactly like your projects. Blender stores the path relative to the .blend file (it starts with <code>//</code>), so the project still works when you move or copy the whole folder.</li>
+    <li><b>Pink surfaces</b> mean Blender can't find an image. Use <b>File › External Data › Find Missing Files</b> and point it at the textures folder.</li>
+    <li><b>Organise with collections and names</b> from the start. Your three files follow the same pattern: one collection per part of the scene (court, benches, lights, cameras).</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

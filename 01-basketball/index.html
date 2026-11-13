@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Basketball court · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="#court">Part 2 · Basketball court</a></li>
+    <li class="sub"><a href="#court-what-s-in-the-scene">What's in the scene</a></li>
+    <li class="sub"><a href="#court-s1-set-up-the-file">Step 1 · Set up the file</a></li>
+    <li class="sub"><a href="#court-s2-the-court-floor">Step 2 · The court floor</a></li>
+    <li class="sub"><a href="#court-s3-the-ball">Step 3 · The ball</a></li>
+    <li class="sub"><a href="#court-s4-build-one-hoop">Step 4 · Build one hoop</a></li>
+    <li class="sub"><a href="#court-s5-the-dark-arena-sky">Step 5 · The dark arena sky</a></li>
+    <li class="sub"><a href="#court-s6-arena-lights">Step 6 · Arena lights</a></li>
+    <li class="sub"><a href="#court-s7-the-camera">Step 7 · The camera</a></li>
+    <li class="sub"><a href="#court-s8-animate-the-throw-and-bounces">Step 8 · Animate the throw and bounces</a></li>
+    <li class="sub"><a href="#court-s9-render-the-video">Step 9 · Render the video</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="court" class="part court">
+<div class="col">
+  <div class="eyebrow">Part 2 · Project 01</div>
+  <h2>Basketball court and bouncing ball</h2>
+  <div class="meta"><span><b>File</b> <span class="path">projects/01-basketball/basketball_court.blend</span></span><span><b>Output</b> 192-frame video, 8 s at 24 fps</span><span><b>Engine</b> Cycles</span></div>
+  <p class="lede">A regulation-size court with two hoops under arena lights. The ball sits still, is thrown up to the rim, drops and bounces to a stop.</p>
+</div>
+<figure class="wide"><img src="img/bb_frame70.jpg" width="1400" height="788" alt="Frame 70 of the court animation: the north hoop, dark arena background, ball on the floor near the baseline" loading="lazy"><figcaption>Frame 70 of <span class="path">renders/basketball_cycles_0001-0192.mp4</span>, just before the ball hits the floor.</figcaption></figure>
+
+<div class="col">
+  <h3 id="court-what-s-in-the-scene">What's in the scene</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Collection</th><th>Objects</th></tr></thead>
+    <tbody>
+      <tr><td>Basketball Court › Court</td><td>Court_Floor</td></tr>
+      <tr><td>Basketball Court › Ball</td><td>Basketball (animated)</td></tr>
+      <tr><td>Basketball Court › Hoop_North</td><td>Hoop_North (empty) with Pole, Base, Arm, Backboard, TargetSquare, Bracket, Rim, Net</td></tr>
+      <tr><td>Basketball Court › Hoop_South</td><td>the same, turned to face the other way at the other end</td></tr>
+      <tr><td>Arena Lights</td><td>8 overhead panels, Rim_Left, Rim_Right, Camera_Fill</td></tr>
+      <tr><td>Collection</td><td>Camera, and a Sun named Light (hidden from renders)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="court-s1-set-up-the-file">Step 1 · Set up the file</h3>
+  <ol class="steps">
+    <li>Start Blender › <b>General</b>. Click the default cube, press <kbd>X</kbd> › <b>Delete</b>. Keep the Camera and the Light.</li>
+    <li><b>File › Save As</b> into <span class="path">projects/01-basketball/</span> as <code>basketball_court.blend</code>.</li>
+    <li>Copy the two texture folders into <span class="path">01-basketball/assets/textures/</span>: <span class="path">basketball-wooden-court-sport-game/51439.jpg</span> and <span class="path">basketball-ball/basketball-ball.jpg</span>.</li>
+    <li>Check the <b>Scene</b> tab › <b>Units</b>: Metric, Unit Scale 1.0, Length Meters (the defaults).</li>
+    <li>Optional helper: select the Light, in its Data tab change it to <b>Sun</b>, Strength <span class="v">3.5</span>, and click its camera icon in the Outliner so it doesn't render. It just keeps the Solid view readable while you work.</li>
+  </ol>
+
+  <h3 id="court-s2-the-court-floor">Step 2 · The court floor</h3>
+  <ol class="steps">
+    <li><b>Add › Mesh › Plane</b>. Rename it <code>Court_Floor</code>.</li>
+    <li>In the Sidebar (<kbd>N</kbd>) › Item, set <b>Dimensions</b> X <span class="v">19.122</span>, Y <span class="v">30.685</span>. Then <kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>Scale</b>.</li>
+    <li>Material tab › <b>New</b>, rename it <code>Court_Wood</code>. Click the dot beside <b>Base Color</b> › <b>Image Texture</b> › <b>Open</b> › <span class="path">51439.jpg</span>.</li>
+    <li>Set <b>Roughness</b> <span class="v">0.35</span>, open <b>Coat</b> and set Weight <span class="v">0.4</span>, Roughness <span class="v">0.12</span>.</li>
+    <li>Press <kbd>Z</kbd> › <b>Material Preview</b> to see it.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why 19.122 × 30.685</span><p>The court picture is 3314 × 5318 pixels. 3314 ÷ 5318 = 0.623, and 19.122 ÷ 30.685 = 0.623. Matching the plane's proportions to the image's means the lines aren't stretched, and at this size the markings land at real court scale. The Coat layer is the varnish that makes a gym floor glossy, and is why the lights reflect in it.</p></aside>
+  <figure style="max-width:260px"><img src="img/tex_court.jpg" width="420" height="674" alt="Top-down picture of a wooden basketball court with white lines" loading="lazy"><figcaption>The court texture, used as-is on one plane.</figcaption></figure>
+
+  <h3 id="court-s3-the-ball">Step 3 · The ball</h3>
+  <ol class="steps">
+    <li>Press <kbd>Shift</kbd>+<kbd>C</kbd> to centre the cursor. <b>Add › Mesh › UV Sphere</b>. In Adjust Last Operation set <b>Segments</b> <span class="v">48</span>, <b>Rings</b> <span class="v">24</span>, <b>Radius</b> <span class="v">0.12</span>, <b>Location</b> <span class="v">(0, 6.935, 0.12)</span>.</li>
+    <li>Rename it <code>Basketball</code>. Right-click › <b>Shade Smooth</b>.</li>
+    <li>New material <code>Basketball_Rubber</code>, Roughness <span class="v">0.55</span>. Build the nodes below in the Shading workspace.</li>
+  </ol>
+  <div class="recipe">
+    <h5>Nodes: Basketball_Rubber</h5>
+    <ul>
+      <li><b>Texture Coordinate</b> › <i>Generated</i> → <b>Separate XYZ</b></li>
+      <li><b>Combine XYZ</b>: X ← Separate X, Y ← Separate Z, Z = <span class="v">0</span></li>
+      <li><b>Mapping</b>: Location X <span class="v">0.167</span>, Scale X <span class="v">0.667</span> (Y and Z stay 1) → <b>Image Texture</b> <span class="path">basketball-ball.jpg</span> (sRGB)</li>
+      <li>Image Color → Principled <b>Base Color</b>, and → <b>Bump</b> Height (Strength <span class="v">0.15</span>, Distance <span class="v">0.002</span>) → Principled <b>Normal</b></li>
+    </ul>
+  </div>
+  <aside class="why"><span class="tag">Why this odd mapping</span><p>The ball picture is a photo of real ball leather, not an unwrapped ball. Generated coordinates go from 0 to 1 across the sphere's bounding box. Feeding X and Z into the image projects the photo onto the sphere from the front, like a slide projector, so the seams stay unstretched where the camera sees them. The Mapping node keeps the middle two-thirds of the photo (scale 0.667, shifted 0.167) and skips its edges. The Bump uses the same picture as a height, so the pebbled grain and black seams catch light.</p></aside>
+  <figure style="max-width:360px"><img src="img/tex_ball.jpg" width="520" height="347" alt="Close-up photo of orange basketball leather with black seams" loading="lazy"><figcaption>The ball photo. A UV-mapped version would also work: connect the image straight to Base Color and compare.</figcaption></figure>
+
+  <h3 id="court-s4-build-one-hoop">Step 4 · Build one hoop</h3>
+  <p>A hoop is eight simple shapes held together by an empty. Build the north hoop, then copy it. All positions are world positions; type them into the Sidebar.</p>
+  <ol class="steps">
+    <li><b>Add › Empty › Plain Axes</b> at <span class="v">(0, 12.008, 3.05)</span>, named <code>Hoop_North</code>. This point is the centre of the rim, which is 3.05 m (10 ft) above the floor.</li>
+    <li>For each part below: add the primitive, set its settings in Adjust Last Operation, then type its Dimensions or Location, apply the scale for cubes, rename it, and give it its material.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part</th><th>Primitive and settings</th><th>Size (m)</th><th>Centre (m)</th><th>Material</th></tr></thead>
+    <tbody>
+      <tr><td>Hoop_North_Pole</td><td>Cylinder, 24 vertices</td><td class="n">r 0.1, depth 3.5</td><td class="n">(0, 14.708, 1.75)</td><td>Hoop_Pole_Metal</td></tr>
+      <tr><td>Hoop_North_Base</td><td>Cube</td><td class="n">0.6 × 0.6 × 0.05</td><td class="n">(0, 14.708, 0.025)</td><td>Hoop_Pole_Metal</td></tr>
+      <tr><td>Hoop_North_Arm</td><td>Cylinder, 16 vertices, rotation X 90°</td><td class="n">r 0.06, depth 2.261</td><td class="n">(0, 13.578, 3.44)</td><td>Hoop_Pole_Metal</td></tr>
+      <tr><td>Hoop_North_Backboard</td><td>Cube</td><td class="n">1.83 × 0.05 × 1.07</td><td class="n">(0, 12.422, 3.435)</td><td>Hoop_Backboard</td></tr>
+      <tr><td>Hoop_North_TargetSquare</td><td>Plane frame (see below)</td><td class="n">0.59 × 0.45</td><td class="n">(0, 12.392, 3.275)</td><td>Hoop_Rim_Orange</td></tr>
+      <tr><td>Hoop_North_Bracket</td><td>Cube</td><td class="n">0.12 × 0.17 × 0.03</td><td class="n">(0, 12.322, 3.04)</td><td>Hoop_Rim_Orange</td></tr>
+      <tr><td>Hoop_North_Rim</td><td>Torus: major 48 / minor 12 segments</td><td class="n">major r 0.2385, minor r 0.01</td><td class="n">(0, 12.008, 3.05)</td><td>Hoop_Rim_Orange</td></tr>
+      <tr><td>Hoop_North_Net</td><td>Cylinder, 16 vertices, no caps (see below)</td><td class="n">r 0.232, depth 0.42</td><td class="n">(0, 12.008, 2.83)</td><td>Hoop_Net</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Real-world sizes</span><p>The backboard is 1.83 × 1.07 m (72 × 42 in) and the target square 0.59 × 0.45 m (24 × 18 in), the official sizes. The rim's inner diameter is 2 × (0.2385 − 0.01) = 0.457 m, the regulation 18 in. The arm runs from the back of the backboard (y 12.447) to the pole (y 14.708).</p></aside>
+
+  <h4>The target square</h4>
+  <ol class="steps">
+    <li>Add a Plane, rotate it <kbd>R</kbd> <kbd>X</kbd> <code>90</code> so it stands upright, set Dimensions X <span class="v">0.59</span>, Z <span class="v">0.45</span>, and apply rotation and scale (<kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>All Transforms</b>).</li>
+    <li><kbd>Tab</kbd> into Edit Mode, face select (<kbd>3</kbd>), press <kbd>I</kbd> and inset about <span class="v">0.05</span>. Press <kbd>X</kbd> › <b>Faces</b> to delete the inner face, leaving an outline.</li>
+    <li>Select all (<kbd>A</kbd>), <kbd>E</kbd> then <kbd>Y</kbd> <code>0.01</code> to give it 1 cm of thickness. Back in Object Mode, place it at <span class="v">(0, 12.392, 3.275)</span>, just in front of the board, with its bottom edge at rim height.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>The file's square is four thin boxes rather than an inset frame. The render looks the same.</p></aside>
+
+  <h4>The net</h4>
+  <ol class="steps">
+    <li>Add a Cylinder: Vertices <span class="v">16</span>, Radius <span class="v">0.232</span>, Depth <span class="v">0.42</span>, <b>Cap Fill Type: Nothing</b> (an open tube). Location <span class="v">(0, 12.008, 2.83)</span>.</li>
+    <li><kbd>Tab</kbd>, hover over a side and press <kbd>Ctrl</kbd>+<kbd>R</kbd>, scroll up until there are <span class="v">5</span> cuts, click twice. You now have 7 rings of 16 points.</li>
+    <li><kbd>Alt</kbd>+click the bottom ring and scale it in (<kbd>S</kbd> <code>0.6</code>) so the net tapers. Scale the rings above it in a little less each, for a smooth funnel.</li>
+    <li>For the diamond pattern, select every second ring (<kbd>Alt</kbd>+click, then <kbd>Shift</kbd>+<kbd>Alt</kbd>+click) and rotate it half a segment: <kbd>R</kbd> <kbd>Z</kbd> <code>11.25</code>.</li>
+    <li>Object Mode › Modifiers › <b>Wireframe</b>: Thickness <span class="v">0.006</span>, <b>Even Thickness</b> on. Every edge becomes a 6 mm cord.</li>
+  </ol>
+
+  <h4>Hoop materials</h4>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Material</th><th>Base Color</th><th>Metallic</th><th>Roughness</th></tr></thead>
+    <tbody>
+      <tr><td>Hoop_Pole_Metal</td><td class="n">(0.08, 0.09, 0.10)</td><td class="n">0.8</td><td class="n">0.4</td></tr>
+      <tr><td>Hoop_Backboard</td><td class="n">(0.95, 0.95, 0.95)</td><td class="n">0</td><td class="n">0.3</td></tr>
+      <tr><td>Hoop_Rim_Orange</td><td class="n">(0.9, 0.22, 0.03)</td><td class="n">0.7</td><td class="n">0.35</td></tr>
+      <tr><td>Hoop_Net</td><td class="n">(0.97, 0.97, 0.97)</td><td class="n">0</td><td class="n">0.8</td></tr>
+    </tbody>
+  </table></div>
+  <p>Make each material once, then on other objects pick it from the material dropdown (the sphere icon left of the name) instead of pressing New.</p>
+
+  <h4>Group, then copy to the south end</h4>
+  <ol class="steps">
+    <li>Select all eight parts, then <kbd>Shift</kbd>+click the <code>Hoop_North</code> empty last. <kbd>Ctrl</kbd>+<kbd>P</kbd> › <b>Object (Keep Transform)</b>.</li>
+    <li>With everything still selected, <kbd>M</kbd> › <b>New Collection</b> › <code>Hoop_North</code>. In the Outliner, make a <code>Basketball Court</code> collection and drag Hoop_North into it, along with new <code>Court</code> and <code>Ball</code> collections for the floor and ball.</li>
+    <li>Right-click the empty in the Outliner › <b>Select Hierarchy</b>. <kbd>Shift</kbd>+<kbd>D</kbd>, then right-click to drop the copy in place.</li>
+    <li>Set the pivot to the 3D cursor (<kbd>.</kbd> pie › <b>3D Cursor</b>), make sure the cursor is at the centre (<kbd>Shift</kbd>+<kbd>C</kbd>), and rotate <kbd>R</kbd> <kbd>Z</kbd> <code>180</code>. The copy swings to the other end, facing the court, with its empty at <span class="v">(0, −12.008, 3.05)</span>.</li>
+    <li>Rename the copies from <code>.001</code> to <code>Hoop_South_…</code> (<kbd>Ctrl</kbd>+<kbd>F2</kbd> renames many at once with find and replace) and move them into a <code>Hoop_South</code> collection.</li>
+  </ol>
+
+  <h3 id="court-s5-the-dark-arena-sky">Step 5 · The dark arena sky</h3>
+  <p>World tab, then in the Shading workspace switch the Shader Editor's dropdown from <b>Object</b> to <b>World</b>:</p>
+  <div class="recipe">
+    <h5>Nodes: World</h5>
+    <ul>
+      <li><b>Texture Coordinate</b> › <i>Generated</i> → <b>Separate XYZ</b> › Z → <b>Color Ramp</b></li>
+      <li>Color Ramp stops: position 0 colour <span class="v">(0.033, 0.033, 0.043)</span>, position <span class="v">0.35</span> colour <span class="v">(0.002, 0.002, 0.003)</span></li>
+      <li>Color Ramp Color → <b>Background</b> Color, Strength <span class="v">1</span> → World Output</li>
+    </ul>
+  </div>
+  <p>The sky is dark grey-blue at the horizon and fades to black above, so the arena seems to disappear into darkness and the lit court stands out.</p>
+
+  <h3 id="court-s6-arena-lights">Step 6 · Arena lights</h3>
+  <ol class="steps">
+    <li><b>Add › Light › Area</b>, named <code>Overhead_Panel_01</code>. Data tab: Shape <b>Rectangle</b>, Size X <span class="v">3.2</span>, Y <span class="v">2.4</span>, Power <span class="v">1100 W</span>, Color <span class="v">(1.0, 0.95, 0.88)</span>. Location <span class="v">(−5, −11, 11)</span>, rotation 0 (pointing straight down).</li>
+    <li>Duplicate it (<kbd>Shift</kbd>+<kbd>D</kbd>) until you have eight panels at X = −5 and 5, Y = −11, −3.7, 3.7 and 11, all at Z = 11.</li>
+    <li>Add the side and fill lights from the table, then put all of them in an <code>Arena Lights</code> collection.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light</th><th>Size (m)</th><th>Power</th><th>Color</th><th>Location</th><th>Rotation (°)</th></tr></thead>
+    <tbody>
+      <tr><td>Overhead_Panel × 8</td><td class="n">3.2 × 2.4</td><td class="n">1100 W</td><td class="n">(1.0, 0.95, 0.88)</td><td class="n">(±5, ±11 or ±3.7, 11)</td><td class="n">(0, 0, 0)</td></tr>
+      <tr><td>Rim_Left</td><td class="n">6 × 2</td><td class="n">2100 W</td><td class="n">(0.85, 0.9, 1.0) cool</td><td class="n">(−13, 2, 6)</td><td class="n">(69.2, 0, −81.3)</td></tr>
+      <tr><td>Rim_Right</td><td class="n">6 × 2</td><td class="n">1500 W</td><td class="n">(1.0, 0.9, 0.78) warm</td><td class="n">(13, −2, 6)</td><td class="n">(69.2, 0, 98.7)</td></tr>
+      <tr><td>Camera_Fill</td><td class="n">2 × 2</td><td class="n">200 W</td><td class="n">(1.0, 0.96, 0.9)</td><td class="n">(5, −1, 2.5)</td><td class="n">(80.1, 0, 35.5)</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why so many watts</span><p>Light weakens with the square of distance. The panels hang 11 m up like real arena lights, so they need over 1000 W each to light the floor. A cool light from one side and a warm one from the other give the ball and poles coloured edges, and the small fill near the camera stops the side facing you from going black.</p></aside>
+
+  <h3 id="court-s7-the-camera">Step 7 · The camera</h3>
+  <p>Select the Camera: Location <span class="v">(2.4, 2.0, 1.6)</span>, Rotation <span class="v">(85.9°, 0°, 16.7°)</span>. Data tab: Focal Length <span class="v">26 mm</span>, Clip End <span class="v">200 m</span>, Depth of Field off. Press Numpad <kbd>0</kbd> to check: you should see the north hoop with the ball in front of it, as in the frame above. The camera sits at eye height, 1.6 m, which makes the hoop feel tall.</p>
+
+  <h3 id="court-s8-animate-the-throw-and-bounces">Step 8 · Animate the throw and bounces</h3>
+  <ol class="steps">
+    <li>Output tab: Frame Rate <span class="v">24 fps</span>. Timeline: Start <span class="v">1</span>, End <span class="v">192</span> (8 seconds).</li>
+    <li>Select the ball. For each row below: type the frame number into the Timeline's current-frame field, type Y and Z into Location in the Sidebar (X stays 0), hover the Location fields and press <kbd>I</kbd>.</li>
+    <li>Open the <b>Graph Editor</b> in the bottom area. Select the keys and press <kbd>T</kbd> to set the interpolation listed in the table (each setting controls the segment that <i>starts</i> at that key).</li>
+    <li>Press <kbd>Space</kbd> to play.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Frame</th><th>Y</th><th>Z (height)</th><th>Interpolation</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td class="n">6.935</td><td class="n">0.12</td><td>Linear</td><td>ball resting on the floor</td></tr>
+      <tr><td class="n">12</td><td class="n">6.935</td><td class="n">0.12</td><td>Linear</td><td>the shot starts</td></tr>
+      <tr><td class="n">48</td><td class="n">11.639</td><td class="n">3.05</td><td>Linear</td><td>ball reaches the rim</td></tr>
+      <tr><td class="n">76</td><td class="n">9.9</td><td class="n">0.12</td><td>Quadratic</td><td>drops and hits the floor</td></tr>
+      <tr><td class="n">88</td><td class="n">9.9</td><td class="n">1.02</td><td>Quadratic</td><td>first bounce top</td></tr>
+      <tr><td class="n">100</td><td class="n">9.9</td><td class="n">0.12</td><td>Quadratic</td><td>floor</td></tr>
+      <tr><td class="n">109</td><td class="n">9.9</td><td class="n">0.62</td><td>Quadratic</td><td>second bounce</td></tr>
+      <tr><td class="n">118</td><td class="n">9.9</td><td class="n">0.12</td><td>Quadratic</td><td>floor</td></tr>
+      <tr><td class="n">125</td><td class="n">9.9</td><td class="n">0.37</td><td>Quadratic</td><td>third bounce</td></tr>
+      <tr><td class="n">132</td><td class="n">9.9</td><td class="n">0.12</td><td>Quadratic</td><td>floor</td></tr>
+      <tr><td class="n">137</td><td class="n">9.9</td><td class="n">0.22</td><td>Quadratic</td><td>fourth bounce</td></tr>
+      <tr><td class="n">142</td><td class="n">9.9</td><td class="n">0.12</td><td>Quadratic</td><td>floor</td></tr>
+      <tr><td class="n">145</td><td class="n">9.9</td><td class="n">0.15</td><td>Quadratic</td><td>a last little hop</td></tr>
+      <tr><td class="n">148</td><td class="n">9.9</td><td class="n">0.12</td><td>Linear</td><td>at rest</td></tr>
+      <tr><td class="n">192</td><td class="n">9.9</td><td class="n">0.12</td><td>Linear</td><td>holds until the end</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="diagram minw wide" role="img" aria-label="Chart of the ball height over 192 frames: flat until frame 12, a straight rise to 3.05 metres at frame 48, a straight drop to the floor at frame 76, then bounces of 1.02, 0.62, 0.37, 0.22 and 0.15 metres, at rest from frame 148">
+<svg viewBox="0 0 680 270" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="230" x2="655" y2="230" class="ln"/>
+  <line x1="50" y1="40" x2="50" y2="230" class="ln"/>
+  <text x="44" y="234" font-size="11" text-anchor="end" class="mut mono">0</text>
+  <text x="44" y="174" font-size="11" text-anchor="end" class="mut mono">1 m</text>
+  <text x="44" y="114" font-size="11" text-anchor="end" class="mut mono">2 m</text>
+  <text x="44" y="54" font-size="11" text-anchor="end" class="mut mono">3 m</text>
+  <line x1="50" y1="170" x2="655" y2="170" class="dash" opacity=".5"/>
+  <line x1="50" y1="110" x2="655" y2="110" class="dash" opacity=".5"/>
+  <line x1="50" y1="50" x2="655" y2="50" class="dash" opacity=".5"/>
+  <text x="50" y="250" font-size="11" text-anchor="middle" class="mut mono">0</text>
+  <text x="198.8" y="250" font-size="11" text-anchor="middle" class="mut mono">48</text>
+  <text x="347.6" y="250" font-size="11" text-anchor="middle" class="mut mono">96</text>
+  <text x="496.4" y="250" font-size="11" text-anchor="middle" class="mut mono">144</text>
+  <text x="645.2" y="250" font-size="11" text-anchor="middle" class="mut mono">192</text>
+  <text x="360" y="266" font-size="11" text-anchor="middle" class="mut">frame</text>
+  <path class="lnacc" d="M53.1,222.8 L87.2,222.8 L198.8,47 L285.6,222.8 Q322.8,114.8 360,222.8 Q387.9,162.8 415.8,222.8 Q437.5,192.8 459.2,222.8 Q474.7,210.8 490.2,222.8 Q499.5,219.2 508.8,222.8 L645.2,222.8"/>
+  <g class="dot"><circle cx="53.1" cy="222.8" r="4"/><circle cx="87.2" cy="222.8" r="4"/><circle cx="198.8" cy="47" r="4"/><circle cx="285.6" cy="222.8" r="4"/><circle cx="322.8" cy="168.8" r="4"/><circle cx="360" cy="222.8" r="4"/><circle cx="387.9" cy="192.8" r="4"/><circle cx="415.8" cy="222.8" r="4"/><circle cx="437.5" cy="207.8" r="4"/><circle cx="459.2" cy="222.8" r="4"/><circle cx="474.7" cy="216.8" r="4"/><circle cx="490.2" cy="222.8" r="4"/><circle cx="499.5" cy="221" r="4"/><circle cx="508.8" cy="222.8" r="4"/><circle cx="645.2" cy="222.8" r="4"/></g>
+  <text x="208" y="44" font-size="12">rim height, frame 48</text>
+  <text x="330" y="162" font-size="11" class="mono">1.02</text>
+  <text x="392" y="186" font-size="11" class="mono">0.62</text>
+  <text x="436" y="200" font-size="11" class="mono">0.37</text>
+  <text x="470" y="208" font-size="11" class="mono">0.22</text>
+  <text x="58" y="214" font-size="11" class="mut">rest</text>
+  <text x="530" y="214" font-size="11" class="mut">at rest from 148</text>
+</svg>
+</div>
+
+<div class="col">
+  <aside class="why"><span class="tag">Why the bounces shrink like this</span><p>Each bounce reaches about 60% of the one before (1.02 → 0.62 → 0.37 → 0.22) and takes less time (24, 18, 14, 10 frames). That steady loss of energy is what makes it read as a real rubber ball. The heights are the ball's centre, so 0.12 (its radius) means "touching the floor".</p></aside>
+  <aside class="file"><span class="tag">Make it better</span><p>In your file the shot (frames 12–48) is a straight line, and every bounce uses Quadratic with Blender's automatic easing. Two easy upgrades: add a key at frame 30 with Z around <span class="v">4.2</span> and Bezier interpolation so the shot arcs like a real throw, and in the Graph Editor give each rising half of a bounce <kbd>Ctrl</kbd>+<kbd>E</kbd> › <b>Ease Out</b> (fast off the floor, slow at the top) and each falling half <b>Ease In</b>.</p></aside>
+  <p>Finally, in the Render tab tick <b>Motion Blur</b>. Fast frames get a natural smear, like a real camera.</p>
+
+  <h3 id="court-s9-render-the-video">Step 9 · Render the video</h3>
+  <ol class="steps">
+    <li>Preview first: Render tab › Engine <b>EEVEE</b>, then <kbd>Ctrl</kbd>+<kbd>F12</kbd>. Your project did this too; the result is <span class="path">renders/v1_eevee_preview/basketball_preview_0001-0192.mp4</span>. Check the motion before spending time on the slow render.</li>
+    <li>Switch to <b>Cycles</b>, Device <b>GPU Compute</b>. Sampling › Render: Noise Threshold <span class="v">0.03</span>, Max Samples <span class="v">96</span>, Denoise on (OpenImageDenoise). Light Paths › Max Bounces Total <span class="v">8</span>.</li>
+    <li>Color Management: View Transform <b>AgX</b>, Look <b>Punchy</b>, Exposure <span class="v">−0.2</span>.</li>
+    <li>Output tab: Resolution <span class="v">1920 × 1080</span>, 100%. Output path <code>//renders\</code>. File Format <b>FFmpeg Video</b>, Container <b>MPEG-4</b>, Video Codec <b>H.264</b>.</li>
+    <li><b>Render › Render Animation</b> (<kbd>Ctrl</kbd>+<kbd>F12</kbd>). The video lands in <span class="path">renders/</span>, named with the frame range.</li>
+  </ol>
+  <aside class="why"><span class="tag">Safer for long renders</span><p>If a long video render crashes halfway, the whole file is lost. The safer habit is File Format <b>PNG</b>: each frame is saved as its own image, and a crash only costs one frame. Afterwards, combine the frames into a video in Blender's Video Sequencer (<b>File › New › Video Editing</b>, add the image sequence, render as FFmpeg).</p></aside>
+
+  <h4>Check your result</h4>
+  <ul class="checklist">
+    <li>The court lines are crisp and not stretched.</li>
+    <li>Both hoops face the court, rims at 3.05 m, nets tapering down.</li>
+    <li>The ball's leather grain catches the light.</li>
+    <li>The ball rests, flies up to the rim, falls and bounces five times, then stops by frame 148.</li>
+    <li>The background is near-black and the floor shows soft reflections of the overhead panels.</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

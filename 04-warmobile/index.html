@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Warmobile · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="../02-clothes/index.html#bench">Part 3 · Team benches</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="#warmobile">Part 5 · Warmobile</a></li>
+    <li class="sub"><a href="#warmobile-what-s-different-about-this-project">What's different about this project</a></li>
+    <li class="sub"><a href="#warmobile-s1-read-the-drawings-and-load-them-as-re">Step 1 · Read the drawings and load them as references</a></li>
+    <li class="sub"><a href="#warmobile-s2-units-the-box-and-the-materials">Step 2 · Units, the box and the materials</a></li>
+    <li class="sub"><a href="#warmobile-s3-cut-the-box-at-the-blueprint-stations">Step 3 · Cut the box at the blueprint stations</a></li>
+    <li class="sub"><a href="#warmobile-s4-extrude-the-nose-fender-arms-and-thru">Step 4 · Extrude the nose, fender arms and thruster housing</a></li>
+    <li class="sub"><a href="#warmobile-s5-shape-the-stealth-hull">Step 5 · Shape the stealth hull</a></li>
+    <li class="sub"><a href="#warmobile-s6-axle-lines-on-the-nose-and-housing">Step 6 · Axle lines on the nose and housing</a></li>
+    <li class="sub"><a href="#warmobile-s7-six-octagonal-tires">Step 7 · Six octagonal tires</a></li>
+    <li class="sub"><a href="#warmobile-s8-the-jet-nozzle">Step 8 · The jet nozzle</a></li>
+    <li class="sub"><a href="#warmobile-s9-twin-spoiler-fins">Step 9 · Twin spoiler fins</a></li>
+    <li class="sub"><a href="#warmobile-s10-recessed-canopy-glass">Step 10 · Recessed canopy glass</a></li>
+    <li class="sub"><a href="#warmobile-s11-finish-and-check-like-a-game-artist">Step 11 · Finish and check like a game artist</a></li>
+    <li class="sub"><a href="#warmobile-s12-refine">Step 12 · Refine: round tires and nozzle, bevel the armour</a></li>
+    <li class="sub"><a href="#warmobile-s13-studio-lights-and-cameras">Step 13 · Studio, lights and cameras</a></li>
+    <li class="sub"><a href="#warmobile-s14-render">Step 14 · Render</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="warmobile" class="part warmobile">
+<div class="col">
+  <div class="eyebrow">Part 5 · Project 04</div>
+  <h2>Warmobile: a low-poly armoured vehicle from one box</h2>
+  <div class="meta"><span><b>File</b> <span class="path">projects/04-warmobile/warmobile.blend</span></span><span><b>Output</b> 6 stills from 6 cameras</span><span><b>Engine</b> Cycles</span><span><b>Mesh</b> 1942 faces (low-poly base: 438)</span></div>
+  <p class="lede">A game-ready model of a Tumbler-style armoured car, built from a set of orthographic drawings. The hull, the front fender arms, all six tires, the spoiler fins and the jet nozzle are pulled out of one single box, so the finished vehicle is one closed, watertight mesh.</p>
+</div>
+<figure class="wide"><img src="img/wm_cam01.jpg" width="1400" height="788" alt="Three-quarter front-left view of the dark low-poly vehicle with recessed blue canopy glass and two front fender arms" loading="lazy"><figcaption><span class="path">renders/Cam_01_Front_Left_34.png</span>. Flat-shaded facets, recessed canopy glass, front tires tucked between the nose and the fender arms.</figcaption></figure>
+<div class="grid2 wide">
+  <figure><img src="img/wm_cam02.jpg" width="900" height="506" alt="Three-quarter rear-right view showing dual rear tires and the octagonal jet nozzle" loading="lazy"><figcaption>Cam_02_Rear_Right_34: dual rear tires on each side and the central jet nozzle.</figcaption></figure>
+  <figure><img src="img/wm_cam03.jpg" width="900" height="506" alt="Side profile of the vehicle" loading="lazy"><figcaption>Cam_03_Side_Profile: the canopy rises to its peak, then the engine deck slopes down to the exhaust.</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 id="warmobile-what-s-different-about-this-project">What's different about this project</h3>
+  <p>The first three projects used many separate objects. This one follows the rules a game artist works under. It starts the way hard-surface game assets usually start: with orthographic drawings that fix every size before any modelling begins. The brief that came with the drawings set these constraints:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Rule</th><th>Why game artists care</th></tr></thead>
+    <tbody>
+      <tr><td>Start from one box and only extrude, cut and move</td><td>This is <b>box modelling</b>, the classic way to build hard-surface models. Every part grows out of the same mesh, so nothing floats or overlaps.</td></tr>
+      <tr><td><b>Manifold</b>: every edge shared by exactly two faces</td><td>A watertight mesh casts clean shadows, works with physics and collision, and can be 3D printed or baked.</td></tr>
+      <tr><td><b>One island</b>: everything connected</td><td>One object to export, one draw call in the engine, and no hidden gaps between parts.</td></tr>
+      <tr><td><b>250–500 faces</b> for the base model</td><td>A "Tier 2" low-poly budget: enough detail to read from a game camera, cheap enough to draw many times. Step 12 then makes a higher-detail version for close-ups and keeps this one as a backup, the way games keep several levels of detail of one asset.</td></tr>
+      <tr><td>Flat armour facets, no Subdivision</td><td>The faceted look is the style. Every armour face is meant to be seen. Only the round parts (tires, nozzle) and the thin bevel strips get smooth shading.</td></tr>
+      <tr><td>Symmetric, but no Mirror modifier</td><td>The centre-line details (nose ridge, roof spine, nozzle) stay one continuous piece instead of two halves.</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="file"><span class="tag">In your file</span><p>One object, <code>Tumbler_LowPoly</code>, at the world origin. All edges are manifold, there are 0 open edges, one island (444 of 444 vertices connected), 438 faces (430 quads, 8 five-sided), the vertices are exactly mirror-symmetric, and it has no modifiers. That is the base model after Step 11; it is kept in the file as the hidden <code>Tumbler_LowPoly_Backup</code>, and Step 12 refines <code>Tumbler_LowPoly</code> itself to 2016 vertices and 1942 faces. Its size is exactly 9 × 15 × 4.5 ft: X −4.5…4.5, Y −7.25…7.75, Z 0…4.5.</p></aside>
+
+  <h3 id="warmobile-s1-read-the-drawings-and-load-them-as-re">Step 1 · Read the drawings and load them as references</h3>
+  <p>Before a single face exists, the vehicle is fixed on paper. The five drawings in <span class="path">projects/04-warmobile/assets/reference</span> are <b>orthographic elevations</b>: there is no perspective, so parallel edges stay parallel and a length measured anywhere on a sheet is a true length. Every sheet carries a 1-ft grid (12" by 12") that starts exactly at the vehicle's ends and at the ground line, and all five share one scale: the sheets are 2400 px wide and show 18 ft, so 1 ft = 133⅓ px.</p>
+  <p>The drawings show the finished vehicle, with round tires, a round turbine nozzle and slate-tinted glass. The first eleven steps build it as a low-poly model that approximates the round parts with eight sides; Step 12 then rounds them to match the drawings.</p>
+</div>
+<figure class="wide"><img src="img/bp_side.jpg" width="960" height="640" alt="Architectural line drawing of the vehicle from the left on a one-foot grid: long low hull, round rear tire on the left, front tire under the nose on the right, fins rising over the rear, slate-grey side windows" loading="lazy"><figcaption><span class="path">blueprint_side.jpg</span>, the left elevation on a 15' × 6' grid. Every length (the Y stations) and every height (Z). The nose is on the right.</figcaption></figure>
+<div class="grid2 wide">
+  <figure><img src="img/bp_front.jpg" width="960" height="640" alt="Line drawing of the vehicle from the front on a 9 by 6 foot grid: slate-grey windshield panes, two front tires between the nose and the fender arms" loading="lazy"><figcaption><span class="path">blueprint_front.jpg</span>. Widths (the X stations), the windshield panes, the fender arms and the tire bays.</figcaption></figure>
+  <figure><img src="img/bp_rear.jpg" width="960" height="640" alt="Line drawing of the vehicle from the rear: round jet nozzle with a dark bore in the centre, dual tires on each side, fins on top" loading="lazy"><figcaption><span class="path">blueprint_rear.jpg</span>. The nozzle with its dark bore, the twin tires and the fin tips.</figcaption></figure>
+  <figure><img src="img/bp_top.jpg" width="960" height="640" alt="Line drawing of the vehicle from above on a 15 by 9 foot grid: slate-grey canopy panes in the middle, fins at the rear, tires at the four corners" loading="lazy"><figcaption><span class="path">blueprint_top.jpg</span>. The footprint: canopy panes, spine, fins and where each tire sits.</figcaption></figure>
+  <figure><img src="img/bp_bottom.jpg" width="960" height="640" alt="Line drawing of the vehicle from below: a flat belly with the six tires at the corners" loading="lazy"><figcaption><span class="path">blueprint_bottom.jpg</span>. The flat belly and the tire footprints.</figcaption></figure>
+</div>
+<figure class="wide"><img src="img/bp_master.jpg" width="1400" height="1050" alt="One sheet with four elevations: left, front, top and back, with a title block reading Tumbler prototype vehicle, low-poly orthographic elevations" loading="lazy"><figcaption><span class="path">blueprint_master_sheet.jpg</span>: the left, front, top and back elevations on one sheet, all at the same scale.</figcaption></figure>
+<div class="col">
+  <p>Read the views together. A line that is a station in one view shows up in the others at the same distance from the centre: the windshield base is 2.5 ft in front of the origin in the side elevation and in the top elevation alike. That cross-check is what blueprints are for. Each grid square is one foot, so you can read most sizes straight off the sheet by counting squares.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Drawing</th><th>Use it for</th></tr></thead>
+    <tbody>
+      <tr><td>Left elevation</td><td>Length stations (Y), roof and belly heights, axle heights, the fins' profile</td></tr>
+      <tr><td>Front elevation</td><td>Width stations (X), the fender arms, tire widths, the windshield</td></tr>
+      <tr><td>Top elevation</td><td>Where the canopy panes, spine and fins sit</td></tr>
+      <tr><td>Back and bottom</td><td>Checks: nozzle size, dual-tire gap, flat belly</td></tr>
+    </tbody>
+  </table></div>
+  <ol class="steps">
+    <li>Set the units first (Step 2, item 2), so the drawings load at true size in feet.</li>
+    <li>Hover over the 3D view and press Numpad <kbd>1</kbd> (Front view). <b>Add › Image › Reference</b> and pick <span class="path">blueprint_front.jpg</span>. In the Sidebar set Location <span class="v">(0, 12, 2.25)</span>.</li>
+    <li>In the image's <b>Object Data</b> tab (the image-empty icon): Size <span class="v">18</span> ft (the sheet's width), Opacity <span class="v">0.5</span>, Depth <b>Back</b>, and under Show In untick <b>Perspective</b>, so the drawing only appears in its own straight view.</li>
+    <li><kbd>Ctrl</kbd>+Numpad <kbd>3</kbd> (Left view): add <span class="path">blueprint_side.jpg</span> the same way, Location <span class="v">(12, 0, 2.25)</span>. Numpad <kbd>7</kbd> (Top view): add <span class="path">blueprint_top.jpg</span>, Location <span class="v">(0, 0, −0.5)</span>, Rotation Z <span class="v">−90°</span> so its nose matches the side view.</li>
+    <li>Check the fit: in each view the drawing's grid lines should land on Blender's 1-ft grid, and the ground line on Z 0. Then put the three images in a <code>Blueprints</code> collection and turn off its camera icon so they never render. Keep the back and bottom elevations open in an image viewer for checking.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why every drawing shares one scale</span><p>Every sheet is 18 ft wide and centred on the vehicle's middle line: X 0 and Y 0, with Z 2.25 for the elevations. Load them all at Size 18 around those points and they line up with each other and with Blender's grid, so a vertex snapped to a drawing's line lands on the real number.</p></aside>
+
+  <h3 id="warmobile-s2-units-the-box-and-the-materials">Step 2 · Units, the box and the materials</h3>
+  <ol class="steps">
+    <li>New General file. Delete the default cube, camera and light. Save as <span class="path">projects/04-warmobile/warmobile.blend</span>.</li>
+    <li><b>Scene</b> tab › <b>Units</b>: Unit System <b>Imperial</b>, Unit Scale <span class="v">0.3048</span>, Length <b>Feet</b>. Now 1 Blender unit is 1 foot, matching the blueprint, and you can type blueprint numbers directly.</li>
+    <li>Orientation for the whole project: the nose points to <b>−Y</b>, the exhaust to <b>+Y</b>, Z is up. The origin sits on the ground halfway between the axles (front axle Y −5.90, rear axle Y +5.90, an 11.8 ft wheelbase).</li>
+    <li><b>Add › Mesh › Cube</b>. In the Sidebar set Dimensions <span class="v">9 × 8.4 × 3.2</span> and Location <span class="v">(0, −0.1, 2.4)</span>, then <kbd>Ctrl</kbd>+<kbd>A</kbd> › <b>All Transforms</b>. The box now spans X −4.5…4.5, Y −4.3…4.1 and Z 0.8…4.0: the core of the hull, with its belly 0.8 ft off the ground. Name it <code>Tumbler_LowPoly</code>.</li>
+    <li>Material tab: add five slots with <b>+</b>, in this order, each a Principled BSDF with the values below. New faces take the material of the face they grow from, so slot 0 (armour) ends up everywhere unless you assign otherwise.</li>
+    <li>For each material, also open <b>Viewport Display</b> at the bottom of the Material tab and set Color, Metallic and Roughness to the same values. That's the colour Solid mode shows when its Color is set to <b>Material</b>, so the slots read correctly in both Solid and Material Preview.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Slot</th><th>Material</th><th>Base Color</th><th>Metallic</th><th>Roughness</th><th>Used on</th></tr></thead>
+    <tbody>
+      <tr><td class="n">0</td><td>Mat_Armor_Black</td><td class="n">(0.07, 0.07, 0.08)</td><td class="n">0.25</td><td class="n">0.80</td><td>hull, nose, arms, spine, fins</td></tr>
+      <tr><td class="n">1</td><td>Mat_Canopy_Glass</td><td class="n">(0.02, 0.05, 0.08)</td><td class="n">0.85</td><td class="n">0.12</td><td>8 recessed canopy panes</td></tr>
+      <tr><td class="n">2</td><td>Mat_Tire_Rubber</td><td class="n">(0.025, 0.025, 0.025)</td><td class="n">0</td><td class="n">0.95</td><td>tire treads and sidewalls</td></tr>
+      <tr><td class="n">3</td><td>Mat_Jet_Exhaust</td><td class="n">(0.24, 0.26, 0.29)</td><td class="n">0.90</td><td class="n">0.30</td><td>nozzle shroud, lip and bore</td></tr>
+      <tr><td class="n">4</td><td>Mat_Mech_Gunmetal</td><td class="n">(0.15, 0.16, 0.18)</td><td class="n">0.80</td><td class="n">0.45</td><td>wheel rims, inner hub discs, dual-tire spacer</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="warmobile-s3-cut-the-box-at-the-blueprint-stations">Step 3 · Cut the box at the blueprint stations</h3>
+  <p>A blueprint gives you <b>stations</b>: the exact X, Y and Z lines where something changes. Cut the box along each one, so that later every part starts on a real edge. The tool is <b>Bisect</b>: in Edit Mode select the faces to cut, choose <b>Mesh › Bisect</b>, drag any line, then type the exact plane in the Adjust Last Operation panel (<b>Plane Point</b> and <b>Plane Normal</b>).</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Cut</th><th>Plane normal</th><th>Plane points</th><th>Select first</th></tr></thead>
+    <tbody>
+      <tr><td>Side stations</td><td class="n">(1, 0, 0)</td><td class="n">X = 0, ±1.15, ±2.75, ±3.60</td><td>everything (<kbd>A</kbd>)</td></tr>
+      <tr><td>Length stations</td><td class="n">(0, 1, 0)</td><td class="n">Y = −2.50, −0.50, +2.00</td><td>everything</td></tr>
+      <tr><td>Roof spine edges</td><td class="n">(1, 0, 0)</td><td class="n">X = ±0.60</td><td>only the roof faces in front of Y +2.0</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why cut the spine only on the cabin</span><p>Every cut runs through every selected face. If the ±0.6 cut also ran down the back of the box, the rear face would get extra points, and the jet nozzle in Step 8 needs that face to have exactly 8 points around its centre. Cutting only where you need a line keeps the polygon count and the topology under control.</p></aside>
+</div>
+
+<div class="diagram minw wide" role="img" aria-label="Top view plan of the vehicle with length stations: nose and two fender arms at the front, front tires in the bays between them, the core hull, the rear thruster housing with dual tires on both sides, fins above the rear and the jet nozzle at the back">
+<svg viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg">
+  <g class="dash">
+    <line x1="97.1" y1="28" x2="97.1" y2="400"/><line x1="170.7" y1="28" x2="170.7" y2="400"/><line x1="253.5" y1="28" x2="253.5" y2="400"/>
+    <line x1="345.5" y1="28" x2="345.5" y2="400"/><line x1="460.5" y1="28" x2="460.5" y2="400"/><line x1="557.1" y1="28" x2="557.1" y2="400"/><line x1="639.9" y1="28" x2="639.9" y2="400"/>
+  </g>
+  <g font-size="10" class="mono mut" text-anchor="middle">
+    <text x="97.1" y="20">−5.9</text><text x="170.7" y="20">−4.3</text><text x="253.5" y="20">−2.5</text><text x="345.5" y="20">−0.5</text>
+    <text x="460.5" y="20">+2.0</text><text x="557.1" y="20">+4.1</text><text x="639.9" y="20">+5.9</text>
+  </g>
+  <rect x="170.7" y="30" width="386.4" height="360" class="box"/>
+  <polygon points="170.7,164 41.9,164 35,210 41.9,256 170.7,256" class="box"/>
+  <polygon points="170.7,30 97.1,40 46.5,58 46.5,100 170.7,100" class="box"/>
+  <polygon points="170.7,390 97.1,380 46.5,362 46.5,320 170.7,320" class="box"/>
+  <rect x="557.1" y="164" width="147.2" height="92" class="box"/>
+  <rect x="704.3" y="172" width="20.7" height="76" class="boxhi"/>
+  <g style="fill:var(--ink);opacity:.75">
+    <rect x="36.8" y="101.2" width="120.6" height="60.8" rx="3"/><rect x="36.8" y="258" width="120.6" height="60.8" rx="3"/>
+    <rect x="564" y="100" width="151.8" height="62" rx="3"/><rect x="564" y="30" width="151.8" height="64" rx="3"/>
+    <rect x="564" y="258" width="151.8" height="62" rx="3"/><rect x="564" y="326" width="151.8" height="64" rx="3"/>
+  </g>
+  <g style="fill:var(--why-line);opacity:.35">
+    <rect x="255" y="100" width="90" height="86"/><rect x="255" y="234" width="90" height="86"/>
+    <rect x="255" y="66" width="205" height="32"/><rect x="255" y="322" width="205" height="32"/>
+  </g>
+  <rect x="466.5" y="66" width="211.5" height="98" class="dash" style="stroke:var(--accent);stroke-width:2"/>
+  <rect x="466.5" y="256" width="211.5" height="98" class="dash" style="stroke:var(--accent);stroke-width:2"/>
+  <line x1="20" y1="210" x2="740" y2="210" class="dash" opacity=".6"/>
+  <g font-size="11">
+    <text x="104" y="210" text-anchor="middle" dy="4">nose</text>
+    <text x="108" y="80" text-anchor="middle">arm</text>
+    <text x="364" y="216" text-anchor="middle">core hull</text>
+    <text x="630" y="214" text-anchor="middle">housing</text>
+    <text x="300" y="148" text-anchor="middle" class="mut">windshield</text>
+    <text x="356" y="86" class="mut">side window</text>
+    <text x="572" y="186" style="fill:var(--accent)">fin</text>
+  </g>
+  <g font-size="11" class="mut">
+    <text x="20" y="430">front (−Y)</text><text x="740" y="430" text-anchor="end">rear (+Y) · nozzle</text>
+    <text x="380" y="430" text-anchor="middle">top view · +X at the top · dark = tires · dashed = length stations (ft)</text>
+  </g>
+</svg>
+</div>
+
+<div class="col">
+  <h3 id="warmobile-s4-extrude-the-nose-fender-arms-and-thru">Step 4 · Extrude the nose, fender arms and thruster housing</h3>
+  <p>Instead of cutting holes for the wheel bays, grow the parts <i>around</i> the bays. Face select (<kbd>3</kbd>), select the front or back faces listed, press <kbd>E</kbd>, type the distance and press <kbd>Enter</kbd>. Extruding a face region moves it along its own normal, so a positive number always goes outward.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Part</th><th>Select</th><th>Extrude</th><th>Then</th></tr></thead>
+    <tbody>
+      <tr><td>Nose</td><td>front faces with |X| ≤ 1.15</td><td><kbd>E</kbd> <code>1.6</code> (to Y −5.90)</td><td><kbd>E</kbd> <code>1.35</code> (to Y −7.25)</td></tr>
+      <tr><td>Fender arms</td><td>front faces with |X| ≥ 2.75, both sides</td><td><kbd>E</kbd> <code>1.6</code> (to Y −5.90)</td><td><kbd>E</kbd> <code>1.1</code> (to Y −7.00)</td></tr>
+      <tr><td>Thruster housing</td><td>back faces with |X| ≤ 1.15</td><td><kbd>E</kbd> <code>1.8</code> (to Y +5.90)</td><td><kbd>E</kbd> <code>1.4</code> (to Y +7.30)</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why two short extrusions instead of one long one</span><p>The middle step leaves a ring of edges exactly on the axle line (Y ±5.90). The tire hubs in Step 7 are centred on that line, so it has to exist as a real edge. The gaps left between nose and arms (front) and beside the housing (rear) become the four wheel bays, with no holes and no overlapping faces.</p></aside>
+
+  <h3 id="warmobile-s5-shape-the-stealth-hull">Step 5 · Shape the stealth hull</h3>
+  <p>Now move points, not faces. Turn on <b>X symmetry</b> first: in Edit Mode, the butterfly icon at the top right of the viewport header, toggle <b>X</b>. Any point you move on one side moves its twin on the other side, with no Mirror modifier. Select a point (or a column of points in Front or Side view with <kbd>B</kbd>) and type its height in the Sidebar's <b>Vertex</b> field (Median Z when several are selected).</p>
+  <p>Roof heights (Z, in feet) at each station. Columns are the distance from the centre line:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Station Y</th><th>|X| 0</th><th>0.6</th><th>1.15</th><th>2.75</th><th>3.6</th><th>4.5</th><th>What it is</th></tr></thead>
+    <tbody class="n">
+      <tr><td>−7.25 / −7.00</td><td>1.75</td><td>1.72</td><td>1.65</td><td>2.10</td><td>2.10</td><td>1.95</td><td>nose tip / arm spear tips</td></tr>
+      <tr><td>−5.90</td><td>1.95</td><td>1.93</td><td>1.88</td><td>2.45</td><td>2.55</td><td>2.35</td><td>front axle</td></tr>
+      <tr><td>−4.30</td><td>2.10</td><td>2.10</td><td>2.10</td><td>2.40</td><td>2.60</td><td>2.45</td><td>glacis base</td></tr>
+      <tr><td>−2.50</td><td>3.00</td><td>3.00</td><td>2.95</td><td>2.85</td><td>2.70</td><td>2.55</td><td>windshield base</td></tr>
+      <tr><td>−0.50</td><td>4.00</td><td>4.00</td><td>3.90</td><td>3.60</td><td>3.30</td><td>2.60</td><td>canopy peak</td></tr>
+      <tr><td>+2.00</td><td>3.85</td><td>3.85</td><td>3.75</td><td>3.55</td><td>3.30</td><td>2.60</td><td>cabin rear bulkhead</td></tr>
+      <tr><td>+4.10</td><td>3.45</td><td>–</td><td>3.35</td><td>3.20</td><td>3.00</td><td>2.50</td><td>engine deck</td></tr>
+      <tr><td>+5.90 / +7.30</td><td>3.08 / 2.80</td><td>–</td><td>2.98 / 2.70</td><td>–</td><td>–</td><td>–</td><td>housing slopes to the exhaust</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><b>Belly</b>: everything stays at Z 0.80 except the nose (0.83 at −5.9, 0.85 at the tip), the arms (0.85, then 0.95 at the tips) and the rear lip of the housing (0.72).</li>
+    <li><b>Spear tips</b>: the arms' outer edge narrows from |X| 4.5 to 4.25 at Y −5.9 and 3.8 at the tip. The middle line goes 3.6 → 3.5 → 3.3. The inner wall stays straight at 2.75 so it never touches the tire.</li>
+    <li><b>Nose wedge</b>: at the tip, the centre points sit at Y −7.25, the 0.6 points at −7.20 and the 1.15 corners at −7.10, so the nose comes to a blunt point.</li>
+    <li><b>Shoulder armour</b>: move every <i>top</i> point at |X| 4.5 inward by 0.15 (to 4.35), so the side armour leans in.</li>
+    <li>The raised 0.6-wide <b>dorsal spine</b> comes from columns 0 and 0.6 having the same height, with 1.15 a little lower.</li>
+  </ul>
+
+  <h3 id="warmobile-s6-axle-lines-on-the-nose-and-housing">Step 6 · Axle lines on the nose and housing</h3>
+  <p>Select only the nose faces and Bisect at Plane Point Z <span class="v">1.29</span>, normal (0, 0, 1), the front axle height. Then select only the housing faces and Bisect at Z <span class="v">1.69</span>, the rear axle and nozzle height. Each bay wall is now a 2 × 2 patch of faces whose middle point sits exactly on the axle.</p>
+
+  <h3 id="warmobile-s7-six-octagonal-tires">Step 7 · Six octagonal tires</h3>
+  <p>Every wheel starts on a bay wall (the side of the nose or housing at |X| 1.15) and is extruded outward in steps. One tire, step by step:</p>
+  <ol class="steps">
+    <li><b>Hub</b>: select the 2 × 2 patch on the wall around the axle and press <kbd>I</kbd> (inset, thickness about <span class="v">0.10</span>). The selected patch now has 8 points around its centre point.</li>
+    <li><b>Make it round</b>: select those 8 points and press <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd> (<b>To Sphere</b>), factor <span class="v">1</span>, to turn them into a circle. For exact numbers, type each point's position: an octagon point sits at <span class="v">(±0.924 r, ±0.383 r)</span> or <span class="v">(±0.383 r, ±0.924 r)</span> from the centre (Y and Z for wheels), using the radius from the table below.</li>
+    <li><b>Grow the tire</b>: with the patch selected, press <kbd>E</kbd>, move to the next |X| and scale the ring (<kbd>S</kbd>) to the next radius. Repeat for each row of the table. When a step stays at the same |X| (an "in place" row), press <kbd>E</kbd> and then right-click to cancel the move, so you only scale. That makes a flat ring on the side of the tire.</li>
+    <li><b>Ground contact</b>: on each full-size ring, set the two lowest points to Z <span class="v">0</span>, so the tire sits flat on the floor.</li>
+    <li>Select all the faces you just made and press <b>Assign</b> on the Mat_Tire_Rubber slot.</li>
+    <li><b>Wheel metal</b>: now pick out the mechanical parts and assign <b>Mat_Mech_Gunmetal</b> to them. These are the recessed rim faces in the middle of each outer sidewall (the last row of the table), the inner hub disc on the bay wall side (the first step out from the hub), and on the rear tires the narrow axle neck between the twin tires (step 4). Treads and the flat sidewall rings stay rubber.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tire</th><th>Step</th><th>to |X|</th><th>radius</th><th>Makes</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="4">Front (centre Y −5.90, Z 1.29)</td><td class="n">hub</td><td class="n">1.15</td><td class="n">0.35</td><td>axle hub on the nose wall</td></tr>
+      <tr><td class="n">1</td><td class="n">1.20</td><td class="n">1.3125</td><td>inner sidewall</td></tr>
+      <tr><td class="n">2</td><td class="n">2.72</td><td class="n">1.3125</td><td>tread (8 flat faces)</td></tr>
+      <tr><td class="n">3</td><td class="n">2.64</td><td class="n">0.75</td><td>outer sidewall and recessed rim</td></tr>
+      <tr><td rowspan="8">Rear dual (centre Y +5.90, Z 1.69)</td><td class="n">hub</td><td class="n">1.15</td><td class="n">0.60</td><td>axle hub on the housing wall</td></tr>
+      <tr><td class="n">1</td><td class="n">1.20</td><td class="n">1.79</td><td>inner tire, inner sidewall</td></tr>
+      <tr><td class="n">2</td><td class="n">2.75</td><td class="n">1.79</td><td>inner tire tread</td></tr>
+      <tr><td class="n">3</td><td class="n">2.75 (in place)</td><td class="n">0.85</td><td>inner tire, outer sidewall</td></tr>
+      <tr><td class="n">4</td><td class="n">2.90</td><td class="n">0.85</td><td>narrow axle neck: the gap between the twin tires</td></tr>
+      <tr><td class="n">5</td><td class="n">2.90 (in place)</td><td class="n">1.79</td><td>outer tire, inner sidewall</td></tr>
+      <tr><td class="n">6</td><td class="n">4.50</td><td class="n">1.79</td><td>outer tire tread</td></tr>
+      <tr><td class="n">7</td><td class="n">4.42</td><td class="n">1.00</td><td>outer sidewall and recessed rim</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why 8 sides, and why the octagon is turned 22.5°</span><p>Eight sides is the fewest that still reads as round from a game camera, and it keeps the six tires to about 200 faces. Turning the octagon by 22.5° puts a flat edge at the bottom instead of a point, so the tire stands on a flat contact patch. The narrow neck in the rear tires lets two tires stay part of one connected mesh while still looking like a separate pair.</p></aside>
+  <figure><img src="img/wm_cam04.jpg" width="900" height="506" alt="Low front view of the vehicle showing the nose, the two fender arms and the front tires inside their bays" loading="lazy"><figcaption>Cam_04_Front_Low_Hero: the front tires sit between the nose and the fender arms, 0.03 ft (about 1 cm) clear of the arms' inner walls.</figcaption></figure>
+
+  <h3 id="warmobile-s8-the-jet-nozzle">Step 8 · The jet nozzle</h3>
+  <p>The back of the housing (Y 7.30) is also a 2 × 2 patch, centred at X 0, Z 1.69. Inset it (<kbd>I</kbd>, about 0.06), make the 8 points an octagon of radius <span class="v">0.95</span> in the X–Z plane, then extrude:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Step</th><th>to Y</th><th>radius</th><th>Makes</th></tr></thead>
+    <tbody class="n">
+      <tr><td>1</td><td>7.75</td><td>0.95</td><td>shroud, sticking 0.45 out of the back</td></tr>
+      <tr><td>2</td><td>7.75 (in place)</td><td>0.65</td><td>lip ring</td></tr>
+      <tr><td>3</td><td>6.80</td><td>0.65</td><td>deep bore, recessed 0.95 back into the housing</td></tr>
+    </tbody>
+  </table></div>
+  <p>Assign Mat_Jet_Exhaust to all of these faces. Extruding <i>inward</i> in step 3 is how you make a hole in a watertight mesh: the bore is a pocket, not a gap.</p>
+  <figure><img src="img/wm_cam05.jpg" width="900" height="506" alt="Close-up of the octagonal jet nozzle with a deep bore" loading="lazy"><figcaption>Cam_05_Rear_Exhaust: the round shroud, bevelled lip and deep bore, 55 mm at f/2.8.</figcaption></figure>
+
+  <h3 id="warmobile-s9-twin-spoiler-fins">Step 9 · Twin spoiler fins</h3>
+  <p>Select the 4 roof faces on the engine deck (Y +2.0 to +4.1, |X| 1.15 to 3.6, both sides) and extrude twice. After each <kbd>E</kbd>, place the new points:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Step</th><th>Front edge Y</th><th>Back edge Y</th><th>Z front (|X| 1.15 / 2.75 / 3.6)</th><th>Z back</th><th>new |X|</th></tr></thead>
+    <tbody class="n">
+      <tr><td>1</td><td>3.20</td><td>5.20</td><td>4.05 / 4.00 / 3.85</td><td>4.10 / 4.05 / 3.90</td><td>1.25 / 2.75 / 3.50</td></tr>
+      <tr><td>2</td><td>4.60</td><td>6.50</td><td>4.35 / 4.30 / 4.15</td><td>4.50 / 4.45 / 4.30</td><td>1.35 / 2.70 / 3.35</td></tr>
+    </tbody>
+  </table></div>
+  <p>Each extrusion is a stepped blade leaning back, peaking at Z 4.5 over the rear tires (which stay below Z 3.5, so nothing touches).</p>
+
+  <h3 id="warmobile-s10-recessed-canopy-glass">Step 10 · Recessed canopy glass</h3>
+  <ol class="steps">
+    <li>Select the 8 canopy faces: the windshields (|X| 0.6–2.75, Y −2.5 to −0.5, four faces) and the side windows (|X| 2.75–3.6, Y −2.5 to +2.0, four faces). The strip between |X| −0.6 and 0.6 stays armour: it's the windshield divider and spine.</li>
+    <li>Press <kbd>I</kbd> twice for <b>Inset Individual</b> (each face on its own). In Adjust Last Operation: Thickness <span class="v">0.12</span>, Depth <span class="v">−0.06</span>. A negative depth pushes the glass in, so the frames stand proud.</li>
+    <li>With the glass faces still selected, click the Mat_Canopy_Glass slot and press <b>Assign</b>.</li>
+  </ol>
+
+  <h3 id="warmobile-s11-finish-and-check-like-a-game-artist">Step 11 · Finish and check like a game artist</h3>
+  <ol class="steps">
+    <li>Select all, <kbd>Shift</kbd>+<kbd>N</kbd> (Recalculate Outside) so every face points out.</li>
+    <li>Object Mode › right-click › <b>Shade Flat</b>. Back in Edit Mode, select all edges, <kbd>Ctrl</kbd>+<kbd>E</kbd> › <b>Mark Sharp</b>.</li>
+    <li><b>Polycount</b>: Viewport Overlays (the two-circles dropdown) › <b>Statistics</b>. The face count should be between 250 and 500.</li>
+    <li><b>Watertight</b>: Edit Mode, deselect all, <b>Select › Select All by Trait › Non Manifold</b>. Nothing should be selected. If something is, those edges are holes, internal faces or overlaps.</li>
+    <li><b>One island</b>: deselect all, click any one point and press <kbd>Ctrl</kbd>+<kbd>L</kbd> (Select Linked). The whole vehicle should light up.</li>
+    <li><b>Size</b>: in Object Mode the Sidebar's Dimensions should read 9′ × 15′ × 4′ 6″.</li>
+    <li><b>Materials</b>: in Edit Mode, deselect all, click each slot in the Material tab and press <b>Select</b>. Each one should light up only its own parts, and no face should be left on a slot you didn't mean. Switch the viewport to Material Preview (<kbd>Z</kbd> › Material Preview), or to Solid with Color set to <b>Material</b> and <b>Cavity</b> on, and orbit around to check.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>Faces per slot: Mat_Armor_Black 226, Mat_Canopy_Glass 8, Mat_Tire_Rubber 112, Mat_Jet_Exhaust 28, Mat_Mech_Gunmetal 64 (438 in all). Each side has, per front tire, 16 rubber faces plus 12 gunmetal (8 inner hub, 4 rim), and per rear dual set, 40 rubber plus 20 gunmetal (8 inner hub, 8 spacer neck, 4 rim).</p></aside>
+  <div class="grid2">
+    <figure><img src="img/wm_vp_front.jpg" width="1100" height="476" alt="Blender window in Material Preview showing the vehicle from the front left" loading="lazy"><figcaption>Material Preview, 3/4 front-left: armour with bevelled edges, dark glass and round front tires, as your viewport should look after Step 12.</figcaption></figure>
+    <figure><img src="img/wm_vp_rear.jpg" width="1100" height="476" alt="Blender window in Material Preview showing the vehicle from the rear right" loading="lazy"><figcaption>Material Preview, 3/4 rear-right: round dual tires with gunmetal rims and spacer, fins and the round turbine nozzle.</figcaption></figure>
+  </div>
+  <aside class="file"><span class="tag">In your file</span><p>The model was built over the drawings in <span class="path">assets/reference</span>, using exactly the operations above, then checked in exactly this way: every edge manifold, 0 open edges, one island, 438 faces, mirror-symmetric, bounds 9 × 15 × 4.5 ft. A script that repeats the same operations is kept in <span class="path">04-warmobile/scripts/</span>, if you want to compare your version against it.</p></aside>
+
+  <h3 id="warmobile-s12-refine">Step 12 · Refine: round tires and nozzle, bevel the armour</h3>
+  <p>The blueprint model is done, so now it gets the close-up details: round tires instead of octagons, a round turbine nozzle, and a thin rounded fillet along the armour edges so they catch highlights. All of it happens on the same mesh. Nothing is rebuilt.</p>
+  <ol class="steps">
+    <li><b>Back it up first.</b> Object Mode, select the vehicle, <kbd>Shift</kbd>+<kbd>D</kbd> then right-click (a copy in place). Rename the copy <code>Tumbler_LowPoly_Backup</code>, <kbd>M</kbd> › <b>New Collection</b> "Tumbler Backup", and turn off its eye and camera icons. If anything below goes wrong, delete the original and unhide this one.</li>
+    <li><b>Select the tire rings.</b> Edit Mode, edge select (<kbd>2</kbd>). <kbd>Alt</kbd>+click one edge running <i>around</i> a tire to select that whole ring, and <kbd>Shift</kbd>+<kbd>Alt</kbd>+click to add the others: every ring on all six tires, including the rim rings, but <i>not</i> the small hub ring where the tire meets the hull wall (|X| 1.15). Leaving that one 8-sided keeps the cuts from running across the flat body panels. Add the four nozzle rings too: the base on the housing, both lip rings and the bore end.</li>
+    <li><b>Subdivide</b>: right-click › <b>Subdivide</b>, Number of Cuts <span class="v">3</span>. Each of the 8 sides becomes 4, so every ring now has 32 points. They still lie on the old flat octagon sides.</li>
+    <li><b>Make each ring a true circle.</b> Select one ring (<kbd>Alt</kbd>+click), set the Pivot Point to <b>Bounding Box Center</b> and press <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd> (<b>To Sphere</b>), factor <span class="v">1</span>. Then scale it (<kbd>S</kbd>, locked to the ring's plane: <kbd>Shift</kbd>+<kbd>X</kbd> for tires, <kbd>Shift</kbd>+<kbd>Y</kbd> for the nozzle) until the ring passes through its old corner points. The octagon's corners were already on the true radius (1.3125 front, 1.79 rear, 0.95 and 0.65 on the nozzle); the new points between them sat inside it, down to 0.924 of it. Do this ring by ring.</li>
+    <li><b>Ground contact</b>: on every full-size tire ring, select the bottom points that went below the floor and type Z <span class="v">0</span> in the Sidebar. That flattens a small contact patch: 2 points per front ring, 4 per rear ring.</li>
+    <li><b>Tire shoulders</b>: select the rings where the tread meets a sidewall (both sides of every tire) and press <kbd>Ctrl</kbd>+<kbd>B</kbd>: Width <span class="v">0.05</span>, Segments <span class="v">1</span>. A thin chamfer makes the tires read as moulded rubber instead of sharp-edged coins. Then, with the new chamfer faces still selected, click the Mat_Tire_Rubber slot and press <b>Assign</b>. A bevel copies the material of a face next to it, so on the inner edge, where the tread meets the gunmetal hub disc, part of the chamfer comes out as metal. That shows up as a thin bright ring hugging each tire.</li>
+    <li><b>Nozzle lip</b>: select the two rings at the very back of the nozzle (Y 7.75, radius 0.95 and 0.65) and bevel them: Width <span class="v">0.03</span>, Segments <span class="v">2</span>.</li>
+    <li><b>Armour fillets</b>: select the edges between two armour faces that fold by about 22° to 145° and are longer than 0.25 ft. Skip any edge that touches a tire, the nozzle, the wheel metal or a glass pane. A quick way: <b>Select › Select Sharp Edges</b> (Sharpness 22°), then deselect around the tires, nozzle and canopy panes. Bevel with Width <span class="v">0.03</span>, Segments <span class="v">2</span>, Shape <span class="v">0.5</span> and <b>Clamp Overlap</b> on.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why bevel a faceted model at all</span><p>Real armour plates are never razor sharp. A 0.03 ft fillet (about 9 mm) is too small to change the silhouette, but it gives every fold a thin strip that faces the lights at an in-between angle. That strip catches a highlight, so the panel edges glow under the rim lights while the panels themselves stay perfectly flat.</p></aside>
+  <h4>Smooth and flat shading</h4>
+  <ul>
+    <li>Select the tire treads and shoulders, the nozzle's shroud, bore and lip roll, the rear spacer cylinders and the new armour fillet strips, then <b>Face › Shade Smooth</b>. Leave the armour panels, glass, flat tire sidewalls and rim discs flat.</li>
+    <li>Select the edges where a smooth area meets a flat one (tread to sidewall, around the rims, the nozzle lip, both borders of each fillet strip) and <kbd>Ctrl</kbd>+<kbd>E</kbd> › <b>Mark Sharp</b>. Smooth shading then blends only within each curved surface and never leaks a gradient into a flat panel.</li>
+  </ul>
+  <aside class="file"><span class="tag">In your file</span><p>Before: 444 vertices, 438 faces. After: 2016 vertices, 1942 faces. That's 20 tire rings and 4 nozzle rings at 32 sides, 384 shoulder edges chamfered, and 64 lip edges and 158 armour edges bevelled. The result has 0 non-manifold edges, 0 zero-area faces, one island, and all five materials still in use (armour 702, glass 8, rubber 832, exhaust 240, gunmetal 160 faces; all 384 shoulder-chamfer faces are rubber). The tread radii are exactly 1.3125 and 1.79, and the size is still 9 × 15 × 4.5 ft. The bevels place a few points up to 0.003 ft off their mirror twin, so the pass ends by snapping every left-side point to the exact mirror of its right-side twin (Edit Mode: <b>Mesh › Symmetrize</b>, +X to −X, does the same). The same pass as a script is <span class="path">scripts/refine.py</span>; it always starts again from the backup, so it can be re-run.</p></aside>
+
+  <h3 id="warmobile-s13-studio-lights-and-cameras">Step 13 · Studio, lights and cameras</h3>
+  <p>The same kind of studio as the other projects: a dark gradient world (the court's sky recipe, Part 2 Step 5), a floor, three-point area lighting with a top disk, and cameras with focus empties. Put them in <code>Studio</code>, <code>Studio Lights</code> and <code>Render Cameras</code> › <code>Camera Focus Targets</code> collections, and move the vehicle into a <code>Tumbler</code> collection.</p>
+  <ul>
+    <li><b>World</b>: Texture Coordinate (Generated) › Separate XYZ (Z) › Color Ramp from <span class="v">(0.035, 0.037, 0.045)</span> at 0 to <span class="v">(0.003, 0.003, 0.004)</span> at 0.35 › Background, Strength 1.</li>
+    <li><b>Floor</b> <code>Studio_Floor</code>: a 120 × 120 ft plane at Z 0. Material: Noise (Object coordinates, Scale 0.35, Detail 6) mixes <span class="v">(0.018, 0.019, 0.021)</span> and <span class="v">(0.032, 0.033, 0.036)</span> into Base Color, and the same noise through Map Range (0.3–0.7 → 0.42–0.58) into Roughness: dark, slightly uneven polished concrete.</li>
+  </ul>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light</th><th>Shape · size</th><th>Power</th><th>Color</th><th>Location</th><th>Aimed at</th></tr></thead>
+    <tbody>
+      <tr><td>Key_Softbox</td><td>Rectangle 6 × 4</td><td class="n">2000 W</td><td class="n">(1.0, 0.93, 0.84)</td><td class="n">(−11, −13, 10)</td><td class="n">(0, −0.5, 1.6)</td></tr>
+      <tr><td>Fill_Panel</td><td>Square 6</td><td class="n">450 W</td><td class="n">(0.9, 0.95, 1.0)</td><td class="n">(13, −8, 5)</td><td class="n">(0, 0, 1.6)</td></tr>
+      <tr><td>Rim_Strip_Left</td><td>Rectangle 10 × 1.5</td><td class="n">2400 W</td><td class="n">(1.0, 0.97, 0.92)</td><td class="n">(−11, 11, 6.5)</td><td class="n">(0, 1, 2)</td></tr>
+      <tr><td>Rim_Strip_Right</td><td>Rectangle 10 × 1.5</td><td class="n">2100 W</td><td class="n">(1.0, 0.97, 0.92)</td><td class="n">(11, 10, 6.5)</td><td class="n">(0, 1, 2)</td></tr>
+      <tr><td>Top_Disk</td><td>Disk 10</td><td class="n">900 W</td><td class="n">(1.0, 0.98, 0.95)</td><td class="n">(0, 0.5, 15)</td><td class="n">straight down</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why rim lights matter most here</span><p>A black vehicle on a dark floor disappears unless its edges catch light. The two long rim strips behind the car draw bright lines along every facet edge. That's what makes flat shading read so well: each facet catches the light at its own angle. To aim a light at a point quickly, add a <b>Track To</b> or <b>Damped Track</b> constraint targeting an empty, then apply it (Object › Apply › Visual Transform).</p></aside>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Camera</th><th>Location</th><th>Focus empty at</th><th>Lens</th><th>F-stop</th></tr></thead>
+    <tbody>
+      <tr><td>Cam_01_Front_Left_34</td><td class="n">(−13.5, −17.5, 6.0)</td><td class="n">(0, −0.5, 1.7)</td><td class="n">40</td><td class="n">8</td></tr>
+      <tr><td>Cam_02_Rear_Right_34</td><td class="n">(13.0, 18.0, 6.0)</td><td class="n">(0, 1.0, 1.9)</td><td class="n">40</td><td class="n">8</td></tr>
+      <tr><td>Cam_03_Side_Profile</td><td class="n">(−26.0, 0.25, 2.4)</td><td class="n">(0, 0.25, 2.0)</td><td class="n">50</td><td class="n">11</td></tr>
+      <tr><td>Cam_04_Front_Low_Hero</td><td class="n">(−8.0, −16.0, 1.5)</td><td class="n">(0, −3.5, 1.7)</td><td class="n">30</td><td class="n">5.6</td></tr>
+      <tr><td>Cam_05_Rear_Exhaust</td><td class="n">(3.6, 13.8, 2.6)</td><td class="n">(0, 7.6, 1.69)</td><td class="n">55</td><td class="n">2.8</td></tr>
+      <tr><td>Cam_06_Top_Iso</td><td class="n">(−9.0, −10.0, 20.0)</td><td class="n">(0, 0.25, 1.5)</td><td class="n">40</td><td class="n">11</td></tr>
+    </tbody>
+  </table></div>
+  <p>Each camera points at its focus empty: give the camera a <b>Track To</b> constraint targeting the empty, or place it and use <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+Numpad <kbd>0</kbd>. All cameras have Depth of Field on, Clip Start 0.1, Clip End 300.</p>
+
+  <h3 id="warmobile-s14-render">Step 14 · Render</h3>
+  <ol class="steps">
+    <li>Render tab: <b>Cycles</b>, GPU. Noise Threshold <span class="v">0.015</span>, Max Samples <span class="v">192</span>, Denoise on, Max Bounces Total <span class="v">12</span>. Color Management: AgX, Punchy, Exposure <span class="v">0</span>.</li>
+    <li>Output: 1920 × 1080, PNG. Render each camera (<kbd>Ctrl</kbd>+Numpad <kbd>0</kbd>, <kbd>F12</kbd>) and save it into <span class="path">04-warmobile/renders/</span> with the camera's name. Before re-rendering after a change, move the old set into a version folder (here <span class="path">renders/v1_four_material_palette/</span> holds the first renders, <span class="path">renders/v2_five_material_palette/</span> the five-material renders from before Step 12, and <span class="path">renders/v3_round_tires_bevels/</span> the first refined renders, from before the mesh was snapped to exact mirror symmetry), the same way the other projects keep their earlier versions.</li>
+  </ol>
+</div>
+<figure class="wide" style="max-width:900px"><img src="img/wm_cam06.jpg" width="900" height="506" alt="High three-quarter view from the front left showing the canopy panes, spine and fins" loading="lazy"><figcaption>Cam_06_Top_Iso: canopy panes, the armoured spine between them, and the fins.</figcaption></figure>
+<div class="col">
+  <h4>Check your result</h4>
+  <ul class="checklist">
+    <li>One object, and Select Linked selects all of it. Select Non Manifold selects nothing.</li>
+    <li>Statistics shows 1942 faces on the refined model; the hidden backup still has 438.</li>
+    <li>Two front tires sit in the bays; two pairs of rear tires have a visible groove between them.</li>
+    <li>The nozzle has a dark bore you can look into, and the canopy glass sits below its frames.</li>
+    <li>The tires and nozzle are round and smooth-shaded; the armour panels stay flat, with thin bevelled edges catching the rim lights.</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>

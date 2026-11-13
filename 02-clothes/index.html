@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Team benches · Five Scenes in Blender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/guide.css">
+<script src="../assets/guide.js" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="Chapters">
+  <h2>Chapters</h2>
+  <ol>
+    <li><a href="../index.html#start">How to use this guide</a></li>
+    <li><a href="../foundations/index.html#foundations">Part 1 · Foundations</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-interface">The interface</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-navigate">Moving around</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-space">3D space and units</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-objects">Objects and collections</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-transform">Move, rotate, scale</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-mesh">Meshes and Edit Mode</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-primitives">Primitives</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-modifiers">Modifiers</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-curves">Curves</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-materials">Materials and nodes</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-uv">UV maps</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-light">Lighting</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-camera">Cameras</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-render">Rendering</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-anim">Animation</a></li>
+    <li class="sub"><a href="../foundations/index.html#f-files">Files and habits</a></li>
+    <li><a class="p1" href="../01-basketball/index.html#court">Part 2 · Basketball court</a></li>
+    <li><a class="p2" href="#bench">Part 3 · Team benches</a></li>
+    <li class="sub"><a href="#bench-s1-start-from-the-court">Step 1 · Start from the court</a></li>
+    <li class="sub"><a href="#bench-s2-the-arena">Step 2 · The arena</a></li>
+    <li class="sub"><a href="#bench-s3-build-the-lakers-bench">Step 3 · Build the Lakers bench</a></li>
+    <li class="sub"><a href="#bench-s4-cloth-simulation-basics">Step 4 · Cloth simulation basics</a></li>
+    <li class="sub"><a href="#team-artwork">The team artwork</a></li>
+    <li class="sub"><a href="#bench-s5-a-draped-towel">Step 5 · A draped towel</a></li>
+    <li class="sub"><a href="#bench-s6-felt-pennants">Step 6 · Felt pennants</a></li>
+    <li class="sub"><a href="#bench-s7-the-celtics-bench">Step 7 · The Celtics bench</a></li>
+    <li class="sub"><a href="#bench-s8-light-each-bench-like-a-product-shot">Step 8 · Light each bench like a product shot</a></li>
+    <li class="sub"><a href="#bench-s9-seven-cameras-with-focus-targets">Step 9 · Seven cameras with focus targets</a></li>
+    <li class="sub"><a href="#bench-s10-render-all-seven">Step 10 · Render all seven</a></li>
+    <li><a class="p3" href="../03-fruits/index.html#fruits">Part 4 · Fruit table</a></li>
+    <li><a class="p4" href="../04-warmobile/index.html#warmobile">Part 5 · Warmobile</a></li>
+    <li><a class="p5" href="../05-ancient-theatre/index.html#theatre">Part 6 · Ancient Theatre</a></li>
+    <li><a href="../reference/index.html#fix">When something goes wrong</a></li>
+    <li><a href="../reference/index.html#keys">Shortcut sheet</a></li>
+    <li><a href="../reference/index.html#glossary">Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<section id="bench" class="part bench">
+<div class="col">
+  <div class="eyebrow">Part 3 · Project 02</div>
+  <h2>Team benches with draped cloth</h2>
+  <div class="meta"><span><b>File</b> <span class="path">projects/02-clothes/clothes.blend</span></span><span><b>Output</b> 7 stills from 7 cameras</span><span><b>Engine</b> Cycles</span></div>
+  <p class="lede">The court from Project 01 becomes an arena. Along one sideline sit a Lakers bench and a Celtics bench, each with team towels and felt pennants that were dropped onto them with a cloth simulation.</p>
+</div>
+<figure class="wide"><img src="img/cl_cam01.jpg" width="1400" height="788" alt="Wide arena shot: Lakers bench with purple and gold towels and pennants in front, Celtics bench in the distance, crowd backdrop" loading="lazy"><figcaption><span class="path">renders/Cam_01_Overview.png</span>. The crowd is a single photo on a curved wall.</figcaption></figure>
+<div class="grid2 wide">
+  <figure><img src="img/cl_cam04.jpg" width="900" height="506" alt="Close-up of the Lakers felt pennant draping off the bench end onto the floor" loading="lazy"><figcaption>Cam_04_Pennant_Closeup: felt fibres and a stitched border.</figcaption></figure>
+  <figure><img src="img/cl_cam05.jpg" width="900" height="506" alt="Close-up of Celtics towels on the bench" loading="lazy"><figcaption>Cam_05_Towels_Closeup: terry-cloth loops with the embroidered Celtics logo and wordmark.</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 id="bench-s1-start-from-the-court">Step 1 · Start from the court</h3>
+  <ol class="steps">
+    <li>Open <code>basketball_court.blend</code> and immediately <b>File › Save As</b> into <span class="path">projects/02-clothes/</span> as <code>clothes.blend</code>. You keep the floor, ball and hoops.</li>
+    <li>Copy the court and ball textures into <span class="path">02-clothes/assets/textures/</span> (same folder names), plus the new folders: <span class="path">arena-background</span>, <span class="path">pennants</span>, <span class="path">towels</span> and <span class="path">team-logos</span>. Use <b>File › External Data › Find Missing Files</b> if anything turns pink.</li>
+    <li>Delete the <code>Arena Lights</code> collection (right-click it in the Outliner › <b>Delete Hierarchy</b>). This scene is lit differently.</li>
+    <li>Select the ball, open the Graph Editor and delete its keyframes (<kbd>A</kbd>, <kbd>X</kbd>). Set its Location to <span class="v">(0, 6.935, 0.12)</span>. This scene is a still.</li>
+    <li>World: replace the gradient with a plain <b>Background</b> colour <span class="v">(0.012, 0.013, 0.018)</span>, Strength 1, by deleting the gradient nodes in the World node tree.</li>
+  </ol>
+  <aside class="why"><span class="tag">Reusing work</span><p>Saving a copy is the simplest reuse. To bring single pieces from another file, use <b>File › Append</b>, open the other .blend, go into its <i>Collection</i> or <i>Object</i> folder and pick what you want.</p></aside>
+
+  <h3 id="bench-s2-the-arena">Step 2 · The arena</h3>
+  <ol class="steps">
+    <li><b>Floor</b>: Add a Plane, Dimensions <span class="v">90 × 90</span>, apply scale, Location Z <span class="v">−0.005</span>. Name it <code>Arena_Floor</code>. Material: Base Color <span class="v">(0.018, 0.018, 0.022)</span>, Roughness <span class="v">0.6</span>.</li>
+    <li><b>Crowd wall</b>: Add a Cylinder, Vertices <span class="v">128</span>, <b>Cap Fill Type: Nothing</b>. Set Dimensions <span class="v">21.2 × 35 × 12</span>, apply scale, Location <span class="v">(0, 0, 6)</span>. Name it <code>Arena_Backdrop</code>.</li>
+    <li>Crowd material: in the Shader Editor delete the Principled BSDF and add an <b>Emission</b> node. Image Texture <span class="path">arena_crowd_background.jpg</span> → Emission Color, Strength <span class="v">0.5</span> → Material Output Surface.</li>
+    <li><b>Overall fill</b>: an Area light named <code>Arena_Fill</code>, Size <span class="v">30 × 40</span>, Power <span class="v">3500 W</span>, Color <span class="v">(1.0, 0.97, 0.92)</span>, Location <span class="v">(0, 0, 14)</span>, pointing down.</li>
+    <li>Put the three objects in an <code>Arena</code> collection.</li>
+  </ol>
+  <figure style="max-width:620px"><img src="img/tex_arena.jpg" width="900" height="406" alt="Wide photo of a blurred arena crowd in purple, gold and green with LED boards" loading="lazy"><figcaption>The crowd image. The cylinder's UV map wraps it around the wall.</figcaption></figure>
+  <aside class="why"><span class="tag">Why z = −0.005 and why Emission</span><p>The arena floor sits half a centimetre under the court. If two surfaces are exactly at the same height, the renderer can't decide which is in front and they flicker through each other; this is called <b>z-fighting</b>. The crowd uses Emission instead of a normal surface because the photo is already lit. Emission shows it at a fixed brightness whatever the scene lights do, and 0.5 keeps it dimmer than the court so the benches stay the focus.</p></aside>
+  <aside class="file"><span class="tag">In your file</span><p>The file's wall is a rounded rectangle made from one long strip of faces, exactly 21.2 m by 35 m and 12 m tall. An oval made from a cylinder looks the same through these cameras.</p></aside>
+  <p>The crowd went through several versions before it became a photo. The first version had 3D crowd stands, and the file was 4.6 MB. Swapping them for one image brought it down to 0.4 MB and made renders much faster:</p>
+</div>
+<div class="grid4 wide">
+  <figure><img src="img/cl_v1.jpg" width="640" height="360" alt="Version 1 with 3D crowd stands" loading="lazy"><figcaption>v1 · 3D crowd stands</figcaption></figure>
+  <figure><img src="img/cl_v2.jpg" width="640" height="360" alt="Version 2 with a picture backdrop" loading="lazy"><figcaption>v2 · picture backdrop</figcaption></figure>
+  <figure><img src="img/cl_v3.jpg" width="640" height="360" alt="Version 3 with softer crowd and fabric" loading="lazy"><figcaption>v3 · soft crowd and fabric</figcaption></figure>
+  <figure><img src="img/cl_v4.jpg" width="640" height="360" alt="Version 4 rendered in EEVEE with closer cameras" loading="lazy"><figcaption>v4 · EEVEE, closer cameras</figcaption></figure>
+</div>
+
+<div class="col">
+  <h3 id="bench-s3-build-the-lakers-bench">Step 3 · Build the Lakers bench</h3>
+  <ol class="steps">
+    <li><b>Seat</b>: Add a Cube, Dimensions <span class="v">0.45 × 3.0 × 0.06</span>, apply scale, Location <span class="v">(−8.75, −3.6, 0.43)</span>. Name it <code>Bench_Lakers_Seat</code>.</li>
+    <li>Modifiers › <b>Bevel</b>: Amount <span class="v">0.012</span>, Segments <span class="v">3</span>, Limit Method <b>Angle</b> (30°). Right-click › Shade Smooth. The rounded edges catch a thin highlight, so the seat reads as padded vinyl rather than a sharp block.</li>
+    <li>Seat material <code>Bench_Seat_Vinyl</code>: Base Color <span class="v">(0.025, 0.025, 0.028)</span>, Roughness <span class="v">0.45</span>.</li>
+    <li><b>Frame</b>: under the seat, four legs and two long rails, all thin boxes. Legs: Cubes <span class="v">0.04 × 0.04 × 0.4</span> standing at the corners of a <span class="v">0.32 × 2.31</span> rectangle centred on (−8.75, −3.6). Rails: Cubes <span class="v">0.04 × 2.35 × 0.04</span> at X −8.91 and −8.59, Z ≈ 0.12. Apply scale on each.</li>
+    <li>Select the six boxes and join them (<kbd>Ctrl</kbd>+<kbd>J</kbd>). Name the result <code>Bench_Lakers_Frame</code>. Its overall size should be <span class="v">0.36 × 2.35 × 0.4</span>.</li>
+    <li>Frame material <code>Bench_Frame_Metal</code>: Base Color <span class="v">(0.45, 0.46, 0.48)</span>, Metallic <span class="v">0.9</span>, Roughness <span class="v">0.35</span>.</li>
+    <li>Put both in a <code>Bench_Lakers</code> collection inside a <code>Team Benches</code> collection.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>The frame is six boxes joined into one object (48 points, 36 faces), 0.36 × 2.35 × 0.4 m overall. The exact layout of the six boxes above is a reasonable reading of the renders; any legs-and-rails layout of that size works.</p></aside>
+
+  <h3 id="bench-s4-cloth-simulation-basics">Step 4 · Cloth simulation basics</h3>
+  <p>A cloth simulation treats a mesh like a net of points joined by springs. Blender lets gravity pull the points down frame by frame, and stops them passing through any object marked as a <b>collision</b> object. To fold nicely, cloth needs many points, which is why it starts from a Grid instead of a plain Plane.</p>
+  <p>The workflow you'll use for every towel and pennant:</p>
+  <div class="stack" aria-label="Cloth workflow">
+    <div><b>1</b><span>Mark what the cloth can land on<small>Physics tab › Collision on the seat, the frame and Court_Floor</small></span></div>
+    <div><b>2</b><span>Make a dense Grid just above the seat<small>apply its scale before simulating</small></span></div>
+    <div><b>3</b><span>Pin the part that should stay put<small>a vertex group named Pin</small></span></div>
+    <div><b>4</b><span>Add Cloth and play the timeline<small>it drapes over the next 30–60 frames</small></span></div>
+    <div><b>5</b><span>Stop on a good frame and Apply the Cloth modifier<small>the drape becomes the real shape</small></span></div>
+    <div><b>6</b><span>Add the finishing modifiers<small>smoothness, wrinkles, thickness</small></span></div>
+  </div>
+  <aside class="warn"><span class="tag">Starting values</span><p>Your file only keeps the result. The simulations were applied, so the exact cloth settings are gone. The values below are reliable starting points; expect to adjust and re-run a couple of times. That's normal with simulations.</p></aside>
+
+  <h3 id="team-artwork">The team artwork</h3>
+  <p>The towels and pennants carry the real team logos and wordmarks. These are 2D work, done in an image editor before anything happens in Blender: Blender only sees the finished towel and pennant images. The original logo files and their kit-coloured versions live in their own folder:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>File in <span class="path">02-clothes/assets/textures/team-logos/</span></th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><code>lakers/lakers_logo_source.png</code> · <code>lakers/lakers_wordmark_source.png</code></td><td>The original logo and wordmark, untouched</td></tr>
+      <tr><td><code>lakers/lakers_logo_kit.png</code></td><td>Logo in kit colours: gold ball and outline, purple lettering and seams</td></tr>
+      <tr><td><code>lakers/lakers_wordmark_kit_gold.png</code> · <code>…_kit_purple.png</code></td><td>Wordmark with gold letters (for purple fabric) and purple letters (for gold fabric)</td></tr>
+      <tr><td><code>celtics/celtics_logo_source.png</code> · <code>celtics/celtics_wordmark_source.png</code></td><td>The original logo and wordmark, untouched</td></tr>
+      <tr><td><code>celtics/celtics_logo_kit.png</code></td><td>Badge in kit green and white, with a thin white ring so it stands out on green fabric</td></tr>
+      <tr><td><code>celtics/celtics_wordmark_kit_white.png</code> · <code>…_kit_green.png</code></td><td>Wordmark in white (for green fabric) and green (for white fabric)</td></tr>
+    </tbody>
+  </table></div>
+  <p>The downloaded logos didn't quite match the kit. The Lakers logo's purple was much darker than the towels', the wordmark's gold was more orange, and the Celtics wordmark was a bluer green. Mixed together they'd look like stickers from different shops. So every logo was recoloured to the exact colours already used on the fabric:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Kit colour</th><th>Hex (for image editors)</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip" style="background:#562583"></span> Lakers purple</td><td class="n">#562583</td><td>purple towel, pennant field, logo lettering</td></tr>
+      <tr><td><span class="chip" style="background:#FCB827"></span> Lakers gold</td><td class="n">#FCB827</td><td>gold towel, stripes, logo ball, wordmark on purple</td></tr>
+      <tr><td><span class="chip" style="background:#007932"></span> Celtics green</td><td class="n">#007932</td><td>green towel, pennant field, badge disc, wordmark on white</td></tr>
+      <tr><td><span class="chip" style="background:#F0F0ED;outline:1px solid var(--line)"></span> Celtics white</td><td class="n">#F0F0ED (towels) · #FFFFFF (pennant)</td><td>white towel, stripes, badge lettering and shamrock, wordmark on green</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <figure><img src="img/pen_old.jpg" width="520" height="292" alt="Old Lakers pennant with a simple ball icon and plain block LAKERS text" loading="lazy"><figcaption>Before: a stand-in ball icon and plain block lettering.</figcaption></figure>
+    <figure><img src="img/tex_pennant_color.jpg" width="520" height="292" alt="New Lakers pennant with the real Lakers logo and wordmark in gold on purple" loading="lazy"><figcaption>After: the real logo and wordmark, recoloured to the kit.</figcaption></figure>
+  </div>
+  <h4>Doing it yourself in an image editor</h4>
+  <ol class="steps">
+    <li>Open the towel or pennant image (for example <span class="path">towels/lakers_towel_purple_color.jpg</span>) in GIMP, Krita or Photoshop. Paint over any old artwork with the fabric colour, sampling it with the eyedropper so the shade matches.</li>
+    <li>Open a source logo. Recolour it with <b>Select › By Color</b> on one colour region, then fill the selection with the kit hex from the table. Repeat for each colour. On the Lakers logo, the white outline becomes gold and the black seams become purple, so it only uses the two kit colours.</li>
+    <li>Paste the recoloured logo as a new layer and place it. Towels (2048 × 860 px): logo centred near (470, 430), about 330–410 px wide; wordmark centred at (1024, 430), about 560–640 px wide. Pennants (3912 × 2200 px): logo starting at x 420, about 1000–1150 px wide; wordmark starting at x 1680, about 900–1050 px wide; both centred vertically at y 1100, inside the triangle.</li>
+    <li>Export over the original file name. Blender picks up the change the next time the file is opened, or straight away with <b>Image › Reload</b> in the Image Editor.</li>
+    <li>Update the matching <b>data</b> map (towels) or <b>height</b> map (pennants) with the same shapes, so the artwork is raised like real embroidery or appliqué. The values to paint are in the towel and pennant material sections below.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why recolour instead of using the files as they are</span><p>Colour is what makes a set of props read as one team's kit. A logo whose purple is a few shades off sits on the towel like a separate patch. Recolouring to the fabric's own values makes the logo look woven or stitched into it. The kit-coloured versions are kept as separate files, so the originals are never lost.</p></aside>
+  <aside class="file"><span class="tag">In your file</span><p>The current towel and pennant images were built from these logo files by a short script that does exactly the steps above: recolour, erase the old artwork, place the logo and wordmark, and write the embroidery or appliqué into the data and height maps. No change to <code>clothes.blend</code> was needed, because the image file names stayed the same.</p></aside>
+
+  <h3 id="bench-s5-a-draped-towel">Step 5 · A draped towel</h3>
+  <ol class="steps">
+    <li><b>Collisions first.</b> Select the seat › Physics tab › <b>Collision</b>. Set <b>Softbody &amp; Cloth › Thickness Outer</b> to <span class="v">0.005</span>. Do the same for the frame and for <code>Court_Floor</code>.</li>
+    <li><b>The towel.</b> Add › Mesh › <b>Grid</b>: X Subdivisions <span class="v">40</span>, Y Subdivisions <span class="v">17</span>. Set Dimensions <span class="v">1.0 × 0.42</span> and apply scale. Location <span class="v">(−8.66, −3.87, 0.47)</span>, 1 cm above the seat top (which is at 0.46). Name it <code>Bench_Lakers_Towel_Purple</code>. Shade Smooth.</li>
+    <li><b>The pin group.</b> <kbd>Tab</kbd>, vertex select, and box-select (<kbd>B</kbd>) the middle columns of points that lie over the seat. In the Data tab (green triangle) › <b>Vertex Groups</b> press <b>+</b>, double-click to rename it <code>Pin</code>, and press <b>Assign</b>. <kbd>Tab</kbd> back.</li>
+    <li><b>Cloth.</b> Physics tab › <b>Cloth</b>. Click the preset icon in the panel header › <b>Cotton</b>. Quality Steps <span class="v">10</span>. <b>Shape › Pin Group</b>: Pin. <b>Collisions</b>: Object Collisions on, Distance <span class="v">0.005</span>; <b>Self Collisions</b> on. <b>Cache</b>: End <span class="v">60</span>.</li>
+    <li>Go to frame 1 and press <kbd>Space</kbd>. The free ends fall over the long sides of the seat. If it slides off, pin more points; if it passes through the seat, raise Quality Steps.</li>
+    <li>Stop at a frame where it has settled (around 40–60). In the Modifiers tab, open the <b>Cloth</b> modifier's dropdown › <b>Apply</b>. Go back to frame 1: the drape stays.</li>
+  </ol>
+  <aside class="file"><span class="tag">In your file</span><p>Each towel is a 41 × 18-point grid (680 faces) with a vertex group named <code>Pin</code>, and the draped result is about 0.56 m across the seat and 0.42 m wide, hanging down to the floor. The flat size above (1.0 × 0.42 m) matches the 2.38 : 1 shape of the towel images.</p></aside>
+  <h4>Finishing modifiers, in this exact order</h4>
+  <div class="stack" aria-label="Towel modifier stack, top to bottom">
+    <div><b>1</b><span>Subdivision Surface<small>Levels Viewport 1, Render 2. Smooths the simulated folds.</small></span></div>
+    <div><b>2</b><span>Displace<small>New texture; in the Texture tab set Type <b>Clouds</b>, Size 0.06, Depth 2. Back in the modifier: Strength 0.004, Coordinates Local. Adds small random wrinkles.</small></span></div>
+    <div><b>3</b><span>Solidify<small>Thickness 0.008, Offset 1, Even Thickness on, Fill Rim on. Gives the towel 8 mm of thickness.</small></span></div>
+    <div><b>4</b><span>Subdivision Surface<small>Levels Viewport 0, Render 1. Rounds off the new thick edges in the final render.</small></span></div>
+  </div>
+  <aside class="why"><span class="tag">Why this order</span><p>Wrinkles (Displace) come before thickness (Solidify), so both faces of the towel wrinkle together like real fabric. If you swap them, the front and back wrinkle separately and the towel looks lumpy and uneven in thickness. Subdividing first gives the wrinkles enough points to be smooth.</p></aside>
+
+  <h4>The towel material</h4>
+  <p>Each towel uses two images made for it. The <b>colour</b> image is the design: kit-coloured stripes, the team logo near one end and the wordmark in the middle. The <b>data</b> image stores two grey values in its colour channels. <b>Red</b> is height: <span class="v">0.50</span> for the towel field, <span class="v">0.60</span> for the embroidered logo and wordmark (a little more for the lettering on top), <span class="v">0.45</span> for the flat woven stripes and <span class="v">0.62</span> for the hem. <b>Green</b> is how much terry loop shows: <span class="v">1.0</span> on the field, <span class="v">0.56</span> on the embroidery, almost none on the stripes and hem.</p>
+  <div class="grid2">
+    <figure><img src="img/tex_towel_color.jpg" width="520" height="218" alt="Purple Lakers towel design with gold stripes, the Lakers logo and the gold LAKERS wordmark" loading="lazy"><figcaption><span class="path">lakers_towel_purple_color.jpg</span> (sRGB)</figcaption></figure>
+    <figure><img src="img/tex_towel_data.jpg" width="520" height="218" alt="Data map in red and green: green towel field with the logo and wordmark shapes in olive, stripes in dark red" loading="lazy"><figcaption><span class="path">lakers_towel_purple_data.png</span> (Non-Color)</figcaption></figure>
+  </div>
+  <p>Start with the simple version, check it renders, then add the terry loops.</p>
+  <div class="recipe">
+    <h5>Simple version: Towel_Lakers_Purple</h5>
+    <ul>
+      <li>Principled: Roughness <span class="v">0.95</span>, Specular IOR Level <span class="v">0.15</span>, Sheen Weight <span class="v">0.3</span></li>
+      <li><b>Texture Coordinate</b> › UV → <b>Image Texture</b> (colour image, sRGB) → Base Color</li>
+      <li>UV → <b>Image Texture</b> (data image, <b>Non-Color</b>) → <b>Separate Color</b> › Red → <b>Bump</b> Height (Strength <span class="v">1.0</span>, Distance <span class="v">0.004</span>) → Principled Normal</li>
+    </ul>
+    <h5>Add the terry loops</h5>
+    <ul>
+      <li>UV → <b>Mapping</b> (Scale <span class="v">625, 262.5, 1</span>) → <b>Voronoi Texture</b> (F1, Scale <span class="v">5</span>, Randomness <span class="v">0.85</span>) › Distance → <b>Map Range</b> (From 0–0.6, To 1–0). This makes a field of tiny round bumps: the loops.</li>
+      <li>Loops × Separate Color <b>Green</b> (Math › Multiply), so loops only appear on the terry area.</li>
+      <li>Mapping → <b>Noise Texture</b> (Scale <span class="v">3</span>, Detail <span class="v">4</span>); Math › <b>Multiply Add</b>: Noise × 0.25 + loops. Gives the loops gentle unevenness.</li>
+      <li>Result → a second <b>Bump</b> (Strength <span class="v">0.7</span>, Distance <span class="v">0.0012</span>). Its Normal output goes into the <i>Normal input</i> of the red-channel Bump, so both bumps stack.</li>
+      <li>For shading between loops: (loops − 1) × Green + 1 → <b>Mix</b> (Color, <b>Multiply</b>) with the colour image → Base Color. The gaps between loops get slightly darker.</li>
+    </ul>
+  </div>
+  <aside class="why"><span class="tag">Why 625 × 262.5</span><p>UV coordinates go from 0 to 1 across the towel, which is only 1.0 × 0.42 m. Scaling the Mapping by 625 in U and 262.5 in V (the same 2.38 : 1 ratio as the towel) repeats the Voronoi cells thousands of times, so each loop is a few millimetres across and stays round instead of stretched.</p></aside>
+
+  <h4>The gold towel</h4>
+  <p>Repeat for <code>Bench_Lakers_Towel_Gold</code> next to it, centred around Y <span class="v">−3.33</span>. Make a fresh grid (or duplicate the purple one before you apply its cloth). Copy the material with the "new material" button beside its name, then swap in the gold colour and data images. Run the simulation with a slightly different pin selection so the two towels don't fold identically.</p>
+
+  <h3 id="bench-s6-felt-pennants">Step 6 · Felt pennants</h3>
+  <ol class="steps">
+    <li>Add a <b>Grid</b>: X Subdivisions <span class="v">48</span>, Y Subdivisions <span class="v">24</span>. Dimensions <span class="v">1.12 × 0.63</span>, the same 16 : 9 shape as the pennant image. Rotate <kbd>R</kbd> <kbd>Z</kbd> <code>90</code> so its long side runs along the bench, then apply rotation and scale.</li>
+    <li>Place it just above the seat at the south end, with about a third hanging past the end of the seat (Y −5.1), at Z <span class="v">0.47</span>. Name it <code>Bench_Lakers_Pennant_South</code>.</li>
+    <li>Pin the points over the seat (vertex group <code>Pin</code>). Cloth preset <b>Denim</b>, since felt is stiffer than cotton. Same collision settings as the towels. Play, then apply the cloth on a good frame. The free end should fold over the bench end and lie on the floor.</li>
+    <li>Make the north one the same way at the other end (<code>Bench_Lakers_Pennant_North</code>, around Y −1.92).</li>
+  </ol>
+  <div class="stack" aria-label="Pennant modifier stack">
+    <div><b>1</b><span>Subdivision Surface<small>Viewport 1, Render 2</small></span></div>
+    <div><b>2</b><span>Displace<small>Clouds texture, Size 0.12, Depth 1 · Strength 0.0025 · Coordinates Local. Broader, gentler waves than the towel.</small></span></div>
+    <div><b>3</b><span>Solidify<small>Thickness 0.003, Offset 1, Even Thickness, Fill Rim. Felt is thin.</small></span></div>
+  </div>
+  <p>The pennant artwork is felt appliqué: the logo and wordmark are cut-out felt pieces sewn onto the pennant. In the height map the felt field is <span class="v">0.25</span>, the sleeve, triangle stripes and appliqué pieces are <span class="v">0.70</span>, the lettering stitched on top of the logo is <span class="v">0.78</span>, and a dashed white stitch line (<span class="v">0.94</span>) runs just inside every piece's edge.</p>
+  <div class="grid2">
+    <figure><img src="img/tex_pennant_color.jpg" width="520" height="292" alt="Purple Lakers pennant with gold border, the Lakers logo and the gold LAKERS wordmark" loading="lazy"><figcaption><span class="path">lakers_pennant_felt_color.jpg</span> (sRGB)</figcaption></figure>
+    <figure><img src="img/tex_pennant_height.jpg" width="520" height="292" alt="Grey height map of the pennant: raised logo, wordmark and stripes with dashed stitch lines" loading="lazy"><figcaption><span class="path">lakers_pennant_felt_height.png</span> (Non-Color): light is raised.</figcaption></figure>
+  </div>
+  <div class="recipe">
+    <h5>Nodes: Pennant_Lakers</h5>
+    <ul>
+      <li>Principled: Roughness <span class="v">1.0</span>, Specular IOR Level <span class="v">0.1</span>, Sheen Weight <span class="v">0.2</span></li>
+      <li>UV → felt colour image → <b>Mix</b> (Color, Multiply, Factor 1) A</li>
+      <li><b>Texture Coordinate</b> › Object → <b>Noise Texture</b> (Scale <span class="v">1500</span>, Detail <span class="v">6</span>, Roughness <span class="v">0.75</span>) → <b>Map Range</b> (From 0–1, To <span class="v">0.9–1.06</span>) → Mix B. Mix Result → Base Color. The fibres vary the colour by a few percent.</li>
+      <li>Noise → <b>Bump</b> (Strength <span class="v">0.35</span>, Distance <span class="v">0.0006</span>) → Normal input of a second <b>Bump</b> whose Height is the height image (Strength <span class="v">1.0</span>, Distance <span class="v">0.0015</span>) → Principled Normal</li>
+    </ul>
+  </div>
+  <aside class="why"><span class="tag">Why Object coordinates for fibres</span><p>Noise driven by Object coordinates is measured in metres on the object itself, so the fibres stay the same tiny size everywhere and never stretch across a fold. A Scale of 1500 makes features under a millimetre: felt fuzz. Roughness 1.0 and a little Sheen give felt its dull, soft look.</p></aside>
+
+  <h3 id="bench-s7-the-celtics-bench">Step 7 · The Celtics bench</h3>
+  <ol class="steps">
+    <li>Select the Lakers seat, frame, towels and pennants. <kbd>Shift</kbd>+<kbd>D</kbd>, <kbd>Y</kbd>, <code>7.2</code>, <kbd>Enter</kbd>. The copy sits at Y +3.6.</li>
+    <li>Rename everything <code>Bench_Celtics_…</code> and move it into a <code>Bench_Celtics</code> collection.</li>
+    <li>Towels become <code>Towel_Celtics_Green</code> and <code>Towel_Celtics_White</code>, pennants <code>Pennant_Celtics</code>. For each, copy the material and swap in the Celtics images. The node setups don't change.</li>
+    <li>Optional: re-run the cloth on fresh grids so the Celtics folds differ from the Lakers ones.</li>
+  </ol>
+
+  <h3 id="bench-s8-light-each-bench-like-a-product-shot">Step 8 · Light each bench like a product shot</h3>
+  <p>Each bench gets its own four area lights, arranged around it like a photo studio. Here are the Lakers ones from above, at their real positions:</p>
+</div>
+<div class="diagram minw" style="max-width:740px" role="img" aria-label="Top view of the Lakers bench: key light front-right toward the court, fill on the other side near camera 2, rim light behind the bench by the crowd wall, top disk above the bench">
+<svg viewBox="0 0 640 560" xmlns="http://www.w3.org/2000/svg">
+  <line x1="80" y1="20" x2="80" y2="540" class="ln" style="stroke-width:4"/>
+  <text x="88" y="36" font-size="12" class="mut">crowd wall</text>
+  <line x1="183.9" y1="20" x2="183.9" y2="540" class="dash"/>
+  <text x="190" y="536" font-size="12" class="mut">court edge →</text>
+  <g class="dash"><line x1="490" y1="470" x2="270" y2="310"/><line x1="510" y1="90" x2="270" y2="290"/><line x1="138" y1="240" x2="255" y2="295"/></g>
+  <rect x="242.5" y="150" width="45" height="300" rx="4" style="fill:var(--lakers);opacity:.85"/>
+  <text x="300" y="196" font-size="12">Lakers bench</text>
+  <text x="300" y="212" font-size="11" class="mut mono">0.45 × 3.0 m</text>
+  <rect x="460" y="458" width="64" height="26" rx="3" class="boxhi"/>
+  <text x="430" y="506" font-size="13" font-weight="600">Key softbox</text>
+  <text x="430" y="522" font-size="11" class="mut mono">330 W · warm · 1.6 × 1.0</text>
+  <rect x="490" y="70" width="40" height="40" rx="3" class="box"/>
+  <text x="420" y="58" font-size="13" font-weight="600">Fill panel</text>
+  <text x="500" y="58" font-size="11" class="mut mono">80 W · cool</text>
+  <rect x="122" y="214" width="16" height="52" rx="3" class="boxhi"/>
+  <text x="96" y="200" font-size="13" font-weight="600">Rim strip</text>
+  <text x="96" y="286" font-size="11" class="mut mono">260 W</text>
+  <text x="96" y="300" font-size="11" class="mut mono">1.6 × 0.4</text>
+  <circle cx="280" cy="300" r="26" class="box" style="fill-opacity:.6"/>
+  <text x="300" y="372" font-size="12">Top disk, 110 W, 3.1 m up</text>
+  <polygon points="492,128 478,112 506,112" style="fill:var(--ink)"/>
+  <text x="514" y="136" font-size="12">Cam_02</text>
+  <line x1="580" y1="520" x2="620" y2="520" class="ln"/><polygon points="620,520 612,516 612,524" style="fill:var(--muted)"/>
+  <text x="586" y="512" font-size="11" class="mut mono">+X</text>
+  <line x1="600" y1="500" x2="600" y2="460" class="ln"/><polygon points="600,460 596,468 604,468" style="fill:var(--muted)"/>
+  <text x="606" y="472" font-size="11" class="mut mono">+Y</text>
+</svg>
+</div>
+<div class="col">
+  <div class="tablewrap"><table>
+    <thead><tr><th>Light (Lakers)</th><th>Shape · size</th><th>Power</th><th>Color</th><th>Location</th><th>Rotation (°)</th></tr></thead>
+    <tbody>
+      <tr><td>Lakers_Key_Softbox</td><td>Rectangle 1.6 × 1.0</td><td class="n">330 W</td><td class="n">(1.0, 0.93, 0.84)</td><td class="n">(−6.5, −5.3, 2.3)</td><td class="n">(57.5, 0, 52.9)</td></tr>
+      <tr><td>Lakers_Fill_Panel</td><td>Square 2.0</td><td class="n">80 W</td><td class="n">(0.9, 0.95, 1.0)</td><td class="n">(−6.3, −1.5, 1.2)</td><td class="n">(77.8, 0, 130.6)</td></tr>
+      <tr><td>Lakers_Rim_Strip</td><td>Rectangle 1.6 × 0.4</td><td class="n">260 W</td><td class="n">(1.0, 0.97, 0.92)</td><td class="n">(−10.1, −3.0, 2.0)</td><td class="n">(44.6, 0, −114.0)</td></tr>
+      <tr><td>Lakers_Top_Disk</td><td>Disk 1.5</td><td class="n">110 W</td><td class="n">(1.0, 0.98, 0.95)</td><td class="n">(−8.6, −3.6, 3.1)</td><td class="n">(3.3, 0, 90)</td></tr>
+    </tbody>
+  </table></div>
+  <p>The Celtics lights are identical, each moved +7.2 in Y: key at (−6.5, 1.9, 2.3), fill at (−6.3, 5.7, 1.2), rim at (−10.1, 4.2, 2.0), top at (−8.6, 3.6, 3.1). Select the four Lakers lights, <kbd>Shift</kbd>+<kbd>D</kbd> <kbd>Y</kbd> <code>7.2</code>, rename. Put all eight in a <code>Bench Lights</code> collection.</p>
+  <aside class="why"><span class="tag">Why lights per bench</span><p>The big Arena_Fill makes the whole arena visible, but it's flat. The small, close lights shape the cloth: the key gives the folds bright and dark sides, the rim strip from the crowd side traces the outline so the dark bench doesn't vanish into the dark crowd, and the soft top disk brings out the felt texture. Your last commit on this project, "enhanced the lighting", is this step.</p></aside>
+
+  <h3 id="bench-s9-seven-cameras-with-focus-targets">Step 9 · Seven cameras with focus targets</h3>
+  <ol class="steps">
+    <li>Add five <b>Empty › Sphere</b> objects as focus targets, in a <code>Camera Focus Targets</code> collection: Focus_Lakers_Bench <span class="v">(−8.75, −3.6, 0.45)</span>, Focus_Celtics_Bench <span class="v">(−8.75, 3.6, 0.45)</span>, Focus_Lakers_Pennant_North <span class="v">(−8.75, −1.9, 0.25)</span>, Focus_Celtics_Towels <span class="v">(−8.75, 3.4, 0.46)</span>, Focus_Lakers_Pennant_South <span class="v">(−8.75, −4.75, 0.2)</span>.</li>
+    <li>Add the cameras below in a <code>Render Cameras</code> collection. For each: Data tab › Depth of Field on, Focus on Object = its target, F-Stop as listed, Clip Start <span class="v">0.05</span>.</li>
+    <li>The old court Camera can stay (the file keeps it); just make sure one of the new cameras is active before rendering.</li>
+  </ol>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Camera</th><th>Location</th><th>Rotation (°)</th><th>Lens</th><th>F-stop</th><th>Focus</th></tr></thead>
+    <tbody>
+      <tr><td>Cam_01_Overview</td><td class="n">(−5.2, −9.2, 1.7)</td><td class="n">(85.5, 0, 21.8)</td><td class="n">26 mm</td><td class="n">5.6</td><td>Lakers_Bench</td></tr>
+      <tr><td>Cam_02_Lakers_Bench</td><td class="n">(−6.482, −1.872, 1.206)</td><td class="n">(72.3, 0, 118.1)</td><td class="n">28 mm</td><td class="n">4.0</td><td>Lakers_Bench</td></tr>
+      <tr><td>Cam_03_Celtics_Bench</td><td class="n">(−6.482, 5.328, 1.206)</td><td class="n">(72.3, 0, 118.1)</td><td class="n">28 mm</td><td class="n">4.0</td><td>Celtics_Bench</td></tr>
+      <tr><td>Cam_04_Pennant_Closeup</td><td class="n">(−7.812, −1.15, 0.587)</td><td class="n">(74.9, 0, 131.3)</td><td class="n">35 mm</td><td class="n">2.8</td><td>Lakers_Pennant_North</td></tr>
+      <tr><td>Cam_05_Towels_Closeup</td><td class="n">(−7.363, 2.65, 1.202)</td><td class="n">(62.5, 0, 57.0)</td><td class="n">30 mm</td><td class="n">2.8</td><td>Celtics_Towels</td></tr>
+      <tr><td>Cam_06_Behind_Celtics</td><td class="n">(−9.6, 1.832, 2.252)</td><td class="n">(50.4, 0, −48.7)</td><td class="n">22 mm</td><td class="n">5.6</td><td>Celtics_Bench</td></tr>
+      <tr><td>Cam_07_Under_Bench_Fold</td><td class="n">(−7.665, −5.625, 0.305)</td><td class="n">(83.0, 0, 50.0)</td><td class="n">28 mm</td><td class="n">2.8</td><td>Lakers_Pennant_South</td></tr>
+    </tbody>
+  </table></div>
+  <aside class="why"><span class="tag">Why focus on empties</span><p>A focus empty keeps the sharp spot locked on the subject even if you move the camera. The f-stops follow a simple rule: wide shots (f/5.6) keep the whole bench sharp, close-ups (f/2.8) blur everything except the fabric, which draws the eye to the cloth detail.</p></aside>
+  <figure><img src="img/cl_cam07.jpg" width="900" height="506" alt="Low camera under the bench looking at the pennant folded onto the floor" loading="lazy"><figcaption>Cam_07_Under_Bench_Fold: a camera 30 cm off the floor at f/2.8, looking at where the pennant folds onto the floor.</figcaption></figure>
+
+  <h3 id="bench-s10-render-all-seven">Step 10 · Render all seven</h3>
+  <ol class="steps">
+    <li>Render tab: <b>Cycles</b>, GPU. Noise Threshold <span class="v">0.015</span>, Max Samples <span class="v">192</span>, Denoise on. Max Bounces Total <span class="v">12</span>. Motion Blur off.</li>
+    <li>Color Management: AgX, Look Punchy, Exposure <span class="v">−0.25</span>. Output: 1920 × 1080, PNG.</li>
+    <li>For each camera: select it, <kbd>Ctrl</kbd>+Numpad <kbd>0</kbd>, <kbd>F12</kbd>, then <b>Image › Save As</b> into <span class="path">02-clothes/renders/</span> with the camera's name, e.g. <code>Cam_01_Overview.png</code>.</li>
+  </ol>
+  <aside class="why"><span class="tag">Why a lower noise threshold here</span><p>This scene is darker and full of fine texture (fibres, loops). A noise threshold of 0.015 is twice as strict as the court's 0.03, so Cycles keeps sampling until the dark areas are clean. More bounces (12) let light carry into the shadowed folds.</p></aside>
+  <h4>Check your result</h4>
+  <ul class="checklist">
+    <li>Towels hang over both long sides of the seats with natural folds, and none pass through the bench.</li>
+    <li>Pennants fold over the bench ends and lie on the floor.</li>
+    <li>Close-ups show terry loops on the towels and fuzz on the felt.</li>
+    <li>The crowd photo is visible but dim; the benches are the brightest things in frame.</li>
+    <li>Each close-up is sharp on its subject with a blurred background.</li>
+  </ul>
+</div>
+</section>
+</main>
+</div>
+</body>
+</html>
